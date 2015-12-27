@@ -1,4 +1,4 @@
-$(function() {
+// $(function() {
 	var places = [
 		{
 			name: "Barrett Park",
@@ -306,10 +306,46 @@ $(function() {
 			marker: "o",
 			description: "Woodley Road Bird Sanctuary is a wooded area enclosed by a North Stamford neighborhood where locals come to take in the scenery.&nbsp;A large variety of plant and animal life attracts visitors, making this particular facility the perfect place for a morning hike or afternoon picnic.&nbsp;The park can be found in the hills about 2 miles from the Merritt Parkway and has a couple of different entrances.&nbsp;The easiest way to access by car is from either Woodley Road or Brookdale Drive, but residents can walk into the park from a number of locations."
 		}
-
 	];
 
-	var Map = {
+	// ko.bindingHandlers.googlemap = {
+	// 	init: function(element, valueAccessor) {
+	// 		var value = valueAccessor(),
+	// 		mapOptions = {
+	// 			center: new google.maps.LatLng(value.centerLat, value.centerLon),
+	// 			mapTypeId: google.maps.MapTypeId.ROADMAP,
+	// 			zoom: 13
+	// 	},
+	// 	map = new google.maps.Map(element, mapOptions);
+	// 	//console.log(value);
+	// 	//console.log(value.locations());
+
+
+	// 	for (var i in value.locations()) {
+	// 		addMarker(value.locations[i]);
+
+	// 		}
+
+	// 	}
+
+	// };
+
+	// function initialize() {
+	// 	var center = new google.maps.LatLng()
+	// }
+
+	// var addMarker = function(marker) {
+	// 		var latLng = new google.maps.LatLng(
+	// 			marker.lat,
+	// 			marker.lng);
+	// 		var marker = new google.maps.Marker({
+	// 			position: latLng,
+	// 			map: map
+	// 		});
+
+	// };
+
+	 var Map = {
 
 		initMap: function() {
 			var stamford = new google.maps.LatLng(41.074448, -73.541316);
@@ -321,74 +357,12 @@ $(function() {
 				scroolwheel: true,
 				zoom: 13
 			});
-
-
-			// Create a map marker and set its position.
-			// var marker = new google.maps.Marker({
-			// 	map: map,
-			// 	position: stamford,
-			// 	title: 'Hello World!'
-			// });
-
 		}
-
-		// placeMarker: function() {
-		// 	var marker = new google.maps.Marker({
-		// 		map: map,
-		// 		position: ViewModel.currentPlace().address.lat, ViewModel.currentPlace().address.lng,
-		// 		title: ViewModel.currentPlace().name
-		// 	})
-
-		// }
-
 	};
 
-	 var Place = function(data) {
-	 	this.name = ko.observable(data.name);
-	 	this.lat = ko.observable(data.address.lat);
-	 	this.lng = ko.observable(data.address.lng);
-	 	this.marker = ko.observable(data.marker);
-	 	this.description = ko.observable(data.description);
+	var mark = function(place, map) {
 
-	 };
-
-
-	var ViewModel = function() {
-
-		var self = this;
-
-		self.markers = [];
-
-		self.places = ko.observableArray([]);
-		self.query = ko.observable('');
-
-		self.currentPlace = ko.observable();
-
-		places.forEach(function(placeItem){
-		 	console.log(placeItem);
-		 	self.places.push(new Place ( placeItem) );
-		 });
-
-		search = function(value) {
-			// remove all the current beers, which removes them from the view
-			//console.log(placeList);
-			self.places.removeAll();
-
-		    for (var i in places) {
-		      if (places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-		        self.places.push(places[i]);
-		      }
-		    }
-
-		};
-
-		self.query.subscribe(search);
-
-
-
-		Map.initMap();
-
-		placeMarker = function(place) {
+			var myMap = map;
 			var pos = new google.maps.LatLng(place.lat(), place.lng());
 			console.log(Map.map);
 			console.log(place.name());
@@ -407,6 +381,105 @@ $(function() {
 			});
 
 			marker.addListener('click', function() {
+				infoWindow.open(myMap, marker);
+			});
+
+		    google.maps.event.addListener(marker, 'rightclick', function(event) {
+		        marker.setMap(null);
+		    });
+
+			marker.setMap(myMap);
+
+
+	};
+
+
+	 var Place = function(data) {
+	 	this.name = data.name;
+	 	this.lat = data.address.lat;
+	 	this.lng = data.address.lng;
+	 	this.marker = data.marker;
+	 	this.description = data.description;
+
+	 };
+
+
+	var ViewModel = function() {
+
+		var self = this;
+
+		self.markers = [];
+
+		self.places = ko.observableArray([]);
+		self.query = ko.observable('');
+
+
+		self.currentPlace = ko.observable();
+
+		places.forEach(function(placeItem){
+		 	//console.log(placeItem);
+		 	self.places.push(new Place ( placeItem) );
+		 });
+
+		search = function(value) {
+			// remove all the current places, which removes them from the view
+			//console.log(placeList);
+
+			self.places.removeAll();
+			console.log(places);
+
+		    for (var i in places) {
+		      if (places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+		        self.places.push(places[i]);
+		      }
+		    }
+
+		    console.log(self.markers);
+		    for (var i in self.markers) {
+		    	console.log(value);
+		    	console.log(self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()));
+		    	if (self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+		    		self.markers[i].setVisible(false);
+		    	}
+		    	else {
+		    		self.markers[i].setVisible(true);
+		    	}
+		    }
+
+		    if (value.length === 0) {
+		    	populateLocations();
+		    	console.log('empty value');
+		    }
+
+		};
+
+		self.query.subscribe(search);
+
+
+
+		Map.initMap(self);
+		//console.log(self.places());
+
+		placeMarker = function(place) {
+			//console.log(place);
+			var pos = new google.maps.LatLng(place.lat, place.lng);
+		//	console.log(Map.map);
+		//	console.log(place.name);
+		//	console.log(place.lat);
+			var marker = new google.maps.Marker({
+				title: place.name,
+				position: pos,
+				label: place.marker,
+				animation: google.maps.Animation.DROP
+			})
+
+			self.markers.push(marker);
+
+			var infoWindow = new google.maps.InfoWindow({
+				content: place.description
+			});
+
+			marker.addListener('click', function() {
 				infoWindow.open(Map.map, marker);
 			});
 
@@ -418,10 +491,28 @@ $(function() {
 
 		};
 
-		showMarker = function(name) {
 
-		}
+		populateLocations = function() {
+			console.log('now populating');
+			for (var i = 0; i < self.places().length; i++) {
+				var place = self.places()[i];
+				//console.log(place);
+			    placeMarker(place);
+		  }
+
+		   	for (var i in self.markers) {
+	    		self.markers[i].setVisible(true);
+	    }
+
+		};
+
+		//Populate Map with Markers on initial load.
+		populateLocations();
+
+
 	};
 
+
+
 	ko.applyBindings(new ViewModel());
-});
+// });
