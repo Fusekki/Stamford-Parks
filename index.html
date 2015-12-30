@@ -9,15 +9,22 @@
 </head>
 <body>
   <div id="container">
-  <h2>Park Locations</h2>
-	<form>
-       <input placeholder="Name" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-       <button type="submit" class="btn">Filter</button>
-  </form>
-
-  <ul id="list" data-bind="foreach: places">
-      <li id="listitem" data-bind="text: name, click: placeMarker"></li>
+  <h2>Stamford Park Locations</h2>
+  <div id="nav-search-field">
+    <form>
+    <input id="nav-search" onclick="populateLocations()"  incremental="incremental" placeholder="Name" type="search" name="field-keywords" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+    <button type="submit" class="btn">Filter</button>
+    </form>
+  </div>
+  <div id="nav-flyout" style="top: 6px; left: 239px;">
+  <p id="nav-results" data-bind="text: resultsFound"></p>
+  <ul id="nav-list" data-bind="foreach: places">
+      <li id="nav-listitem" data-bind="text: name, click: focusMarker"></li>
   </ul>
+  </div>
+
+
+
 
 
 <!--     <table id="table" data-bind="visible: places().length > 0">
