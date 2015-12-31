@@ -5,40 +5,46 @@
 	<title>Neighborhood Map</title>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<body>
-  <div id="container">
-  <h2>Stamford Park Locations</h2>
-  <div id="nav-search-field">
-    <form>
-    <input id="nav-search" onclick="populateLocations()"  incremental="incremental" placeholder="Name" type="search" name="field-keywords" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-    <button type="submit" class="btn">Filter</button>
-    </form>
+<div id ="header">
+  <h1>Stamford Parks</h1>
+</div>
+
+
+<div id="nav">
+    <nav id="drawer">
+      <a id="menu">
+        <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
+        </svg>
+        <p id="title">Parks List</p>
+      </a>
+        <nav class="drawer-contents">
+            <nav class="drawer-body" id="nav-search-field">
+                <form>
+                  <input id="nav-search" onclick="populateLocations()"  incremental="incremental" placeholder="Type name" type="search" name="field-keywords" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"></input>
+               </form>
+             </nav>
+            <div id="nav-flyout" style="top: 6px; left: 239px;">
+              <p id="nav-results" data-bind="text: resultsFound"></p>
+            </div>
+            <ul id="nav-list" data-bind="foreach: places">
+                <li id="nav-listitem" data-bind="text: name, click: focusMarker"></li>
+            </ul>
+    </nav>
+
+
   </div>
-  <div id="nav-flyout" style="top: 6px; left: 239px;">
-  <p id="nav-results" data-bind="text: resultsFound"></p>
-  <ul id="nav-list" data-bind="foreach: places">
-      <li id="nav-listitem" data-bind="text: name, click: focusMarker"></li>
-  </ul>
-  </div>
-
-
-
-
-
-<!--     <table id="table" data-bind="visible: places().length > 0">
-      <tbody data-bind="foreach: places">
-      <tr>
-      <td data-bind="text: name, click: placeMarker"></td>
-      </tr>
-      </tbody>
-    </table> -->
+  <body>
     </div>
-    <div id="map"</div>
+    <main id="map">
+    </main>
+</body>
   <!-- <div class="map" data-bind="googlemap: { locations: places, centerLat: 41.074448, centerLon: -73.541316 }"></div> -->
 
 <script src="js/knockout-3.4.0.js"></script>
 <script src="js/app.js"></script>
-</body>
+
 </html>
