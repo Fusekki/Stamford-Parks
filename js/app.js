@@ -561,6 +561,8 @@
 		self.places = ko.observableArray([]);
 		self.query = ko.observable('');
 
+		self.menuVisible = ko.observable('true');
+
 
 		self.currentPlace = null;
 
@@ -709,6 +711,13 @@
 			// Chnage the selected Marker icon to green.
 			self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 			//console.log(self.infoWindow);
+		};
+
+		menuToggle = function() {
+			console.log('Click event for menuToggle.');
+
+
+
 		};
 
 		//Populate Map with Markers on initial load.

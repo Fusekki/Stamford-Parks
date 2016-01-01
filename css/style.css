@@ -41,7 +41,7 @@ html, body {
 
 #menu svg {
 	width: 40px;
-	background-color: white;
+	background-color: black;
 
 }
 
@@ -133,8 +133,8 @@ html, body {
 	color: white;
 }
 .drawer-controls {
-	  position: relative;
-   padding: 10% 10% 10% 10%;
+	position: relative;
+    padding: 10% 10% 10% 10%;
 }
 
 
@@ -295,9 +295,9 @@ margin: 5px 0;
 
 #map {
 
-	float: center;
+	float: left;
 	padding-left: 100px;
-	width: 65%;
-	height: 65%;
-	margin: 5% auto auto auto;
+	width: 55%;
+	height: 55%;
+	margin: 5% auto auto 10%;
 }
