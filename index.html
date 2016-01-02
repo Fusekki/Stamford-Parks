@@ -5,7 +5,7 @@
 	<title>Neighborhood Map</title>
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <div id ="header">
@@ -13,15 +13,10 @@
 </div>
 
 
-<div id="nav">
+<div class="nav">
     <nav id="drawer">
-      <a id="menu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 40px,
-         background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle">
-          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
-        </svg>
-        <p id="title">Parks List</p>
-      </a>
+      <nav id="menu">
+        <div id="title">Parks List</div>
         <nav class="drawer-contents">
             <nav class="drawer-body" id="nav-search-field">
                 <form>
@@ -29,19 +24,23 @@
                </form>
              </nav>
             <div id="nav-flyout" style="top: 6px; left: 239px;">
-              <p id="nav-results" data-bind="text: resultsFound"></p>
+              <div id="nav-results" data-bind="text: resultsFound"></p>
             </div>
             <ul id="nav-list" data-bind="foreach: places">
                 <li id="nav-listitem" data-bind="text: name, click: focusMarker"></li>
             </ul>
+         </nav>
     </nav>
+</div>
+<body>
 
-
+  <div id="buttonWrapper">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 40px,
+         background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle">
+          <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
+    </svg>
   </div>
-  <body>
-    </div>
-    <main id="map">
-    </main>
+  <div id="map"></div>
 </body>
   <!-- <div class="map" data-bind="googlemap: { locations: places, centerLat: 41.074448, centerLon: -73.541316 }"></div> -->
 

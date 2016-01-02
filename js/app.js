@@ -690,6 +690,8 @@
 			// console.log('focus on marker ' + place.number);
 			// console.log(self.markers);
 
+			console.log('focus marker');
+
 
 			// Reset former marker back to red if it was previously chosen.
 			if (self.currentPlace != null) {
@@ -715,6 +717,14 @@
 
 		menuToggle = function() {
 			console.log('Click event for menuToggle.');
+			console.log(drawer);
+
+			drawer.classList.toggle('close');
+
+
+/*			$('main').click(function(){
+				drawer.classList.remove('open');
+			});*/
 
 
 
