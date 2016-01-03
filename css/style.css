@@ -10,6 +10,7 @@ html{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  overflow-y: hidden;
 }
 
 #header {
@@ -17,57 +18,34 @@ html{
 	width: 100%;
     color:white;
     text-align:center;
-    padding:5px;
     overflow: hidden;
 }
 
-
-
-
-html, body {
+body {
  height: 100%;
- margin: 0;
- padding: 0;
-/*background-color: white;*/ }
-
-nav {
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  /* This trasform moves the drawer off canvas. */
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  /* Optionally, we animate the drawer. */
-  transition: transform 0.3s ease;
-
 }
 
-nav.close {
-    -webkit-transform: translate(-400px, 0);
-  transform: translate(-400px, 0);
-
+#map {
+  width: 55%;
+  height: 55%;
+  margin: 5% auto auto 25%;
 }
 
-#menu {
-	width: 100%;
-
-}
 
 #buttonWrapper {
-
+  position: fixed;
+  display: block;
   text-align: left;
+  top: 105px;
+  left: 0px;
 
 }
 
 svg {
-
     width: 40px;
-    margin: 0 0 0 300px;
-
 }
 
-
- #title {
+ #drawer-title {
   font-family: arial,sans-serif;
     font-size: 25px;
     color: white;
@@ -76,15 +54,63 @@ svg {
     padding: 6px 10px 6px 0;
 }
 
- #nav-list {
- 	background-color: black;
- 	list-style-type: none;
- 	float: left;
- 	width: 100%;
- 	padding: 0;
+
+#drawer {
+  position: fixed;
+  top: 145px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+  background-color: black;
+  color: white;
+
+}
+
+#drawer-list {
+  list-style: none;
+  float: left;
+  padding: 0;
+  margin: 3px 0;
+
+  column-count: 2;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+
+  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 40px; /* Firefox */
+  column-gap: 40px;
+
  }
 
- #nav-search {
+ #drawer-2 {
+  column-count: 2;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+
+  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 40px; /* Firefox */
+  column-gap: 40px;
+ }
+
+
+
+#drawer-item {
+  width: 125px;
+  -webkit-column-width: 125px; /* Chrome, Safari, Opera */
+  column-width: 100px;
+}
+
+
+ #drawer-item:hover {
+    background: aliceblue;
+
+}
+
+
+
+
+
+ #search-input {
     top: 0;
     left: 0;
     width: 100%;
@@ -104,16 +130,18 @@ svg {
     background-color: black;
 }
 
+
+#menu {
+	width: 100%;
+
+}
+
+
 #nav-results {
     color: grey;
     line-height: 30px;
 
     margin: 35px 0 0 0;
-}
-
-#nav-flyout {
-    font-family: arial,sans-serif;
-    line-height: normal;
 }
 
 
@@ -124,10 +152,7 @@ svg {
 	margin: 3px 0;
 	width: 100%;
  }
- #nav-listitem:hover {
-	  background: aliceblue;
 
-	}
 
 #container {
 
@@ -148,35 +173,6 @@ svg {
 	border-radius: 5px;
 }
 
-/*Drawer CSS*/
-
-#drawer {
-	background-color: black;
-	color: white;
-}
-.drawer-controls {
-	position: relative;
-    padding: 10% 10% 10% 10%;
-}
-
-
-.drawer-controls:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.25em;
-  width: 1em;
-  height: 0.15em;
-  background: black;
-  box-shadow:
-    0 0.25em 0 0 white,
-    0 0.5em 0 0 white;
-}
-
-
-.drawer-nav {
-	padding: 0;
-}
 /* If there is enough space (> 600px), we keep the drawer open all the time. */
 @media (min-width: 600px) {
 
@@ -315,10 +311,3 @@ margin: 5px 0;
 	color: white;
 }
 
-#map {
-  text-align: center;
-	padding-left: 100px;
-	width: 55%;
-	height: 55%;
-	margin: 5% auto auto 25%;
-}

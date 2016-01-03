@@ -719,7 +719,9 @@
 			console.log('Click event for menuToggle.');
 			console.log(drawer);
 
-			drawer.classList.toggle('close');
+			//drawer.classList.toggle('close');
+
+			$("#drawer").toggle("slide");
 
 
 /*			$('main').click(function(){
