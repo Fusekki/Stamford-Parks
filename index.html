@@ -20,20 +20,21 @@
     </svg>
   </div>
   <div id="drawer">
-  <div id="drawer-title">Parks List</div>
-      <div id="search-bar">
+  <span id="drawer-header">Parks List</span>
+      <span id="search-bar">
          <input id="search-input" onclick="populateLocations()"  incremental="incremental" placeholder="Type name" type="search" name="field-keywords" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"></input>
-      </div>
-      <div id="drawer-results" data-bind="text: resultsFound"></div>
+      </span>
+      <span id="drawer-results" data-bind="text: resultsFound"></span>
       <ul id="drawer-list" data-bind="foreach: places">
         <li id="drawer-item" data-bind="text: name, click: focusMarker"></li>
       </ul>
+      <span id="buttonWrapper">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 40px,
+         background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle"><path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
+       </svg>
+      </span>
   </div>
-
 </body>
-  <!-- <div class="map" data-bind="googlemap: { locations: places, centerLat: 41.074448, centerLon: -73.541316 }"></div> -->
-
 <script src="js/knockout-3.4.0.js"></script>
 <script src="js/app.js"></script>
-
 </html>

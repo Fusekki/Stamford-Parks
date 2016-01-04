@@ -13,16 +13,20 @@ html{
   overflow-y: hidden;
 }
 
+body {
+ height: 100%;
+ margin: 0px;
+}
+
+
+
 #header {
 	background-color:black;
 	width: 100%;
-    color:white;
-    text-align:center;
-    overflow: hidden;
-}
-
-body {
- height: 100%;
+  color:white;
+  text-align:center;
+  overflow: hidden;
+  border: 0px;
 }
 
 #map {
@@ -31,12 +35,11 @@ body {
   margin: 5% auto auto 25%;
 }
 
-
 #buttonWrapper {
   position: fixed;
   display: block;
   text-align: left;
-  top: 105px;
+  top: 71px;
   left: 0px;
 
 }
@@ -45,32 +48,36 @@ svg {
     width: 40px;
 }
 
- #drawer-title {
-  font-family: arial,sans-serif;
-    font-size: 25px;
-    color: white;
-    text-decoration: none;
-    margin: 0;
-    padding: 6px 10px 6px 0;
-}
 
 
 #drawer {
   position: fixed;
-  top: 145px;
+  top: 71px;
   left: 0px;
   width: 300px;
   height: 100%;
   background-color: black;
-  color: white;
 
 }
+
+#drawer-header {
+  width: 150px;
+font-size: 25px;
+  line-height: 45px;
+  display: inline;
+  font-family: arial,sans-serif;
+  color: white;
+  float: right;
+  margin: 0 100px;
+}
+
 
 #drawer-list {
   list-style: none;
   float: left;
   padding: 0;
   margin: 3px 0;
+  color: white;
 
   column-count: 2;
   -webkit-column-count: 2;
@@ -106,9 +113,9 @@ svg {
 
 }
 
-
-
-
+#drawer-results {
+  color: grey;
+}
 
  #search-input {
     top: 0;
