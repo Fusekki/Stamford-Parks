@@ -473,16 +473,61 @@
 			    }
 			  ];
 
-			// Create a map object and specify the DOM element dor display.
-			this.map = new google.maps.Map(document.getElementById('map'), {
-				center: stamford,
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				scroolwheel: true,
-				zoom: 15,
-				styles: styleArray
-			});
+			try {
+				// Create a map object and specify the DOM element dor display.
+				this.map = new google.maps.Map(document.getElementById('map'), {
+					center: stamford,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					scroolwheel: true,
+					zoom: 15,
+					styles: styleArray
+				});
+
+				//return this.map;
+			}
+			catch(err) {
+				this.helpers.handleError("Google maps is not loading. This may be due to not having an internet connection.");
+			}
+
+
 		}
 	};
+
+	var Helpers = {
+		handleError: function(msg) {
+			return alert(msg);
+		}
+
+
+	};
+/*
+	var model = {
+		// tracks data related to the state of the app
+		state: {
+			prev_infowindow: false
+		},
+
+		API: {
+			YELP: {
+				AUTH_PUBLIC: {
+					oauth_consumer_key: 'YsPDWGOo52SXK3U-FoNm6g',
+					oauth_token: 'MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2',
+					oauth_signature_method: 'HMAC-SHA1'
+
+				},
+				AUTH_SECRET: {
+					consumer_secret: 'd4oiThmVyRCZrZR1o8phpOV4FjI',
+					token_secret: 'IKtJiQ-P4Gk_arqDvP3buDE-Wio'
+
+				},
+				CONTEXT: {
+					BASE_URL: 'https://api.yelp.com/v2/search/'
+
+				}
+			}
+		}
+
+	};*/
 
 	var mark = function(place, map) {
 
@@ -515,6 +560,34 @@
 	 	this.description = data.description;
 
 	 };
+/*
+	 var api = {
+	 	ititRequests = function(locations) {
+	 		var getYelp = this.getYelp(locations);
+
+
+	 	},
+
+	 	getYelp = function(locations) {
+	 		return new Promise(function(resolve, reject)) {
+	 			var counter = Locations.length;
+	 			var resolveForYelpFn = function() {
+	 				console.log('getYelp resolved!');
+	 			};
+
+	 			Locations.forEach(function(location) {
+	 				var url = model.API.YELP.CONTEXT.BASE_URL + Location.data.yelp.businessID,
+	 					consumer_secret = model.API.YELP.AUTH_SECRET.consumer_secret,
+	 					token_secret = model.API.YELP.AUTH_SECRET.token_secret;
+
+	 				var params = {
+	 					oauth_consumer_key: model.API.YELP
+	 				}
+
+	 			})
+	 		}
+	 	}
+	 }*/
 
 	 var obtainWiki = function(placeName) {
 
@@ -567,7 +640,8 @@
 		self.currentPlace = null;
 
 		self.infoWindow = new google.maps.InfoWindow();
-		//console.log(self.infoWindow);
+		self.helpers = Helpers;
+		//console.log(self.helpers);
 
 
 		resultsFound = ko.pureComputed(function() {
@@ -698,6 +772,8 @@
 				self.markers[self.currentPlace].setIcon('');
 			}
 
+			generateContentString(place.name);
+
 			//obtainWiki(place.name);
 
 			self.currentPlace = place.number;
@@ -731,6 +807,7 @@
 
 
 		};
+
 
 		//Populate Map with Markers on initial load.
 		populateLocations();
