@@ -646,8 +646,22 @@
 
 		resultsFound = ko.pureComputed(function() {
 			var count = self.places().length;
+
+			console.log(count);
+
+			if (count > 25) {
+				console.log('count > 25');
+				$('#drawer-list').css({"column-count":"2"}, {"-webkit-column-count":"2"}, {"-moz-column-count":"2"},
+					{"-webkit-column-gap":"40px"},{"-moz-column-gap":"40px"},{"column-gap":"40px"});
+			} else {
+				console.log('count less than 30');
+				$('#drawer-list').css({"column-count":"1"});
+			}
+
+
 			//console.log(count);
 			return count === 0 ? "0 results found" : count + " results found";
+
 		});
 
 		search = function(value) {
