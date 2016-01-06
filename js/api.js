@@ -24,7 +24,7 @@
     callback: 'cb'
   };
 
-  console.log(parameters);
+  //console.log(parameters);
 
 //var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerKey, consumerKeySecret, tokenSecret);
   var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
@@ -37,12 +37,15 @@
      jsonpCallback: 'cb',
      dataType: 'jsonp',
      success: function(results) {
-               console.log("SUCCESS! %o", results);
-               return results;
+      console.log("SUCCESS! %o", results);
+      $.each(results.businesses, function(index, element) {
+                parseResults(yelpObject, element);
+              });
+
      },
      error: function(results) {
            console.log("error %o", results);
-           return results;      }
+     }
     }
 
   console.log(settings);

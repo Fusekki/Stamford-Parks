@@ -35,7 +35,6 @@
 
 
 	var mark = function(place, map) {
-
 			var myMap = map;
 			var pos = new google.maps.LatLng(place.lat(), place.lng());
 		//	console.log(Map.map);
@@ -51,8 +50,6 @@
 
 			self.markers.push(marker);
 			marker.setMap(myMap);
-
-
 	};
 
 
@@ -65,34 +62,7 @@
 	 	this.description = data.description;
 
 	 };
-/*
-	 var api = {
-	 	ititRequests = function(locations) {
-	 		var getYelp = this.getYelp(locations);
 
-
-	 	},
-
-	 	getYelp = function(locations) {
-	 		return new Promise(function(resolve, reject)) {
-	 			var counter = Locations.length;
-	 			var resolveForYelpFn = function() {
-	 				console.log('getYelp resolved!');
-	 			};
-
-	 			Locations.forEach(function(location) {
-	 				var url = model.API.YELP.CONTEXT.BASE_URL + Location.data.yelp.businessID,
-	 					consumer_secret = model.API.YELP.AUTH_SECRET.consumer_secret,
-	 					token_secret = model.API.YELP.AUTH_SECRET.token_secret;
-
-	 				var params = {
-	 					oauth_consumer_key: model.API.YELP
-	 				}
-
-	 			})
-	 		}
-	 	}
-	 }*/
 
 	 var obtainWiki = function(placeName) {
 
@@ -135,6 +105,7 @@
 		var self = this;
 
 		self.markers = [];
+		self.yelpResults = [];
 
 		self.places = ko.observableArray([]);
 		self.query = ko.observable('');
@@ -278,12 +249,13 @@
 
 		};
 
-		focusMarker = function(place) {
+		initAjax = function(place) {
 			// console.log(self.infoWindow);
 			// console.log('focus on marker ' + place.number);
 			// console.log(self.markers);
 
-			console.log('focus marker');
+			console.log('initAjax');
+			self.currentPlace = place.number;
 
 
 			// Reset former marker back to red if it was previously chosen.
@@ -291,26 +263,84 @@
 				self.markers[self.currentPlace].setIcon('');
 			}
 
-			var yelpData = YelpConnect(place.name);
-			console.log(yelpData);
+			YelpConnect(place.name);
+
 
 
 			//obtainWiki(place.name);
 
-			self.currentPlace = place.number;
-			self.infoWindow.setOptions({
-				content: place.description
-			});
-			// console.log(Map);
-			// var chicago = new google.maps.LatLng(place.lat, place.lng);
- 		// 	Map.setCenter(chicago);
-			//Map.setCenter({lat: place.lat, lng: place.lng});
-
-			self.infoWindow.open(Map.map, self.markers[place.number]);
-			// Chnage the selected Marker icon to green.
-			self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-			//console.log(self.infoWindow);
 		};
+
+		parseResults = function(yelpObject, element) {
+			console.log(self);
+			console.log(element);
+			console.log(yelpObject);
+
+			yelpObject.name = element.name,
+			yelpObject.ratingUrl = element.rating_img_url,
+			yelpObject.ratingImg = element.rating_img_url_small,
+			yelpObject.reviews = element.review_count,
+			yelpObject.phone = element.display_phone.slice(3, -1),
+			yelpObject.image = element.image_url,
+			yelpObject.address = element.location.display_address,
+			yelpObject.zipcode = element.postal_code,
+			yelpObject.description = element.snippet_text,
+			yelpObject.url = element.url,
+			yelpObject.mobileUrl = element.mobile_url;
+
+
+			self.yelpResults.push(yelpObject);
+
+			for (var i in self.yelpResults) {
+				console.log(self.yelpResults[i]);
+		    	}
+
+		   	console.log(self.yelpResults[0]);
+
+
+			var contentString = '<div id="content">' +
+							      '<div id="siteNotice">' +
+							      '</div>' +
+							      '<h1 id="firstHeading">' + self.yelpResults[0].name + '</h1>' +
+							      '<img id="yelpImage" src="'+ self.yelpResults[0].image + '" alt="Park picture"></img><br>' +
+							      '<div id="bodyContent">' +
+							      '<p><b>' + self.yelpResults[0].name + '</b> ' + self.yelpResults[0].description + '</p>' +
+							      '<p>Phone:' + self.yelpResults[0].phone + '<br>' +
+							      'Address:' + self.yelpResults[0].address + '<br>' +
+							      'Yelp Score: <img id="yelpScore" src="'+ self.yelpResults[0].ratingImg + '" alt="Score: ' + self.yelpResults[0].reviews +'"></img><br>' +
+							      // 'Review:' + self.yelpResults[0].reviews + '<br>' +
+								  '</p>' +
+							      '</div>' +
+							      '</div>';
+
+
+
+			self.infoWindow.setOptions({
+				//content: place.description
+				content: contentString
+			});
+
+
+			self.infoWindow.open(Map.map, self.markers[self.currentPlace]);
+			// Chnage the selected Marker icon to green.
+			self.markers[self.currentPlace].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+			//console.log(self.infoWindow);
+			console.log(self.content);
+
+			$('#yelpScore').click(function(){
+				openYelp(self.yelpResults[0].url);
+			});
+
+		};
+
+		openYelp = function(url) {
+
+			var win = window.open(url, '_blank');
+			win.focus();
+
+
+		};
+
 
 		menuToggle = function() {
 			console.log('Click event for menuToggle.');

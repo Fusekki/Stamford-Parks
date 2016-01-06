@@ -92,6 +92,16 @@ svg {
 
  }
 
+ #content {
+  top: 100px;
+  width: 300px;
+
+ }
+
+ #yelpImage {
+  width: 60px;
+ }
+
  #drawer-2 {
   column-count: 2;
   -webkit-column-count: 2;
