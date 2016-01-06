@@ -1,45 +1,53 @@
-var generateContentString = function (nameLocation) {
-  var nameLocation = nameLocation;
-  var location = "Stamford";
-  var consumerKey = "YsPDWGOo52SXK3U-FoNm6g";
-  var consumerKeySecret = "4oiThmVyRCZrZR1o8phpOV4FjI"
-  var token = "MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2"
-  var tokenSecret = "IKtJiQ-P4Gk_arqDvP3buDE-Wio";
+  function nonce_generate() {
+        return (Math.floor(Math.random() * 1e12).toString());
+    };
 
-  var yelp_url = 'https://api.yelp.com/v2/search?';
+  var YelpConnect = function (nameLocation) {
+  var httpMethod = 'GET',
+      consumerKey = 'YsPDWGOo52SXK3U-FoNm6g',
+      consumerKeySecret = 'd4oiThmVyRCZrZR1o8phpOV4FjI',
+      url = 'https://api.yelp.com/v2/search?',
+      token = 'MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2',
+      signatureMethod = 'HMAC-SHA1',
+      version = '1.0',
+      local = 'stamford',
+      tokenSecret = 'IKtJiQ-P4Gk_arqDvP3buDE-Wio'
 
   var parameters = {
     term: nameLocation,
-    location: location,
+    location: local,
     oauth_consumer_key: consumerKey,
-    oauth_token: token ,
+    oauth_token: token,
     oauth_nonce: nonce_generate(),
     oauth_timestamp: Math.floor(Date.now() / 1000),
     oauth_signature_method: 'HMAC-SHA1',
     callback: 'cb'
   };
 
-  function nonce_generate() {
-        return (Math.floor(Math.random() * 1e12).toString());
-    }
+  console.log(parameters);
 
+//var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerKey, consumerKeySecret, tokenSecret);
+  var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
+  parameters.oauth_signature = encodedSignature;
 
-  var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerKey, consumerKeySecret, tokenSecret);
-    parameters.outh_signature = encodedSignature;
   var settings =  {
-     url: yelp_url,
+     url: url,
      data: parameters,
      cache: true,
+     jsonpCallback: 'cb',
      dataType: 'jsonp',
      success: function(results) {
                console.log("SUCCESS! %o", results);
+               return results;
      },
-     error: function() {
-           console.log("error");
-      }
+     error: function(results) {
+           console.log("error %o", results);
+           return results;      }
     }
+
+  console.log(settings);
   $.ajax(settings);
-}
+};
 
 
 
