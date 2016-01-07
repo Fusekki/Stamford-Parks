@@ -10,7 +10,7 @@
       token = 'MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2',
       signatureMethod = 'HMAC-SHA1',
       version = '1.0',
-      local = 'stamford',
+      local = 'Stamford, CT',
       tokenSecret = 'IKtJiQ-P4Gk_arqDvP3buDE-Wio'
 
   var parameters = {
@@ -24,7 +24,7 @@
     callback: 'cb'
   };
 
-  //console.log(parameters);
+  console.log(parameters);
 
 //var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerKey, consumerKeySecret, tokenSecret);
   var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
@@ -38,9 +38,25 @@
      dataType: 'jsonp',
      success: function(results) {
       console.log("SUCCESS! %o", results);
+      console.log(results.total + ' results found. Analyzing...');
+      var resultsTotal = results.total;
+      var filteredResults = 0;
+      var city = local.slice(0, -4);
+      console.log(city);
       $.each(results.businesses, function(index, element) {
-                parseResults(yelpObject, element);
-              });
+        if ((element.name === nameLocation) && (element.location.city === city)) {
+          filteredResults ++;
+          parseResults(yelpObject, element);
+        } else {
+          console.log('Rejected: ' + element.name + ' in ' + element.location.city);
+        }
+
+      });
+
+      if (filteredResults === 0) {
+        console.log('Nothing found from Yelp.');
+        parseResults(yelpObject, null);
+      }
 
      },
      error: function(results) {

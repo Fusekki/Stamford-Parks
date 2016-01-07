@@ -271,65 +271,81 @@
 
 		};
 
+
 		parseResults = function(yelpObject, element) {
-			console.log(self);
-			console.log(element);
-			console.log(yelpObject);
 
-			yelpObject.name = element.name,
-			yelpObject.ratingUrl = element.rating_img_url,
-			yelpObject.ratingImg = element.rating_img_url_small,
-			yelpObject.reviews = element.review_count,
-			yelpObject.phone = element.display_phone.slice(3, -1),
-			yelpObject.image = element.image_url,
-			yelpObject.address = element.location.display_address,
-			yelpObject.zipcode = element.postal_code,
-			yelpObject.description = element.snippet_text,
-			yelpObject.url = element.url,
-			yelpObject.mobileUrl = element.mobile_url;
+			if (element != null) {
+				console.log('Current entry: ' + element.name);
+
+				yelpObject.name = element.name,
+				yelpObject.ratingUrl = element.rating_img_url,
+				yelpObject.ratingImg = element.rating_img_url_small,
+				yelpObject.reviews = element.review_count,
+				yelpObject.image = element.image_url,
+				yelpObject.address = element.location.display_address,
+				yelpObject.zipcode = element.postal_code,
+				yelpObject.description = element.snippet_text,
+				yelpObject.url = element.url,
+				yelpObject.mobileUrl = element.mobile_url;
+
+				if (element.display_phone) {
+					yelpObject.phone = element.display_phone.slice(3, -1);
+				} else {
+					yelpObject.phone = "NA";
+				}
+
+				self.yelpResults.push(yelpObject);
+
+				var contentString = '<div id="content">' +
+								      '<div id="siteNotice">' +
+								      '</div>' +
+								      '<h1 id="firstHeading">' + self.yelpResults[0].name + '</h1>' +
+								      '<img id="yelpImage" src="'+ self.yelpResults[0].image + '" alt="Park picture"></img><br>' +
+								      '<div id="bodyContent">' +
+								      '<p><b>' + self.yelpResults[0].name + '</b> ' + self.yelpResults[0].description + '</p>' +
+								      '<p>Phone:' + self.yelpResults[0].phone + '<br>' +
+								      'Address:' + self.yelpResults[0].address + '<br>' +
+								      'Yelp Score: <img id="yelpScore" src="'+ self.yelpResults[0].ratingImg + '" alt="Score: ' + self.yelpResults[0].reviews +'"></img><br>' +
+								      // 'Review:' + self.yelpResults[0].reviews + '<br>' +
+									  '</p>' +
+								      '</div>' +
+								      '</div>';
+				} else {
+					var place = places[self.currentPlace];
+
+					var contentString = '<div id="content">' +
+									      '<div id="siteNotice">' +
+									      '</div>' +
+									      '<h1 id="firstHeading">' + place.name + '</h1>' +
+									      '<div id="bodyContent">' +
+									      '<p><b>' + place.name + '</b> ' + place.description + '</p>' +
+										  '</p>' +
+									      '</div>' +
+									      '</div>';
+
+				}
+
+				self.infoWindow.setOptions({
+
+					content: contentString
+				});
+
+				self.infoWindow.open(Map.map, self.markers[self.currentPlace]);
+				// Chnage the selected Marker icon to green.
+				self.markers[self.currentPlace].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+				if($("#resultLink".length != 0)) {
+
+				 $('#yelpScore').click(function(){
+					openYelp(self.yelpResults[0].url);
+				});
+				}
+
+			//console.log(self);
+			//console.log(element);
+			//console.log(yelpObject);
 
 
-			self.yelpResults.push(yelpObject);
-
-			for (var i in self.yelpResults) {
-				console.log(self.yelpResults[i]);
-		    	}
-
-		   	console.log(self.yelpResults[0]);
-
-
-			var contentString = '<div id="content">' +
-							      '<div id="siteNotice">' +
-							      '</div>' +
-							      '<h1 id="firstHeading">' + self.yelpResults[0].name + '</h1>' +
-							      '<img id="yelpImage" src="'+ self.yelpResults[0].image + '" alt="Park picture"></img><br>' +
-							      '<div id="bodyContent">' +
-							      '<p><b>' + self.yelpResults[0].name + '</b> ' + self.yelpResults[0].description + '</p>' +
-							      '<p>Phone:' + self.yelpResults[0].phone + '<br>' +
-							      'Address:' + self.yelpResults[0].address + '<br>' +
-							      'Yelp Score: <img id="yelpScore" src="'+ self.yelpResults[0].ratingImg + '" alt="Score: ' + self.yelpResults[0].reviews +'"></img><br>' +
-							      // 'Review:' + self.yelpResults[0].reviews + '<br>' +
-								  '</p>' +
-							      '</div>' +
-							      '</div>';
-
-
-
-			self.infoWindow.setOptions({
-				//content: place.description
-				content: contentString
-			});
-
-
-			self.infoWindow.open(Map.map, self.markers[self.currentPlace]);
-			// Chnage the selected Marker icon to green.
-			self.markers[self.currentPlace].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-			//console.log(self.infoWindow);
-			console.log(self.content);
-
-			$('#yelpScore').click(function(){
-				openYelp(self.yelpResults[0].url);
-			});
 
 		};
 
@@ -343,8 +359,8 @@
 
 
 		menuToggle = function() {
-			console.log('Click event for menuToggle.');
-			console.log(drawer);
+			//console.log('Click event for menuToggle.');
+			//console.log(drawer);
 
 			//drawer.classList.toggle('close');
 
