@@ -46,7 +46,7 @@
       $.each(results.businesses, function(index, element) {
         if ((element.name === nameLocation) && (element.location.city === city)) {
           filteredResults ++;
-          parseResults(yelpObject, element);
+          parseResults( element);
         } else {
           console.log('Rejected: ' + element.name + ' in ' + element.location.city);
         }

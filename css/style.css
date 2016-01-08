@@ -23,15 +23,15 @@ body {
 
 #header {
     position: fixed;
-top: -0.2vw;
+    top: -0.2vw;
     left: 46vw;
     height: 4.9vh;
     width: 26vw;
     color: #f2f2f2;
     text-align: center;
     overflow: hidden;
-  border: 0px;
-  background-color: #ee7401
+    border: 0px;
+    background-color: #ee7401
 }
 
 #title {
@@ -42,29 +42,29 @@ top: -0.2vw;
 }
 
 #four-square, #yelp {
-     position: fixed;
-    height: 34vh;
-    width: 27vw;
+  position: fixed;
+  height: 34vh;
+  width: 27vw;
 
 }
 
 #four-square {
   top: 64vh;
   left: 33vw;
-    background-color: #89c540;
+  background-color: #89c540;
 }
 
 #yelp {
-    left: 62vw;
-    top: 64vh;
+  left: 62vw;
+  top: 64vh;
   background-color: #0096cf;
 }
 
 #map {
-top: 5vh;
-    left: 31vw;
-    width: 60vw;
-    height: 54vh;
+  top: 5vh;
+  left: 31vw;
+  width: 60vw;
+  height: 54vh;
   padding:8px;
   border:10px solid #9ec551;
 
@@ -133,6 +133,36 @@ svg {
 
  #resultLink {
   width: 60px;
+ }
+
+ #firstHeading {
+  margin: 0 0 4px;
+  padding: 10px;
+ }
+
+ #imgWrapper {
+  float: left;
+  max-height: 60px;
+  max-width: 60px;
+  height: 60px;
+  width: 60px;
+ }
+
+ #yelpImage {
+  width: 100%;
+
+ }
+ #detailsWrapper{
+  display: inline;
+  width: 70%;
+ }
+
+
+
+
+ #yelpPhone, #yelpaddress {
+  width: 100%;
+  float: right;
  }
 
  #drawer-2 {

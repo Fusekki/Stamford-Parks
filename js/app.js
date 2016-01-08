@@ -105,7 +105,18 @@
 		var self = this;
 
 		self.markers = [];
-		self.yelpResults = [];
+
+		self.yelpName = ko.observable();
+		self.yelpPhone = ko.observable();
+		self.yelpRatingUrl = ko.observable();
+		self.yelpRatingImg = ko.observable();
+		self.yelpReviews = ko.observable();
+		self.yelpImage = ko.observable();
+		self.yelpAddress = ko.observable();
+		self.yelpZip = ko.observable();
+		self.yelpDesc = ko.observable();
+		self.yelpUrl = ko.observable();
+
 
 		self.places = ko.observableArray([]);
 		self.query = ko.observable('');
@@ -117,7 +128,8 @@
 
 		self.infoWindow = new google.maps.InfoWindow();
 		self.helpers = Helpers;
-		//console.log(self.helpers);
+		//console.log(self.yelpName());
+		//console.log(self.yelpResults());
 
 
 		resultsFound = ko.pureComputed(function() {
@@ -255,6 +267,11 @@
 			// console.log(self.markers);
 
 			console.log('initAjax');
+
+			$('#yelp').hide('slow');
+
+
+
 			self.currentPlace = place.number;
 
 
@@ -264,7 +281,8 @@
 			}
 
 			YelpConnect(place.name);
-			fsConnect(place.name);
+			//fsConnect(place.name);
+			fillcontentWindow();
 
 
 
@@ -272,31 +290,68 @@
 
 		};
 
+		fillcontentWindow = function () {
 
-		parseResults = function(yelpObject, element) {
+			var place = places[self.currentPlace];
+
+			var contentString = '<div id="content">' +
+									      '<div id="siteNotice">' +
+									      '</div>' +
+									      '<h1 id="firstHeading">' + place.name + '</h1>' +
+									      '<div id="bodyContent">' +
+									      '<p><b>' + place.name + '</b> ' + place.description + '</p>' +
+										  '</p>' +
+									      '</div>' +
+									      '</div>';
+
+
+
+				self.infoWindow.setOptions({
+
+					content: contentString
+				});
+
+				self.infoWindow.setOptions({
+
+					content: contentString
+				});
+
+				self.infoWindow.open(Map.map, self.markers[self.currentPlace]);
+				// Chnage the selected Marker icon to green.
+				self.markers[self.currentPlace].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
+		};
+
+
+		parseResults = function(element) {
 
 			if (element != null) {
 				console.log('Current entry: ' + element.name);
 
-				yelpObject.name = element.name,
-				yelpObject.ratingUrl = element.rating_img_url,
-				yelpObject.ratingImg = element.rating_img_url_small,
-				yelpObject.reviews = element.review_count,
-				yelpObject.image = element.image_url,
-				yelpObject.address = element.location.display_address,
-				yelpObject.zipcode = element.postal_code,
-				yelpObject.description = element.snippet_text,
-				yelpObject.url = element.url,
-				yelpObject.mobileUrl = element.mobile_url;
+				self.yelpName(element.name);
+				self.yelpRatingUrl(element.rating_img_url);
+				self.yelpRatingImg(element.rating_img_url_small);
+				self.yelpReviews(element.review_count);
+				self.yelpImage(element.image_url);
+				self.yelpAddress(element.location.display_address);
+				self.yelpZip(element.postal_code);
+				self.yelpDesc(element.snippet_text);
+				self.yelpUrl(element.url);
 
 				if (element.display_phone) {
-					yelpObject.phone = element.display_phone.slice(3, -1);
+					self.yelpPhone(element.display_phone.slice(3, -1));
 				} else {
-					yelpObject.phone = "NA";
+					self.yelpPhone("NA");
 				}
 
-				self.yelpResults.push(yelpObject);
+				$('#yelp').show('slow');
 
+			}
+
+			console.log(self.yelpName());
+
+
+/*
 				var contentString = '<div id="content">' +
 								      '<div id="siteNotice">' +
 								      '</div>' +
@@ -340,7 +395,7 @@
 				 $('#yelpScore').click(function(){
 					openYelp(self.yelpResults[0].url);
 				});
-				}
+				}*/
 
 			//console.log(self);
 			//console.log(element);

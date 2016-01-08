@@ -359,17 +359,17 @@ var places = [
 ];
 
 var yelpObject = [{
-	name: null,
-	ratingUrl: null,
-	ratingImg: null,
-	reviews: null,
-	phone: null,
-	image: null,
-	address: null,
-	zipcode: null,
-	description: null,
-	url: null,
-	mobileUrl: null
+	name: '',
+	ratingUrl: '',
+	ratingImg: '',
+	reviews: '',
+	phone: '',
+	image: '',
+	address: '',
+	zipcode: '',
+	description: '',
+	url: '',
+	mobileUrl: ''
 }];
 
 // Specify features and elements to define styles.

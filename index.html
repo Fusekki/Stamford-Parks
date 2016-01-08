@@ -17,11 +17,20 @@
 <div id ="header">
   <h1 id="title">Stamford Parks</h1>
 </div>
-<div id ="four-square"></div>
-<div id ="yelp"></div>
+<div id ="four-square" style="display: none;">
+</div>
+<div id ="yelp" style="display: none;">
+    <h2 id="firstHeading" data-bind="text: yelpName" /></h2>
+    <div id="imgWrapper"><img id="yelpImage" data-bind="attr: {src: yelpImage}" alt="Park picture"></img></div>
+    <id="yelpaddress" data-bind="text: yelpAddress" style="float: right;"></id="yelpaddress">
+    <id="yelpPhone" data-bind="text: yelpPhone" style="float: right;"></id="yelpPhone">
+      <div id="bodyContent" style="padding: 60px 5px 0 5px;">
+        <p><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
+        </p>
+      </div>
 </div>
 <body>
-  <div
+  <div>
   <div id="map">
   </div>
   <div id="buttonWrapper">
