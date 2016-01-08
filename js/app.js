@@ -264,6 +264,7 @@
 			}
 
 			YelpConnect(place.name);
+			fsConnect(place.name);
 
 
 
