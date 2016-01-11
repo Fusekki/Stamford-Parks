@@ -20,6 +20,15 @@
   <h1 id="title">Stamford Parks</h1>
 </div>
 <div id ="four-square" style="display: none;">
+    <h2 id="firstHeading" data-bind="text: fsName" /></h2>
+    <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
+    <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
+    <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
+    <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
+    <div id="bodyContent" style="padding: 60px 5px 0 5px;">
+      </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
+      </p>
+    </div>
 </div>
 <div id ="yelp" style="display: none;">
     <h2 id="firstHeading" data-bind="text: yelpName" /></h2>

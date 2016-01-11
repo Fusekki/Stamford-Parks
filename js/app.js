@@ -117,6 +117,16 @@
 		self.yelpDesc = ko.observable();
 		self.yelpUrl = ko.observable();
 
+		self.fsName = ko.observable();
+		self.fsPhone = ko.observable();
+		self.fsAddress = ko.observable();
+		self.fsZip = ko.observable();
+		self.fsCity = ko.observable();
+		self.fsCrossStreet = ko.observable();
+		self.fsImg = ko.observable();
+		self.fsRating = ko.observable();
+		self.fsUrl = ko.observable();
+
 
 		self.places = ko.observableArray([]);
 		self.query = ko.observable('');
@@ -269,6 +279,7 @@
 			console.log('initAjax');
 
 			$('#yelp').hide('slow');
+			$('#four-square').hide('slow');
 
 
 
@@ -281,7 +292,7 @@
 			}
 
 			YelpConnect(place.name);
-			//fsConnect(place.name);
+			fsConnect(place.name);
 			fillcontentWindow();
 
 
@@ -350,6 +361,13 @@
 
 			console.log(self.yelpName());
 
+			if($("#resultLink".length != 0)) {
+
+				 $('#yelpScore').click(function(){
+					openSite(self.yelpUrl());
+				});
+			}
+
 
 /*
 				var contentString = '<div id="content">' +
@@ -405,7 +423,37 @@
 
 		};
 
-		openYelp = function(url) {
+		fsParseResults = function(element) {
+
+		if (element != null) {
+			console.log('Current entry: ' + element.name);
+
+
+			self.fsName(element.name);
+			self.fsAddress(element.location.address);
+			self.fsCity(element.location.city);
+			self.fsCrossStreet(element.location.crossStreet);
+			self.fsZip(element.postal_code);
+			self.fsPhone(element.contact.formattedPhone);
+			self.fsRating(element.rating);
+			self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
+			self.fsUrl(element.shortUrl);
+
+			$('#four-square').show('slow');
+
+			}
+
+		console.log(self.fsName());
+
+		if($("#resultLink".length != 0)) {
+
+		 	$('#fsScore').click(function(){
+				openSite(self.fsUrl());
+				});
+			}
+		};
+
+		openSite = function(url) {
 
 			var win = window.open(url, '_blank');
 			win.focus();

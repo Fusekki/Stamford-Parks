@@ -55,7 +55,7 @@
 
       if (filteredResults === 0) {
         console.log('Nothing found from Yelp.');
-        parseResults(yelpObject, null);
+       // parseResults(yelpObject, null);
       }
 
      },
