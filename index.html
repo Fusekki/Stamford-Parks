@@ -14,10 +14,23 @@
 <!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <div id ="header">
   <h1 id="title">Stamford Parks</h1>
+</div>
+<div id ="instagram" style="">
+    <h2 id="firstHeading" data-bind="text: fsName" /></h2>
+    <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
+    <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
+    <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
+    <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
+    <div id="bodyContent" style="padding: 60px 5px 0 5px;">
+      </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
+      </p>
+    </div>
+
 </div>
 <div id ="four-square" style="display: none;">
     <h2 id="firstHeading" data-bind="text: fsName" /></h2>
@@ -45,6 +58,7 @@
   <div id="map">
   </div>
   </div>
+  <div id = "redBorder"></div>
   <div id="buttonWrapper">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 40px,
          background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle">
@@ -52,7 +66,9 @@
     </svg>
   </div>
   <div id="drawer">
+   <div id="header-wrapper">
   <span id="drawer-header">Parks List</span>
+  </div>
       <span id="search-bar">
          <input id="search-input" onclick="populateLocations()"  incremental="incremental" placeholder="Type name" type="search" name="field-keywords" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"></input>
       </span>
@@ -75,4 +91,5 @@
 <script src="js/oauth-signature.js"></script>
 <script src="js/api.js"></script>
 <script src="js/fsapi.js"></script>
+<script src="js/insta-api.js"></script>
 </html>

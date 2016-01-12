@@ -291,8 +291,9 @@
 				self.markers[self.currentPlace].setIcon('');
 			}
 
-			YelpConnect(place.name);
-			fsConnect(place.name);
+			//YelpConnect(place.name);
+			//fsConnect(place.name);
+			instaConnect(place.name);
 			fillcontentWindow();
 
 
@@ -469,6 +470,7 @@
 			//drawer.classList.toggle('close');
 
 			$("#drawer").toggle("slide");
+
 
 
 /*			$('main').click(function(){
