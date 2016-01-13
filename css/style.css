@@ -1,6 +1,6 @@
-* {
+/** {
 	border: 1px solid red !important;
-}
+}*/
 
 
 
@@ -37,28 +37,44 @@ body {
   background-color:
 }
 
-#four-square, #yelp, #instagram {
-  position: fixed;
+#borderWrapper {
+  text-align: right;
+}
+#gStreet {
+  left: 20vw;
+  height: 27vh;
+  width: 60vw;
+
+  top: 1.8vh;
+}
+
+.modal-body {
+  padding: 0 15px 15px 15px;
+}
+
+/*#gStreet {
+  left: 35vw;
+  height: 24vh;
+  width: 30vw;
+
+  top: .8vh;
+}*/
+
+#four-square, #yelp {
   top: 73vh;
-  height: 26vh;
-  width: 27vw;
+  height: 24vh;
 
 }
 
 #four-square {
-  left: 33vw;
   background-color: #89c540;
+  left: 3vw;
 }
 
 #yelp {
-  left: 62vw;
-  background-color: #0096cf;
+/*  background-color: #0096cf;*/
 }
 
-#instagram {
-  left: 2vw;
-  background-color: #d10031;
-}
 
 #map {
   top: 3vh;
@@ -92,6 +108,7 @@ svg {
   border: 8px solid #9ec551;
   width: 30vw;
   background-color: #ee7401;
+  z-index: 1;
 
 }
 
@@ -154,7 +171,7 @@ svg {
 
  #content {
   top: 100px;
-  width: 300px;
+/*  width: 300px;*/
 
  }
 
@@ -184,6 +201,18 @@ svg {
   width: 70%;
  }
 
+ .modal-title {
+  font-size: 4vmin;
+}
+
+.image-modal {
+  margin-left: auto;
+  margin-right: auto;
+}
+.modal-style {
+  background-color: white;
+}
+
 
 
 
@@ -194,11 +223,12 @@ svg {
 
  #main {
    background-color: #6a2474;
-   height: 62vh;
+   height: 60vh;
  }
 
  #footer {
-      background-color: white;
+        background-color: #d10031;
+        height: 30vh;
  }
 
  #drawer-2 {
@@ -313,7 +343,7 @@ svg {
 
 /*End Drawer CSS*/
 
-.btn {
+/*.btn {
   background: #000000;
   background-image: -webkit-linear-gradient(top, #000000, #009dff);
   background-image: -moz-linear-gradient(top, #000000, #009dff);
@@ -335,7 +365,7 @@ svg {
   background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
-}
+}*/
 
 #nav-search1 {
 	margin: 0;

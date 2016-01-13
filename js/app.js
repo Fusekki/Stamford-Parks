@@ -23,6 +23,21 @@
 			}
 
 
+		},
+
+		showStreet: function(lat, lng) {
+			var loc = {lat: lat, lng: lng};
+			var panorama = new google.maps.StreetViewPanorama(
+				document.getElementById('gStreet'), {
+					position: loc,
+					prob: {
+						heading: 24,
+						pitch: 18
+					}
+				});
+
+			this.map.setStreetView(panorama);
+
 		}
 	};
 
@@ -104,6 +119,8 @@
 
 		var self = this;
 
+		self.isBorder = false;
+
 		self.markers = [];
 
 		self.yelpName = ko.observable();
@@ -134,7 +151,11 @@
 		self.menuVisible = ko.observable('true');
 
 
-		self.currentPlace = null;
+	//	self.currentPlace = null;
+
+		self.currentPlace = ko.observable();
+		self.currentName = ko.observable();
+		self.currentDesc = ko.observable();
 
 		self.infoWindow = new google.maps.InfoWindow();
 		self.helpers = Helpers;
@@ -215,18 +236,10 @@
 
 			self.markers.push(marker);
 
-			// var infoWindow = new google.maps.InfoWindow({
-			// 	content: place.description
-			// });
-
 			marker.addListener('click', function() {
 				focusMarker(place);
 				//infoWindow.open(Map.map, marker);
 			});
-
-		 //    google.maps.event.addListener(marker, 'rightclick', function(event) {
-		 //        marker.setMap(null);
-		 //    });
 
 			marker.setMap(Map.map);
 
@@ -235,10 +248,6 @@
 
 		populateLocations = function() {
 			self.places.removeAll();
-			//console.log('places: ' + self.places.length);
-			//console.log('markers: ' + self.markers.length);
-			//console.log(self.places);
-
 				//console.log('now populating');
 				var i = 0;
 				places.forEach(function(placeItem){
@@ -283,17 +292,19 @@
 
 
 
-			self.currentPlace = place.number;
+			self.currentPlace(place.number);
+			self.currentDesc(place.description);
+			self.currentName(place.name);
 
 
 			// Reset former marker back to red if it was previously chosen.
 			if (self.currentPlace != null) {
-				self.markers[self.currentPlace].setIcon('');
+				self.markers[self.currentPlace()].setIcon('');
 			}
 
-			//YelpConnect(place.name);
+			YelpConnect(place.name);
 			//fsConnect(place.name);
-			instaConnect(place.name);
+			Map.showStreet(place.lat, place.lng);
 			fillcontentWindow();
 
 
@@ -303,37 +314,26 @@
 		};
 
 		fillcontentWindow = function () {
-
-			var place = places[self.currentPlace];
+			console.log('line324');
 
 			var contentString = '<div id="content">' +
-									      '<div id="siteNotice">' +
-									      '</div>' +
-									      '<h1 id="firstHeading">' + place.name + '</h1>' +
-									      '<div id="bodyContent">' +
-									      '<p><b>' + place.name + '</b> ' + place.description + '</p>' +
-										  '</p>' +
-									      '</div>' +
-									      '</div>';
+					 			'<div id="siteNotice">' +
+		 						'</div>' +
+								'<b>' + self.places()[self.currentPlace()].name + '</b> ' +
+								'</div>' +
+								'<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPlace">Info</button>';
 
 
 
 				self.infoWindow.setOptions({
-
 					content: contentString
 				});
 
-				self.infoWindow.setOptions({
 
-					content: contentString
-				});
-
-				self.infoWindow.open(Map.map, self.markers[self.currentPlace]);
+				self.infoWindow.open(Map.map, self.markers[self.currentPlace()]);
 				// Chnage the selected Marker icon to green.
-				self.markers[self.currentPlace].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-
-		};
-
+				self.markers[self.currentPlace()].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+};
 
 		parseResults = function(element) {
 
@@ -355,8 +355,8 @@
 				} else {
 					self.yelpPhone("NA");
 				}
-
-				$('#yelp').show('slow');
+				$('#yelpNone').hide();
+				$('#yelp').show();
 
 			}
 
@@ -439,8 +439,8 @@
 			self.fsRating(element.rating);
 			self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
 			self.fsUrl(element.shortUrl);
-
-			$('#four-square').show('slow');
+			$('#fsNone').hide();
+			$('#four-square').show();
 
 			}
 
@@ -478,6 +478,23 @@
 			});*/
 
 
+
+		};
+
+		toggleBorder = function() {
+			console.log('toggle');
+			if (self.isBorder){
+				console.log('turning off');
+				console.log($("*").css("border"));
+				$("*").css("border","none");
+				self.isBorder = false;
+			} else {
+				console.log('turning on');
+				console.log($("*").css("border"));
+				$("*").css("border","1px solid red");
+				self.isBorder = true;
+
+			}
 
 		};
 

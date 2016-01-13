@@ -11,54 +11,31 @@
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
 
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+
+       <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<div id ="header">
+<div id="header">
   <h1 id="title">Stamford Parks</h1>
-</div>
-<div id ="instagram" style="">
-    <h2 id="firstHeading" data-bind="text: fsName" /></h2>
-    <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
-    <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
-    <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
-    <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
-    <div id="bodyContent" style="padding: 60px 5px 0 5px;">
-      </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
-      </p>
-    </div>
-
-</div>
-<div id ="four-square" style="display: none;">
-    <h2 id="firstHeading" data-bind="text: fsName" /></h2>
-    <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
-    <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
-    <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
-    <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
-    <div id="bodyContent" style="padding: 60px 5px 0 5px;">
-      </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
-      </p>
-    </div>
-</div>
-<div id ="yelp" style="display: none;">
-    <h2 id="firstHeading" data-bind="text: yelpName" /></h2>
-    <div id="imgWrapper"><img id="yelpImage" data-bind="attr: {src: yelpImage}" alt="Park picture"></img></div>
-    <id="yelpaddress" data-bind="text: yelpAddress" style="float: right;"></id="yelpaddress">
-    <id="yelpPhone" data-bind="text: yelpPhone" style="float: right;"></id="yelpPhone">
-      <div id="bodyContent" style="padding: 60px 5px 0 5px;">
-        <p><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
-        </p>
-      </div>
 </div>
 <body>
   <div id ="main">
-  <div id="map">
+  <div id="map"></div>
+    <div id="borderWrapper">
+   <button type="button" onclick="toggleBorder()">Border</button>
   </div>
   </div>
-  <div id = "redBorder"></div>
   <div id="buttonWrapper">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 40px,
          background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle">
@@ -81,9 +58,69 @@
          background-color: black;" stroke="black" fill="white" data-bind="click: menuToggle"><path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path>
        </svg>
       </span>
-
   </div>
-  <div id="footer"></div>
+
+  <div id="footer">
+      <div id="gStreet" style=""></div>
+</div>
+            <!-- Modal -->
+    <div class="modal fade" id="modalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content modal-style">
+              <div class="modal-header">
+                  <h4 class="modal-title text-center" id="myModalLabel1" data-bind="text: currentName"></h4>
+              </div>
+            <div class="modal-body">
+            <div id="modelInfo">
+            <h1 id="firstHeading">Description</h1>
+              <div id="bodyContent">
+                <p data-bind="text: currentDesc"></p>
+              </div>
+              <div id="yelpNone" style="">
+                <id="yelpStatus">No Yelp Results Found
+              </div>
+              <div id ="yelp" style="display:none;">
+              <h3 id="firstHeading">Yelp Results</h3>
+              <div id="imgWrapper"><img id="yelpImage" data-bind="attr: {src: yelpImage}" alt="Park picture"></img></div>
+              <id="yelpaddress" data-bind="text: yelpAddress" style="float: right;"></id="yelpaddress">
+              <id="yelpPhone" data-bind="text: yelpPhone" style="float: right;"></id="yelpPhone">
+                <div id="bodyContent" style="padding: 60px 5px 0 5px;">
+                  <p><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
+                  </p>
+                </div>
+              </div>
+              <div id="fsNone" style="">
+                <id="fsStatus">No Foursquare Results Found
+              </div>
+              <div id ="four-square" style="display: none;">
+                <h2 id="firstHeading">Foursquare Results</h2>
+                <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
+                <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
+                <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
+                <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
+                <div id="bodyContent" style="padding: 60px 5px 0 5px;">
+                  </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
+                  </p>
+                </div>
+<!--       <figure>
+        <picture>
+          <source media="(min-width: 750)" srcset="images/aboutme-600.png" >
+          <source srcset="images/aboutme-600.png">
+          <img class="img-responsive image-center" srcset="images/aboutme-600.png" alt="Image of me">
+        </picture>
+      </figure> -->
+            <p class="text-margin"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default modal-style" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+       </div>
+     </div>
+
+
+
+</div>
 </body>
 <script src="js/knockout-3.4.0.js"></script>
 <script src="js/model.js"></script>
@@ -91,5 +128,5 @@
 <script src="js/oauth-signature.js"></script>
 <script src="js/api.js"></script>
 <script src="js/fsapi.js"></script>
-<script src="js/insta-api.js"></script>
+<!-- <script src="js/gstreet-api.js"></script> -->
 </html>
