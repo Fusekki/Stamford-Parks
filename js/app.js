@@ -38,6 +38,11 @@
 
 			this.map.setStreetView(panorama);
 
+			google.maps.event.trigger(this.map, 'resize', function () {
+				    // your callback content
+				    console.log('resize1');
+				});
+
 		}
 	};
 
@@ -150,18 +155,24 @@
 
 		self.menuVisible = ko.observable('true');
 
-
-	//	self.currentPlace = null;
-
 		self.currentPlace = ko.observable();
 		self.currentName = ko.observable();
 		self.currentDesc = ko.observable();
 
 		self.infoWindow = new google.maps.InfoWindow();
 		self.helpers = Helpers;
-		//console.log(self.yelpName());
-		//console.log(self.yelpResults());
 
+		$('modalPlace').on('hidden.bs.modal', function () {
+			 $('#yelp').hide();
+			 $('#four-square').hide();
+			 $('#yelpNone').hide();
+			 $('#fsNone').hide(); // do something…
+			})
+
+		// This event triggers the street view to display in the modal.
+		$('#modalPlace').on('shown.bs.modal', function () {
+				Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
+		 });
 
 		resultsFound = ko.pureComputed(function() {
 			var count = self.places().length;
@@ -218,6 +229,7 @@
 
 
 		Map.initMap(self);
+
 		//console.log(self.places());
 
 		placeMarker = function(place, num) {
@@ -304,10 +316,21 @@
 
 			YelpConnect(place.name);
 			//fsConnect(place.name);
-			Map.showStreet(place.lat, place.lng);
+			// $('#modalPlace').on('shown.bs.modal', function () {
+			// 	console.log('resize');
+			// 	google.maps.event.trigger(Map, "resize");
+			// 	});
+
+			//Map.showStreet(place.lat, place.lng);
+
+			var latLng = new google.maps.LatLng(place.lat, place.lng);
+			Map.map.panTo(latLng);
+
 			fillcontentWindow();
 
 
+
+			$('#modelData').show();
 
 			//obtainWiki(place.name);
 
@@ -320,8 +343,8 @@
 					 			'<div id="siteNotice">' +
 		 						'</div>' +
 								'<b>' + self.places()[self.currentPlace()].name + '</b> ' +
-								'</div>' +
-								'<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalPlace">Info</button>';
+								'</div>';
+
 
 
 
@@ -333,6 +356,7 @@
 				self.infoWindow.open(Map.map, self.markers[self.currentPlace()]);
 				// Chnage the selected Marker icon to green.
 				self.markers[self.currentPlace()].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
 };
 
 		parseResults = function(element) {
@@ -502,6 +526,7 @@
 		//Populate Map with Markers on initial load.
 		populateLocations();
 		//console.log(self.resultsFound());
+
 
 
 	};

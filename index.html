@@ -61,31 +61,44 @@
   </div>
 
   <div id="footer">
-      <div id="gStreet" style=""></div>
+    <div id="modelData" style="display: none">
+      <h1 id="firstHeading" data-bind="text: currentName"></h1>
+      <span id="bodyContent">
+        <p id="modelDesc" data-bind="text: currentDesc"></p>
+
+      </span>
+      <button type="button" id="openBtn" class="btn btn-secondary" data-toggle="modal" data-target="#modalPlace">More Info</button>
+    </div>
+
 </div>
             <!-- Modal -->
     <div class="modal fade" id="modalPlace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
       <div class="modal-dialog">
-          <div class="modal-content modal-style">
+          <div class="modal-content">
               <div class="modal-header">
                   <h4 class="modal-title text-center" id="myModalLabel1" data-bind="text: currentName"></h4>
               </div>
             <div class="modal-body">
-            <div id="modelInfo">
+              <div id="gStreet" style=""></div>
+<!--             <div id="modelInfo">
             <h1 id="firstHeading">Description</h1>
               <div id="bodyContent">
                 <p data-bind="text: currentDesc"></p>
-              </div>
+              </div> -->
+              <hr>
               <div id="yelpNone" style="">
                 <id="yelpStatus">No Yelp Results Found
               </div>
               <div id ="yelp" style="display:none;">
-              <h3 id="firstHeading">Yelp Results</h3>
-              <div id="imgWrapper"><img id="yelpImage" data-bind="attr: {src: yelpImage}" alt="Park picture"></img></div>
-              <id="yelpaddress" data-bind="text: yelpAddress" style="float: right;"></id="yelpaddress">
-              <id="yelpPhone" data-bind="text: yelpPhone" style="float: right;"></id="yelpPhone">
-                <div id="bodyContent" style="padding: 60px 5px 0 5px;">
-                  <p><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
+              <div id="yelpImgWrapper"><img id='yelpLogo' src="http://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/e0bcd848f6ae/assets/img/logos/header_logo.png" alt='Yelp Logo'></img></div>
+              <div id="yelpHeader">
+
+              <span id="imgWrapper"><img id="yelpImage" data-bind="attr: {src: yelpImage}" alt="Park picture"></img></span>
+              <span id="yelpaddress" data-bind="text: yelpAddress"></span>
+              <span id="yelpPhone" data-bind="text: yelpPhone"></span>
+              </div>
+                <div id="bodyContent">
+                  <p id="bodyParagraph"><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
                   </p>
                 </div>
               </div>
@@ -113,6 +126,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default modal-style" data-dismiss="modal">Close</button>
+
             </div>
           </div>
        </div>

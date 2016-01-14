@@ -2,7 +2,7 @@
 	border: 1px solid red !important;
 }*/
 
-
+/*  Main Area */
 
 html{
 /*  width: 100%;
@@ -21,14 +21,6 @@ body {
  overflow: hidden;
 }
 
-
-#header {
-    color: #f2f2f2;
-    text-align: center;
-    background-color: #f2f2f2;
-    height: 10.2vh;
-}
-
 #title {
   font-family: 'Candal', sans-serif;
   font-size: 45px;
@@ -37,44 +29,16 @@ body {
   background-color:
 }
 
+#header {
+    color: #f2f2f2;
+    text-align: center;
+    background-color: #f2f2f2;
+    height: 10.2vh;
+}
+
 #borderWrapper {
   text-align: right;
 }
-#gStreet {
-  left: 20vw;
-  height: 27vh;
-  width: 60vw;
-
-  top: 1.8vh;
-}
-
-.modal-body {
-  padding: 0 15px 15px 15px;
-}
-
-/*#gStreet {
-  left: 35vw;
-  height: 24vh;
-  width: 30vw;
-
-  top: .8vh;
-}*/
-
-#four-square, #yelp {
-  top: 73vh;
-  height: 24vh;
-
-}
-
-#four-square {
-  background-color: #89c540;
-  left: 3vw;
-}
-
-#yelp {
-/*  background-color: #0096cf;*/
-}
-
 
 #map {
   top: 3vh;
@@ -98,7 +62,33 @@ svg {
     width: 40px;
 }
 
+ #main {
+   background-color: #6a2474;
+   height: 60vh;
+ }
 
+ #footer {
+        background-color: #d10031;
+        height: 30vh;
+ }
+
+ #openBtn {
+  top: 17vh;
+      left: 51vw;
+    position: absolute;
+    color: black;
+}
+
+#modelDesc {
+  margin: 5px 20px 0 20px;
+  width: 90%;
+ }
+
+ #bodyContent {
+
+ }
+
+/*  Drawer Area */
 
 #drawer {
   position: fixed;
@@ -126,6 +116,26 @@ svg {
   margin: 0 auto;
   width: 177px;
   background-color: white;
+}
+
+
+#search-input {
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 15px;
+/*    padding: 6px 10px 6px 0;*/
+    margin: 0;
+    height: 33px;
+    font-family: arial,sans-serif;
+    font-size: 15px;
+    background-color: white;
+/*    color: #111;*/
+/*   color: white;
+    outline: 0;*/
+    -webkit-appearance: none;
+    box-shadow: none;
+    text-indent: 8px;
 }
 
 
@@ -169,6 +179,72 @@ svg {
   background-color: white;
 }
 
+
+
+/*  Modal Area */
+
+.modal-content {
+  background-color: #29a293;
+}
+
+.modal-body {
+  padding: 0 15px 15px 15px;
+}
+
+.modal-header, #yelp, #yelpNone, #four-square, #fsNone {
+  color: white;
+}
+
+#gStreet {
+  top: 1vh;
+
+  height: 27vh;
+
+}
+
+#four-square, #yelp {
+  top: 73vh;
+  height: 24vh;
+
+}
+
+#four-square {
+  background-color: #89c540;
+  left: 3vw;
+}
+
+#yelp {
+/*  background-color: #0096cf;*/
+}
+
+#yelpHeader {
+  margin-top: 10px;
+}
+
+#yelpImgWrapper {
+    max-height: 60px;
+    max-width: 60px;
+    height: 60px;
+    width: 60px;
+
+}
+
+#bodyParagraph {
+      margin: 30px 0 10px;
+}
+
+ .modal-title {
+  font-size: 4vmin;
+}
+
+.image-modal {
+  margin-left: auto;
+  margin-right: auto;
+}
+.modal-style {
+  background-color: white;
+}
+
  #content {
   top: 100px;
 /*  width: 300px;*/
@@ -201,35 +277,42 @@ svg {
   width: 70%;
  }
 
- .modal-title {
-  font-size: 4vmin;
-}
-
-.image-modal {
-  margin-left: auto;
-  margin-right: auto;
-}
-.modal-style {
-  background-color: white;
-}
-
-
-
-
  #yelpPhone, #yelpaddress {
-  width: 100%;
-  float: right;
+  display: block;
+  margin-left: 72px;
+
  }
 
- #main {
-   background-color: #6a2474;
-   height: 60vh;
+#yelpaddress {
+
+}
+
+
+ #modelData {
+  color: white;
+  position: relative;
+    height: 22vh;
+    top: 5vh;
+    left: 20vw;
+    width: 60vw;
+
+  background-color: #0096cf;
  }
 
- #footer {
-        background-color: #d10031;
-        height: 30vh;
- }
+
+/*#gStreet {
+  left: 35vw;
+  height: 24vh;
+  width: 30vw;
+
+  top: .8vh;
+}*/
+
+
+
+
+
+/*  Unused Area */
 
  #drawer-2 {
   column-count: 2;
@@ -241,26 +324,6 @@ svg {
   column-gap: 40px;
  }
 
-
-
-#search-input {
-    top: 0;
-    left: 0;
-    width: 100%;
-    line-height: 15px;
-/*    padding: 6px 10px 6px 0;*/
-    margin: 0;
-    height: 33px;
-    font-family: arial,sans-serif;
-    font-size: 15px;
-    background-color: white;
-/*    color: #111;*/
-/*   color: white;
-    outline: 0;*/
-    -webkit-appearance: none;
-    box-shadow: none;
-    text-indent: 8px;
-}
 
 
 #menu {
