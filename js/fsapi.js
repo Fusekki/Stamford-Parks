@@ -16,11 +16,11 @@ var fsConnect = function (nameLocation) {
         '&near=' + near +
         '&query=' + nameLocation,
     success: function(results) {
-        console.log("SUCCESS! %o", results);
+        console.log("FS SUCCESS! %o", results);
         var resultsTotal = results.response.venues.length;
         var results = results.response.venues;
         console.log(results);
-        console.log(resultsTotal + ' results found. Analyzing...');
+        console.log(resultsTotal + ' results found in FS. Analyzing...');
         var filteredResults = 0;
         var city = near.slice(0, -4);
         console.log(city);
@@ -34,6 +34,13 @@ var fsConnect = function (nameLocation) {
           }
 
       });
+        console.log(filteredResults + ' results from FS.');
+
+        if (filteredResults === 0) {
+          console.log('Nothing found from FourSquare.');
+          $('#fsNone').show();
+         // parseResults(yelpObject, null);
+      }
      },
     error: function(results) {
         console.log("ERROR! %o", results);
@@ -60,9 +67,8 @@ var fsDetails = function (fsID) {
         '&v=20130815' +
         '&near=' + near,
     success: function(results) {
-        console.log("Details SUCCESS! %o", results);
+        console.log("FS Details SUCCESS! %o", results);
         var results = results.response.venue;
-        console.log(results);
         var city = near.slice(0, -4);
         console.log(city);
         console.log('Venue added to Foursquare.');

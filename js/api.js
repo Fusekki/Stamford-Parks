@@ -24,7 +24,7 @@
     callback: 'cb'
   };
 
-  console.log(parameters);
+  //console.log(parameters);
 
 //var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, consumerKey, consumerKeySecret, tokenSecret);
   var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
@@ -37,12 +37,12 @@
      jsonpCallback: 'cb',
      dataType: 'jsonp',
      success: function(results) {
-      console.log("SUCCESS! %o", results);
-      console.log(results.total + ' results found. Analyzing...');
+      console.log("YELP SUCCESS! %o", results);
+      console.log(results.total + ' results found for Yelp. Analyzing...');
       var resultsTotal = results.total;
       var filteredResults = 0;
       var city = local.slice(0, -4);
-      console.log(city);
+     // console.log(city);
       $.each(results.businesses, function(index, element) {
         if ((element.name === nameLocation) && (element.location.city === city)) {
           filteredResults ++;
@@ -55,6 +55,7 @@
 
       if (filteredResults === 0) {
         console.log('Nothing found from Yelp.');
+        $('#yelpNone').show();
        // parseResults(yelpObject, null);
       }
 
@@ -64,7 +65,7 @@
      }
     }
 
-  console.log(settings);
+  //console.log(settings);
   $.ajax(settings);
 };
 

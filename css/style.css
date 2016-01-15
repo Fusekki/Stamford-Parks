@@ -84,7 +84,8 @@ svg {
   width: 90%;
  }
 
- #bodyContent {
+ #FSBodyContent {
+  height: 5vw;
 
  }
 
@@ -202,15 +203,15 @@ svg {
 
 }
 
-#four-square, #yelp {
+#yelp {
   top: 73vh;
   height: 24vh;
 
 }
 
 #four-square {
-  background-color: #89c540;
-  left: 3vw;
+/*  background-color: #89c540;*/
+
 }
 
 #yelp {
@@ -221,6 +222,8 @@ svg {
   margin-top: 10px;
 }
 
+
+
 #yelpImgWrapper {
     max-height: 60px;
     max-width: 60px;
@@ -228,6 +231,49 @@ svg {
     width: 60px;
 
 }
+
+#yelpPhone, #yelpaddress {
+  display: block;
+  margin-left: 72px;
+
+ }
+
+
+ #fsPhone, #fsCrossStreet {
+  display: block;
+  margin-left: 27px;
+
+ }
+
+ #fsAddress-item {
+  display: block;
+ }
+
+ #fsAddressList {
+  margin-top: 30px;
+  padding: 0;
+ }
+
+ #fsBodyContent {
+  margin-top: 26px;
+
+ }
+
+#fsImgWrapper {
+    max-height: 60px;
+
+    height: 40px;
+
+
+}
+
+#fsHeader {
+  margin-top: 10px;
+}
+
+#fsLogo {
+  margin-top: 10px;
+  }
 
 #bodyParagraph {
       margin: 30px 0 10px;
@@ -277,11 +323,6 @@ svg {
   width: 70%;
  }
 
- #yelpPhone, #yelpaddress {
-  display: block;
-  margin-left: 72px;
-
- }
 
 #yelpaddress {
 

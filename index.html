@@ -87,7 +87,8 @@
               </div> -->
               <hr>
               <div id="yelpNone" style="">
-                <id="yelpStatus">No Yelp Results Found
+                <span id="yelpStatus">No Yelp Results Found</span>
+                <hr>
               </div>
               <div id ="yelp" style="display:none;">
               <div id="yelpImgWrapper"><img id='yelpLogo' src="http://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/e0bcd848f6ae/assets/img/logos/header_logo.png" alt='Yelp Logo'></img></div>
@@ -97,31 +98,37 @@
               <span id="yelpaddress" data-bind="text: yelpAddress"></span>
               <span id="yelpPhone" data-bind="text: yelpPhone"></span>
               </div>
-                <div id="bodyContent">
+                <div id="yelpBodyContent">
                   <p id="bodyParagraph"><span data-bind="text: yelpDesc" /></span></p>Yelp Score: <img id="yelpScore" data-bind="attr: {src: yelpRatingImg}" /></img>
                   </p>
                 </div>
               </div>
-              <div id="fsNone" style="">
-                <id="fsStatus">No Foursquare Results Found
+              <div id="fsNone">
+                <span id="fsStatus">No Foursquare Results Found</span>
               </div>
               <div id ="four-square" style="display: none;">
-                <h2 id="firstHeading">Foursquare Results</h2>
-                <div id="imgWrapper"><img id="fsImage" data-bind="attr: {src: fsImg}" alt="Park picture"></img></div>
-                <id="fsAddress" data-bind="text: fsAddress" style="float: right;"></id="fsaddress">
-                <id="fsCrossStreet" data-bind="text: fsCrossStreet" style="float: right;"></id="fsCrossStreet">
-                <id="fsPhone" data-bind="text: fsPhone" style="float: right;"></id="fsPhone">
-                <div id="bodyContent" style="padding: 60px 5px 0 5px;">
-                  </p>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"  /></span>
+              <div id="fsImgWrapper"><img id='fsLogo' src="https://ss0.4sqi.net/img/chrome/logo_foursquare8-50f95c75a6ba64c854bb3c2acf24c96c.png" alt='Foursquare Logo'></img></div>
+              <div id="fsHeader">
+ <!--                <h2 id="firstHeading">Foursquare Results</h2> -->
+                <div id="fsImgWrapper" data-bind="foreach: fsImg">
+                <img id="fsImage" data-bind="attr: {src: $data}" alt="Park picture"></img></div>
+
+              <ul id="fsAddressList" data-bind="foreach: fsAddress">
+                <li id="fsAddress-item" data-bind="text: $data"></li>
+              </ul>
+
+
+
+                <span id="fsCrossStreet" data-bind="text: fsCrossStreet"></span>
+                <span id="fsPhone" data-bind="text: fsPhone"></span>
+                </div>
+                <div id="fsBodyContent">
+                  <span id="fsTipsList" data-bind="foreach: fsTips">
+                    <span id="fsTips-item" data-bind="text: $data"><br></span></span>
+                  <p id="bodyParagraph"></span>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"></span>
                   </p>
                 </div>
-<!--       <figure>
-        <picture>
-          <source media="(min-width: 750)" srcset="images/aboutme-600.png" >
-          <source srcset="images/aboutme-600.png">
-          <img class="img-responsive image-center" srcset="images/aboutme-600.png" alt="Image of me">
-        </picture>
-      </figure> -->
+
             <p class="text-margin"></p>
             </div>
             <div class="modal-footer">

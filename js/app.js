@@ -141,11 +141,12 @@
 
 		self.fsName = ko.observable();
 		self.fsPhone = ko.observable();
-		self.fsAddress = ko.observable();
+		self.fsAddress = ko.observableArray([]);
 		self.fsZip = ko.observable();
 		self.fsCity = ko.observable();
 		self.fsCrossStreet = ko.observable();
-		self.fsImg = ko.observable();
+		self.fsImg = ko.observableArray([]);
+		self.fsTips = ko.observableArray([]);
 		self.fsRating = ko.observable();
 		self.fsUrl = ko.observable();
 
@@ -177,14 +178,14 @@
 		resultsFound = ko.pureComputed(function() {
 			var count = self.places().length;
 
-			console.log(count);
+			//console.log(count);
 
 			if (count > 25) {
-				console.log('count > 25');
+			//	console.log('count > 25');
 				$('#drawer-list').css({"column-count":"2"}, {"-webkit-column-count":"2"}, {"-moz-column-count":"2"},
 					{"-webkit-column-gap":"40px"},{"-moz-column-gap":"40px"},{"column-gap":"40px"});
 			} else {
-				console.log('count less than 30');
+			//	console.log('count less than 30');
 				$('#drawer-list').css({"column-count":"1"});
 			}
 
@@ -297,7 +298,7 @@
 			// console.log('focus on marker ' + place.number);
 			// console.log(self.markers);
 
-			console.log('initAjax');
+			console.log('initAjax called.');
 
 			$('#yelp').hide('slow');
 			$('#four-square').hide('slow');
@@ -315,7 +316,7 @@
 			}
 
 			YelpConnect(place.name);
-			//fsConnect(place.name);
+			fsConnect(place.name);
 			// $('#modalPlace').on('shown.bs.modal', function () {
 			// 	console.log('resize');
 			// 	google.maps.event.trigger(Map, "resize");
@@ -337,7 +338,7 @@
 		};
 
 		fillcontentWindow = function () {
-			console.log('line324');
+		//	console.log('line324');
 
 			var contentString = '<div id="content">' +
 					 			'<div id="siteNotice">' +
@@ -388,7 +389,7 @@
 
 			if($("#resultLink".length != 0)) {
 
-				 $('#yelpScore').click(function(){
+				 $('#yelpLogo').click(function(){
 					openSite(self.yelpUrl());
 				});
 			}
@@ -451,28 +452,57 @@
 		fsParseResults = function(element) {
 
 		if (element != null) {
-			console.log('Current entry: ' + element.name);
+			console.log('FS Parse. Current entry: ' + element.name);
+			console.log(element);
 
 
 			self.fsName(element.name);
-			self.fsAddress(element.location.address);
-			self.fsCity(element.location.city);
+
+			//console.log(element.location.formattedAddress.length);
+
+			for (var i = 0; i < element.location.formattedAddress.length; i++)
+			{
+				console.log(element.location.formattedAddress[i]);
+				self.fsAddress.push(element.location.formattedAddress[i]);
+			}
+
+
 			self.fsCrossStreet(element.location.crossStreet);
-			self.fsZip(element.postal_code);
-			self.fsPhone(element.contact.formattedPhone);
-			self.fsRating(element.rating);
-			self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
+			self.fsZip(element.location.postalCode);
+			//self.fsRating(element.rating);
+			for (i = 0; i < element.tips.groups[0].items.length; i++)
+			{
+				console.log(element.tips.groups[0].items[i].text);
+				self.fsTips.push(element.tips.groups[0].items[i].text);
+			}
+
+
+			console.log(element.photos.groups[0].items.length);
+			for (i = 0; i < element.photos.groups[0].items.length; i++)
+			{
+				console.log(element.photos.groups[0].items[i].prefix);
+				self.fsImg.push(element.photos.groups[0].items[i].prefix +'60x60'+ element.photos.groups[0].items[i].suffix);
+			}
+
+			//self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
 			self.fsUrl(element.shortUrl);
 			$('#fsNone').hide();
 			$('#four-square').show();
 
 			}
 
-		console.log(self.fsName());
+			console.log(self.fsName());
+			console.log(self.fsImg());
+			for (var i = 0; i < self.fsAddress().length; i++)
+			{
+				console.log(self.fsAddress()[i]);
+			}
+
+			console.log(self.fsTips());
 
 		if($("#resultLink".length != 0)) {
 
-		 	$('#fsScore').click(function(){
+		 	$('#fsLogo').click(function(){
 				openSite(self.fsUrl());
 				});
 			}
