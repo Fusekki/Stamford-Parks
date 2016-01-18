@@ -164,10 +164,10 @@
 		self.helpers = Helpers;
 
 		$('modalPlace').on('hidden.bs.modal', function () {
-			 $('#yelp').hide();
-			 $('#four-square').hide();
-			 $('#yelpNone').hide();
-			 $('#fsNone').hide(); // do something…
+			// $('#yelp').hide();
+			// $('#four-square').hide();
+			// $('#yelpNone').hide();
+			// $('#fsNone').hide(); // do something…
 			})
 
 		// This event triggers the street view to display in the modal.
@@ -230,6 +230,10 @@
 
 
 		Map.initMap(self);
+
+
+
+
 
 		//console.log(self.places());
 
@@ -300,8 +304,8 @@
 
 			console.log('initAjax called.');
 
-			$('#yelp').hide('slow');
-			$('#four-square').hide('slow');
+			//$('#yelp').hide('slow');
+			//$('#four-square').hide('slow');
 
 
 
@@ -381,7 +385,7 @@
 					self.yelpPhone("NA");
 				}
 				$('#yelpNone').hide();
-				$('#yelp').show();
+			//	$('#yelp').show();
 
 			}
 
@@ -487,7 +491,7 @@
 			//self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
 			self.fsUrl(element.shortUrl);
 			$('#fsNone').hide();
-			$('#four-square').show();
+	//		$('#four-square').show();
 
 			}
 
@@ -507,6 +511,9 @@
 				});
 			}
 		};
+
+
+
 
 		openSite = function(url) {
 

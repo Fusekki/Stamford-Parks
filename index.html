@@ -79,18 +79,33 @@
                   <h4 class="modal-title text-center" id="myModalLabel1" data-bind="text: currentName"></h4>
               </div>
             <div class="modal-body">
+            <div class="modal-map">
+
               <div id="gStreet" style=""></div>
 <!--             <div id="modelInfo">
             <h1 id="firstHeading">Description</h1>
               <div id="bodyContent">
                 <p data-bind="text: currentDesc"></p>
               </div> -->
+              </div>
               <hr>
-              <div id="yelpNone" style="">
+
+              <div class="tabbable"> <!-- Only required for left/right tabs -->
+
+        </div>
+            <div class="tabbable modal-results">
+             <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Yelp</a></li>
+        <li><a href="#tab2" data-toggle="tab">Foursquare</a></li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+        <div class="modal-yelp" id="yelpPage">
+                      <div id="yelpNone" style="">
                 <span id="yelpStatus">No Yelp Results Found</span>
                 <hr>
               </div>
-              <div id ="yelp" style="display:none;">
+              <div id ="yelp" style="">
               <div id="yelpImgWrapper"><img id='yelpLogo' src="http://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/e0bcd848f6ae/assets/img/logos/header_logo.png" alt='Yelp Logo'></img></div>
               <div id="yelpHeader">
 
@@ -103,10 +118,15 @@
                   </p>
                 </div>
               </div>
+                </div>
+
+        </div>
+        <div class="tab-pane" id="tab2">
+                        <div class="modal-foursquare" id="fsPage">
               <div id="fsNone">
                 <span id="fsStatus">No Foursquare Results Found</span>
               </div>
-              <div id ="four-square" style="display: none;">
+              <div id ="four-square" style="">
               <div id="fsImgWrapper"><img id='fsLogo' src="https://ss0.4sqi.net/img/chrome/logo_foursquare8-50f95c75a6ba64c854bb3c2acf24c96c.png" alt='Foursquare Logo'></img></div>
               <div id="fsHeader">
  <!--                <h2 id="firstHeading">Foursquare Results</h2> -->
@@ -128,8 +148,16 @@
                   <p id="bodyParagraph"></span>Foursquare Rating: <span id="fsScore" data-bind="text: fsRating"></span>
                   </p>
                 </div>
+                </div>
+        </div>
 
-            <p class="text-margin"></p>
+
+
+
+
+
+
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default modal-style" data-dismiss="modal">Close</button>
