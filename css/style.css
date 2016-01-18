@@ -1,24 +1,13 @@
 /** {
-	border: 1px solid red !important;
+  border: 1px solid red !important;
 }*/
 
 /*  Main Area */
 
-html{
-/*  width: 100%;
-  height: 100%;
-  background: url(images/maxresdefault.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow-y: hidden;*/
-}
-
 body {
- height: 100vh;
- margin: 0px;
- overflow: hidden;
+  height: 100vh;
+  margin: 0px;
+  overflow: hidden;
 }
 
 #title {
@@ -26,14 +15,13 @@ body {
   font-size: 45px;
   color: black;
   margin: 0;
-  background-color:
-}
+  background-color: }
 
 #header {
     color: #f2f2f2;
-    text-align: center;
-    background-color: #f2f2f2;
-    height: 10.2vh;
+  text-align: center;
+  background-color: #f2f2f2;
+  height: 10.2vh;
 }
 
 #borderWrapper {
@@ -49,45 +37,42 @@ body {
   border: 8px solid #9ec551;
 }
 
-
 #buttonWrapper {
   position: fixed;
   display: block;
   top: .5vh;
   left: .5vw;
-
 }
 
 svg {
-    width: 40px;
+  width: 40px;
 }
 
- #main {
-   background-color: #6a2474;
-   height: 60vh;
- }
+#main {
+  background-color: #6a2474;
+  height: 60vh;
+}
 
- #footer {
-        background-color: #d10031;
-        height: 30vh;
- }
+#footer {
+  background-color: #d10031;
+  height: 30vh;
+}
 
- #openBtn {
+#openBtn {
   top: 17vh;
-      left: 51vw;
-    position: absolute;
-    color: black;
+  left: 51vw;
+  position: absolute;
+  color: black;
 }
 
 #modelDesc {
   margin: 5px 20px 0 20px;
   width: 90%;
- }
+}
 
- #FSBodyContent {
+#FSBodyContent {
   height: 5vw;
-
- }
+}
 
 /*  Drawer Area */
 
@@ -100,7 +85,6 @@ svg {
   width: 30vw;
   background-color: #ee7401;
   z-index: 1;
-
 }
 
 #header-wrapper {
@@ -119,26 +103,24 @@ svg {
   background-color: white;
 }
 
-
 #search-input {
-    top: 0;
-    left: 0;
-    width: 100%;
-    line-height: 15px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: 15px;
 /*    padding: 6px 10px 6px 0;*/
-    margin: 0;
-    height: 33px;
-    font-family: arial,sans-serif;
-    font-size: 15px;
-    background-color: white;
+  margin: 0;
+  height: 33px;
+  font-family: arial,sans-serif;
+  font-size: 15px;
+  background-color: white;
 /*    color: #111;*/
 /*   color: white;
     outline: 0;*/
-    -webkit-appearance: none;
-    box-shadow: none;
-    text-indent: 8px;
+  -webkit-appearance: none;
+  box-shadow: none;
+  text-indent: 8px;
 }
-
 
 #drawer-list {
   list-style: none;
@@ -146,32 +128,31 @@ svg {
   margin: 3px 0;
   color: #f2f2f2;
   background-color: #ee7401;
-
   column-count: 2;
   -webkit-column-count: 2;
   -moz-column-count: 2;
-
-  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
-  -moz-column-gap: 40px; /* Firefox */
+  -webkit-column-gap: 40px;
+ /* Chrome, Safari, Opera */
+  -moz-column-gap: 40px;
+ /* Firefox */
   column-gap: 40px;
-
- }
-
+}
 
 #drawer-item {
   width: 125px;
-  -webkit-column-width: 125px; /* Chrome, Safari, Opera */
+  -webkit-column-width: 125px;
+ /* Chrome, Safari, Opera */
   column-width: 100px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 21px;
   color: #f2f2e7;
 }
 
-
- #drawer-item:hover {
-      color: #fff; /* white */
-      background-color: #a52a2a; /* brown */
-
+#drawer-item:hover {
+  color: #fff;
+ /* white */
+  background-color: #a52a2a;
+ /* brown */;
 }
 
 #drawer-results {
@@ -198,88 +179,76 @@ svg {
 
 #gStreet {
   top: 1vh;
-
   height: 27vh;
-
 }
 
 #yelp {
   top: 73vh;
   height: 24vh;
-
+/*  background-color: #0096cf;*/;
 }
 
 #four-square {
-/*  background-color: #89c540;*/
-
+/*  background-color: #89c540;*/;
 }
 
-#yelp {
-/*  background-color: #0096cf;*/
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+  width: 70%;
+  margin: auto;
 }
 
-#yelpHeader {
+#yelpHeader, #yelpStatus, #fsStatus {
   margin-top: 10px;
 }
 
-
-
 #yelpImgWrapper {
-    max-height: 60px;
-    max-width: 60px;
-    height: 60px;
-    width: 60px;
-
+  max-height: 60px;
+  max-width: 60px;
+  height: 60px;
+  width: 60px;
 }
 
 #yelpPhone, #yelpaddress {
   display: block;
   margin-left: 72px;
+}
 
- }
-
-
- #fsPhone, #fsCrossStreet {
+#fsPhone {
   display: block;
+}
 
-
- }
-
- #fsAddress-item {
+#fsAddress-item {
   display: block;
- }
+}
 
- #fsAddressList {
+#fsAddressList {
   margin-top: 30px;
   padding: 0;
- }
-
- #fsBodyContent {
-  margin-top: 26px;
-
- }
-
-#fsImgWrapper {
-    max-height: 60px;
-
-    height: 40px;
-
-
 }
+
+#fsBodyContent {
+  margin-top: 26px;
+}
+
+/*#fsImgWrapper {
+    max-height: 60px;
+    height: 40px;
+}*/
 
 #fsHeader {
   margin-top: 10px;
 }
 
 #fsLogo {
-  margin-top: 10px;
-  }
-
-#bodyParagraph {
-      margin: 30px 0 10px;
+  margin-top: 24px;
 }
 
- .modal-title {
+#bodyParagraph {
+  margin: 30px 0 10px;
+}
+
+.modal-title {
   font-size: 4vmin;
 }
 
@@ -287,126 +256,100 @@ svg {
   margin-left: auto;
   margin-right: auto;
 }
+
 .modal-style {
   background-color: white;
 }
 
- #content {
+#content {
   top: 100px;
-/*  width: 300px;*/
+/*  width: 300px;*/;
+}
 
- }
-
- #resultLink {
+#resultLink {
   width: 60px;
- }
+}
 
- #firstHeading {
+#firstHeading {
   margin: 0 0 4px;
   padding: 10px;
- }
+}
 
- #imgWrapper {
+#imgWrapper {
   float: left;
   max-height: 60px;
   max-width: 60px;
   height: 60px;
   width: 60px;
- }
-
- #yelpImage {
-  width: 100%;
-
- }
- #detailsWrapper{
-  display: inline;
-  width: 70%;
- }
-
-
-#yelpaddress {
-
 }
 
+#yelpImage {
+  width: 100%;
+}
 
- #modelData {
+#detailsWrapper {
+  display: inline;
+  width: 70%;
+}
+
+#yelpaddress {
+}
+
+#modelData {
   color: white;
   position: relative;
-    height: 22vh;
-    top: 5vh;
-    left: 20vw;
-    width: 60vw;
-
+  height: 22vh;
+  top: 5vh;
+  left: 20vw;
+  width: 60vw;
   background-color: #0096cf;
- }
-
-
-/*#gStreet {
-  left: 35vw;
-  height: 24vh;
-  width: 30vw;
-
-  top: .8vh;
-}*/
-
-
-
-
+}
 
 /*  Unused Area */
 
- #drawer-2 {
+#drawer-2 {
   column-count: 2;
   -webkit-column-count: 2;
   -moz-column-count: 2;
-
-  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
-  -moz-column-gap: 40px; /* Firefox */
+  -webkit-column-gap: 40px;
+ /* Chrome, Safari, Opera */
+  -moz-column-gap: 40px;
+ /* Firefox */
   column-gap: 40px;
- }
-
-
+}
 
 #menu {
-	width: 100%;
-
+  width: 100%;
 }
-
 
 #nav-results {
-    color: grey;
-    line-height: 30px;
-
-    margin: 35px 0 0 0;
+  color: grey;
+  line-height: 30px;
+  margin: 35px 0 0 0;
 }
 
-
- #nav-listitem {
- 	color: #f2f2f2;
-	list-style: none;
-	padding: 0;
-	margin: 3px 0;
-	width: 100%;
- }
-
+#nav-listitem {
+  color: #f2f2f2;
+  list-style: none;
+  padding: 0;
+  margin: 3px 0;
+  width: 100%;
+}
 
 #container {
-
 }
 
-
-
 #search {
-	width: 25%;
-	display: block;
-	padding: 1em;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	border: 1px solid #3498db;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+  width: 25%;
+  display: block;
+  padding: 1em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #3498db;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 /* If there is enough space (> 600px), we keep the drawer open all the time. */
@@ -414,7 +357,7 @@ svg {
 
   /* We open the drawer. */
   #nav {
-    position:relative;
+    position: relative;
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
     float: left;
@@ -432,7 +375,7 @@ svg {
     width: auto;*/
     /* Flex-grow streches the main content to fill all available space. */
 /*    flex-grow: 1;*/
-/*  }*/
+/*  }*/;
 }
 
 /* If there is space (> 800px), we keep the drawer open by default. */
@@ -440,110 +383,10 @@ svg {
   main > #menu:after {
     content: 'The drawer stays open if width > 600px';
   }
+
   main p, nav p {
     text-decoration: line-through;
   }
 }
 
 /*End Drawer CSS*/
-
-/*.btn {
-  background: #000000;
-  background-image: -webkit-linear-gradient(top, #000000, #009dff);
-  background-image: -moz-linear-gradient(top, #000000, #009dff);
-  background-image: -ms-linear-gradient(top, #000000, #009dff);
-  background-image: -o-linear-gradient(top, #000000, #009dff);
-  background-image: linear-gradient(to bottom, #000000, #009dff);
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
-  text-decoration: none;
-}*/
-
-#nav-search1 {
-	margin: 0;
-	padding: 5px 15px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:14px;
-	border:1px solid #0076a3; border-right:0px;
-	border-top-left-radius: 5px 5px;
-	border-bottom-left-radius: 5px 5px;
-}
-
-
-
-.live-search-list li {
-color: fff;
-list-style: none;
-padding: 0;
-margin: 5px 0;
-}
-
-#tfheader{
-	background-color:#c3dfef;
-}
-#tfnewsearch{
-	float:left;
-	padding:20px;
-}
-.tftextinput{
-	margin: 0;
-	padding: 5px 15px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:14px;
-	border:1px solid #0076a3; border-right:0px;
-	border-top-left-radius: 5px 5px;
-	border-bottom-left-radius: 5px 5px;
-}
-.tfbutton {
-	margin: 0;
-	padding: 5px 15px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:14px;
-	outline: none;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	color: #ffffff;
-	border: solid 1px #0076a3; border-right:0px;
-	background: #0095cd;
-	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
-	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
-	border-top-right-radius: 5px 5px;
-	border-bottom-right-radius: 5px 5px;
-}
-.tfbutton:hover {
-	text-decoration: none;
-	background: #007ead;
-	background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
-	background: -moz-linear-gradient(top,  #0095cc,  #00678e);
-}
-/* Fixes submit button height problem in Firefox */
-.tfbutton::-moz-focus-inner {
-  border: 0;
-}
-.tfclear{
-	clear:both;
-}
-
-#list {
-	color: white;
-}
-
-#input {
-	width: 100%;
-	float: left;
-	color: white;
-}
-
