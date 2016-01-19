@@ -31,11 +31,11 @@
     </div>
     <div id="main">
         <div id="map"></div>
-        <div id="borderWrapper">
+        <div id="border-wrapper">
             <button onclick="toggleBorder()" type="button">Border</button>
         </div>
     </div>
-    <div id="buttonWrapper">
+    <div id="btn-wrapper">
         <svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path></svg>
     </div>
@@ -46,90 +46,93 @@
         "populateLocations()" placeholder="Type name" type="search"></span> <span data-bind="text: resultsFound" id="drawer-results"></span>
         <ul data-bind="foreach: places" id="drawer-list">
             <li data-bind="text: name, click: initAjax" id="drawer-item"></li>
-        </ul><span id="buttonWrapper"><svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns=
+        </ul><span id="btn-wrapper"><svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns=
         "http://www.w3.org/2000/svg">
         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path></svg></span>
     </div>
     <div id="footer">
-        <div id="modelData" style="display: none">
+        <div id="model-data" style="display: none">
             <h1 data-bind="text: currentName" id="firstHeading"></h1><span id="bodyContent"></span>
-            <p data-bind="text: currentDesc" id="modelDesc"><span id="bodyContent"></span></p><button class="btn btn-secondary" data-target="#modalPlace"
+            <p data-bind="text: currentDesc" id="model-desc"><span id="bodyContent"></span></p><button class="btn btn-secondary" data-target="#modal-place"
             data-toggle="modal" id="openBtn" type="button">More Info</button>
         </div>
     </div><!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel1" class="modal fade" id="modalPlace" role="dialog" tabindex="-1">
+
+    <div aria-hidden="true" aria-labelledby="modal-label" class="modal fade" id="modal-place" role="dialog" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-center" data-bind="text: currentName" id="myModalLabel1"></h4>
+                    <h4 class="modal-title text-center" data-bind="text: currentName" id="modal-label"></h4>
                 </div>
                 <div class="modal-body">
                     <div class="modal-map">
-                        <div id="gStreet" style=""></div>
+                        <div id="street-view" style=""></div>
                     </div>
                     <hr>
-                    <div class="tabbable"></div>
-                    <div class="tabbable modal-results">
-                        <ul class="nav nav-tabs">
+                    <div class="pills"></div>
+                    <div class="pills modal-results">
+                        <ul class="nav nav-pills">
                             <li class="active">
-                                <a data-toggle="tab" href="#tab-yelp">Yelp</a>
+                                <a data-toggle="pill" href="#pill-yelp">Yelp</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab-foursquare">Foursquare</a>
+                                <a data-toggle="pill" href="#pill-foursquare">Foursquare</a>
                             </li>
+<!--                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Foursquare<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#four-square">Info</a></li>
+                                <li><a href="#">Tips</a></li>
+                                </ul> -->
                             <li>
-                                <a data-toggle="tab" id="galleryTab" href="#tab-gallery">Gallery</a>
+                                <a data-toggle="pill" id="gallery-pill" href="#pill-gallery">Gallery</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab-yelp">
-                                <div class="modal-yelp" id="yelpPage">
-                                    <div id="yelpImgWrapper"><img alt='Yelp Logo' id='yelpLogo' src=
+                            <div class="tab-pane active" id="pill-yelp">
+                                <div class="modal-yelp" id="yelp-tab">
+                                    <div id="yelp-img-wrapper"><img alt='Yelp Logo' id='yelp-logo' src=
                                     "http://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/e0bcd848f6ae/assets/img/logos/header_logo.png"></div>
-                                    <div id="yelpNone" style="">
-                                        <p id="yelpStatus">No Yelp Results Found</p>
+                                    <div id="yelp-noresult" style="">
+                                        <p id="yelp-status">No Yelp Results Found</p>
                                     </div>
-                                    <div id="yelp" style="">
-                                        <div id="yelpHeader">
-                                            <span id="imgWrapper"><img alt="Park picture" data-bind="attr: {src: yelpImage}" id="yelpImage"></span>
-                                            <span data-bind="text: yelpAddress" id="yelpaddress"></span> <span data-bind="text: yelpPhone" id=
-                                            "yelpPhone"></span>
+                                    <div id="yelp">
+                                        <div id="yelp-header">
+                                            <span id="img-wrapper"><img alt="Park picture" data-bind="attr: {src: yelpImg}" id="yelp-img"></span>
+                                            <span data-bind="text: yelpAddress" id="yelp-address"></span> <span data-bind="text: yelpPhone" id=
+                                            "yelp-phone"></span>
                                         </div>
-                                        <div id="yelpBodyContent">
-                                            <p id="bodyParagraph"><span data-bind="text: yelpDesc"></span></p>Yelp Score: <img data-bind=
-                                            "attr: {src: yelpRatingImg}" id="yelpScore">
+                                        <div id="yelp-body-content">
+                                            <p id="body-paragraph"><span data-bind="text: yelpDesc"></span></p>Yelp Score: <img data-bind=
+                                            "attr: {src: yelpRatingImg}" id="yelp-score">
                                             <p></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tab-foursquare">
-                                <div class="modal-foursquare" id="fsPage">
-                                    <div id="fsImgWrapper"><img alt='Foursquare Logo' id='fsLogo' src=
+                            <div class="tab-pane" id="pill-foursquare">
+                                <div class="modal-foursquare" id="fs-tab">
+                                    <div id="fs-img-wrapper"><img alt='Foursquare Logo' id='fs-logo' src=
                                     "https://ss0.4sqi.net/img/chrome/logo_foursquare8-50f95c75a6ba64c854bb3c2acf24c96c.png"></div>
-                                    <div id="fsNone">
-                                        <p id="fsStatus">No Foursquare Results Found</p>
+                                    <div id="fs-noresult">
+                                        <p id="fs-status">No Foursquare Results Found</p>
                                     </div>
                                     <div id="four-square">
-                                        <div id="fsHeader">
-
-                                            <ul data-bind="foreach: fsAddress" id="fsAddressList">
+                                        <div id="fs-header">
+                                            <ul data-bind="foreach: fsAddress" id="fs-address-li">
                                                 <li data-bind="text: $data" id="fsAddress-item"></li>
                                             </ul>Cross Street: <span data-bind="text: fsCrossStreet" id="fsCrossStreet"></span> <span data-bind="text: fsPhone"
-                                            id="fsPhone"></span>
+                                            id="fs-phone"></span>
                                         </div>
-                                        <div id="fsBodyContent">Tips:
-                                            <ul data-bind="foreach: fsTips" id="fs-tipslist">
-                                                <li data-bind="text: $data, click: initAjax" id="fs-tipsitem"></li>
-                                            </ul>
+                                        <div id="fs-body-content">Tips:<ul data-bind="foreach: fsTips" id="fs-tips-li">
+                                            <li data-bind="text: $data, click: initAjax" id="fs-tips-item"></li></ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="tab-gallery">
-                                <div class="modal-gallery" id="galleryPage">
+                            <div class="tab-pane" id="pill-gallery">
+                                <div class="modal-gallery" id="gallery-tab">
                                     <div id="gallery">
-                                        <div id="galleryHeader">
+                                        <div id="gallery-header">
                                             <div class="carousel slide" data-ride="carousel" id="carousel-images">
                                                 <!-- Indicators -->
                                                 <ol class="carousel-indicators" data-bind="foreach: fsImg">

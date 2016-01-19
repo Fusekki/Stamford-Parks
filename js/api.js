@@ -52,7 +52,7 @@
 
               if (filteredResults === 0) {
                   console.log('Nothing found from Yelp.');
-                  $('#yelpNone').show();
+                  $('#yelp-noresult').show();
                   $('#yelp').hide();
                   // parseResults(yelpObject, null);
               }

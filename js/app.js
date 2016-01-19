@@ -32,7 +32,7 @@ var Map = {
             lng: lng
         };
         var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('gStreet'), {
+            document.getElementById('street-view'), {
                 position: loc,
                 prob: {
                     heading: 24,
@@ -101,7 +101,7 @@ var ViewModel = function() {
     self.yelpRatingUrl = ko.observable();
     self.yelpRatingImg = ko.observable();
     self.yelpReviews = ko.observable();
-    self.yelpImage = ko.observable();
+    self.yelpImg = ko.observable();
     self.yelpAddress = ko.observable();
     self.yelpZip = ko.observable();
     self.yelpDesc = ko.observable();
@@ -167,7 +167,7 @@ var ViewModel = function() {
     // End Knockout Declarations
 
 
-
+    // Function Declarations
 
     search = function(value) {
         // remove all the current places, which removes them from the view
@@ -267,6 +267,8 @@ var ViewModel = function() {
 
         console.log('initAjax called.');
 
+        clearObservables();
+
         //$('#yelp').hide('slow');
         //$('#four-square').hide('slow');
 
@@ -284,7 +286,7 @@ var ViewModel = function() {
 
         YelpConnect(place.name);
         fsConnect(place.name);
-        // $('#modalPlace').on('shown.bs.modal', function () {
+        // $('#modal-place').on('shown.bs.modal', function () {
         // 	console.log('resize');
         // 	google.maps.event.trigger(Map, "resize");
         // 	});
@@ -298,13 +300,22 @@ var ViewModel = function() {
 
 
 
-        $('#modelData').show();
+        $('#model-data').show();
 
         //obtainWiki(place.name);
 
     };
 
-    // Function Declarations
+    clearObservables = function() {
+
+        // This function clears the existing Knockout observable array variables before the Ajax call.
+        self.fsAddress.removeAll();
+        self.fsImg.removeAll();
+        self.fsTips.removeAll();
+
+
+    };
+
 
     fillcontentWindow = function() {
 
@@ -335,7 +346,7 @@ var ViewModel = function() {
             self.yelpRatingUrl(element.rating_img_url);
             self.yelpRatingImg(element.rating_img_url_small);
             self.yelpReviews(element.review_count);
-            self.yelpImage(element.image_url);
+            self.yelpImg(element.image_url);
             self.yelpAddress(element.location.display_address);
             self.yelpZip(element.postal_code);
             self.yelpDesc(element.snippet_text);
@@ -344,9 +355,9 @@ var ViewModel = function() {
             if (element.display_phone) {
                 self.yelpPhone(element.display_phone.slice(3, -1));
             } else {
-                self.yelpPhone("NA");
+                self.yelpPhone("");
             }
-            $('#yelpNone').hide();
+            $('#yelp-noresult').hide();
             $('#yelp').show();
             //	$('#yelp').show();
 
@@ -356,7 +367,7 @@ var ViewModel = function() {
 
         if ($("#resultLink".length != 0)) {
 
-            $('#yelpLogo').click(function() {
+            $('#yelp-logo').click(function() {
                 openSite(self.yelpUrl());
             });
         }
@@ -388,6 +399,15 @@ var ViewModel = function() {
                 self.fsTips.push('"' + element.tips.groups[0].items[i].text + '"');
             }
 
+            console.log(self.fsTips().length);
+
+            // if (self.fsTips().length > 3) {
+            //     $('#fs-body-content').css('overflow', 'auto');
+            // } else {
+            //     $('#fs-body-content').css('overflow', 'none');
+            // }
+
+
 
             console.log(element.photos.groups[0].items.length);
             for (i = 0; i < element.photos.groups[0].items.length; i++) {
@@ -397,9 +417,11 @@ var ViewModel = function() {
 
             //self.fsImg(element.photos.groups[0].items[0].prefix +'60x60'+ element.photos.groups[0].items[0].suffix);
             self.fsUrl(element.shortUrl);
-            $('#fsNone').hide();
+
+            // Specify divs to display based on results.
+            $('#fs-noresult').hide();
             $('#four-square').show();
-            $('#galleryTab').show();
+            $('#gallery-pill').show();
             //$('carousel-inner:nth-child(2)').addClass('active');
 
         }
@@ -414,7 +436,7 @@ var ViewModel = function() {
 
         if ($("#resultLink".length != 0)) {
 
-            $('#fsLogo').click(function() {
+            $('#fs-logo').click(function() {
                 openSite(self.fsUrl());
             });
         }
@@ -458,10 +480,10 @@ var ViewModel = function() {
     // Statements
     self.query.subscribe(search);
 
-    $('modalPlace').on('hidden.bs.modal', function() {})
+    $('modal-place').on('hidden.bs.modal', function() {})
 
     // This event triggers the street view to display in the modal.
-    $('#modalPlace').on('shown.bs.modal', function() {
+    $('#modal-place').on('shown.bs.modal', function() {
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
     });
 

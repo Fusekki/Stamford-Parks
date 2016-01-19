@@ -1,7 +1,7 @@
 /** {
   border: 1px solid red !important;
-}*/
-
+}
+*/
 /*  Main Area */
 
 body {
@@ -24,7 +24,7 @@ body {
   height: 10.2vh;
 }
 
-#borderWrapper {
+#border-wrapper {
   text-align: right;
 }
 
@@ -37,7 +37,7 @@ body {
   border: 8px solid #9ec551;
 }
 
-#buttonWrapper {
+#btn-wrapper {
   position: fixed;
   display: block;
   top: .5vh;
@@ -65,13 +65,13 @@ svg {
   color: black;
 }
 
-#modelDesc {
+#model-desc {
   margin: 5px 20px 0 20px;
   width: 90%;
 }
 
-#FSBodyContent {
-  height: 5vw;
+#fs-body-content {
+  min-height: inherit;
 }
 
 /*  Drawer Area */
@@ -165,6 +165,11 @@ svg {
 
 /*  Modal Area */
 
+.modal-dialog {
+  margin-top: 20px;
+  margin-bottom: 0;
+  }
+
 .modal-content {
   background-color: #29a293;
 }
@@ -173,18 +178,31 @@ svg {
   padding: 0 15px 15px 15px;
 }
 
-.modal-header, #yelp, #yelpNone, #four-square, #fsNone {
+.modal-header, #yelp, #yelp-noresult, #four-square, #fs-noresult {
   color: white;
 }
 
-#gStreet {
+#street-view {
   top: 1vh;
   height: 27vh;
 }
 
-#yelp {
-  top: 73vh;
-  height: 24vh;
+.tab-content {
+  max-height: 400px;
+}
+
+#yelp-tab, #fs-tab, #gallery-tab {
+  min-height: inherit;
+}
+
+#pill-gallery, #pill-foursquare, #pill-yelp {
+  min-height: 400px;
+}
+
+#yelp, #four-square {
+
+  min-height: inherit;
+
 /*  background-color: #0096cf;*/;
 }
 
@@ -198,23 +216,26 @@ svg {
   margin: auto;
 }
 
-#yelpHeader, #yelpStatus, #fsStatus {
+#yelp-header, #yelp-status, #fs-status {
   margin-top: 10px;
 }
 
-#yelpImgWrapper {
+#yelp-img-wrapper {
   max-height: 60px;
   max-width: 60px;
   height: 60px;
   width: 60px;
 }
 
-#yelpPhone, #yelpaddress {
-  display: block;
-  margin-left: 72px;
+#yelp-address {
+  margin-top: 10px;
 }
 
-#fsPhone {
+#yelp-phone, #yelp-address {
+  display: block;
+}
+
+#fs-phone {
   display: block;
 }
 
@@ -222,29 +243,31 @@ svg {
   display: block;
 }
 
-#fsAddressList {
-  margin-top: 30px;
+#fs-address-li {
+  margin-top: 10px;
   padding: 0;
 }
 
-#fsBodyContent {
-  margin-top: 26px;
+#fs-body-content {
+  margin-top: 10px;
+  max-height: 150px;
+  overflow: auto;
 }
 
-/*#fsImgWrapper {
+/*#fsimg-wrapper {
     max-height: 60px;
     height: 40px;
 }*/
 
-#fsHeader {
-  margin-top: 10px;
+#fs-header {
+
 }
 
-#fsLogo {
-  margin-top: 24px;
+#fs-logo {
+  margin-top: 12px;
 }
 
-#bodyParagraph {
+#body-paragraph {
   margin: 30px 0 10px;
 }
 
@@ -275,16 +298,15 @@ svg {
   padding: 10px;
 }
 
-#imgWrapper {
-  float: left;
+#img-wrapper {
   max-height: 60px;
   max-width: 60px;
   height: 60px;
   width: 60px;
 }
 
-#yelpImage {
-  width: 100%;
+#yelp-img {
+
 }
 
 #detailsWrapper {
@@ -292,10 +314,10 @@ svg {
   width: 70%;
 }
 
-#yelpaddress {
+#yelp-address {
 }
 
-#modelData {
+#model-data {
   color: white;
   position: relative;
   height: 22vh;
