@@ -42,10 +42,9 @@
     <div id="drawer">
         <div id="header-wrapper">
             <span id="drawer-header">Parks List</span>
-        </div><span id="search-bar"><input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" onclick=
-        "populateLocations()" placeholder="Type name" type="search"></span> <span data-bind="text: resultsFound" id="drawer-results"></span>
-        <ul data-bind="foreach: places" id="drawer-list">
-            <li data-bind="text: name, click: initAjax" id="drawer-item"></li>
+        </div><span id="search-bar"><input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search"></span><span data-bind="text: resultsFound" + id="drawer-results"></span><span id="drawer-results-text">results found.</span>
+        <ul data-bind="foreach: places, css: drawerStyle" id="drawer-list">
+            <li data-bind="text: name, click: $parent.initAjax, css: $parent.resultsStyle" id="drawer-item" ></li>
         </ul><span id="btn-wrapper"><svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns=
         "http://www.w3.org/2000/svg">
         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path></svg></span>
@@ -83,7 +82,7 @@
                                 <li><a href="#four-square">Info</a></li>
                                 <li><a href="#">Tips</a></li>
                                 </ul> -->
-                            <li>
+                            <li id="gallery-pill">
                                 <a data-toggle="pill" id="gallery-pill" href="#pill-gallery">Gallery</a>
                             </li>
                         </ul>
@@ -124,7 +123,7 @@
                                             id="fs-phone"></span>
                                         </div>
                                         <div id="fs-body-content">Tips:<ul data-bind="foreach: fsTips" id="fs-tips-li">
-                                            <li data-bind="text: $data, click: initAjax" id="fs-tips-item"></li></ul>
+                                            <li data-bind="text: $data, click: $parent.initAjax" id="fs-tips-item"></li></ul>
                                         </div>
                                     </div>
                                 </div>
@@ -169,10 +168,7 @@
         </script>
         <script src="js/oauth-signature.js">
         </script>
-        <script src="js/api.js">
-        </script>
-        <script src="js/fsapi.js">
-        </script> <!-- <script src="js/gstreet-api.js"></script> -->
+
     </div>
 </body>
 </html>

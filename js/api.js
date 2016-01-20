@@ -1,6 +1,24 @@
-  function nonce_generate() {
+console.log(self);
+
+var nonce_generate = function() {
       return (Math.floor(Math.random() * 1e12).toString());
   };
+
+var localJsonpCallback = function(data) {
+      console.log(JSON.stringify(data));
+  };
+
+var yelpStart = function() {
+      console.log('Yelp Start.');
+      // Add code here to add progress bar in CSS.
+  };
+
+var yelpComplete = function() {
+      console.log('Yelp complete.');
+      // Add code here to end progress bar in CSS.
+  };
+
+
 
   var YelpConnect = function(nameLocation) {
       var httpMethod = 'GET',
@@ -21,18 +39,21 @@
           oauth_nonce: nonce_generate(),
           oauth_timestamp: Math.floor(Date.now() / 1000),
           oauth_signature_method: 'HMAC-SHA1',
-          callback: 'cb'
+          callback: 'localJsonpCallback'
       };
 
       var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
       parameters.oauth_signature = encodedSignature;
 
       var settings = {
+          type: httpMethod,
           url: url,
           data: parameters,
           cache: true,
-          jsonpCallback: 'cb',
+       //   jsonpCallback: 'localJsonpCallback',  // Not sure if need this since the callback in parameters is necessary.
           dataType: 'jsonp',
+          complete: yelpComplete,
+          beforeSend: yelpStart,
           success: function(results) {
               console.log("YELP SUCCESS! %o", results);
               console.log(results.total + ' results found for Yelp. Analyzing...');
@@ -43,7 +64,8 @@
               $.each(results.businesses, function(index, element) {
                   if ((element.name === nameLocation) && (element.location.city === city)) {
                       filteredResults++;
-                      parseResults(element);
+                      console.log(self);
+                      self.ViewModel.parseResults(element);
                   } else {
                       console.log('Rejected: ' + element.name + ' in ' + element.location.city);
                   }

@@ -128,6 +128,16 @@ svg {
   margin: 3px 0;
   color: #f2f2f2;
   background-color: #ee7401;
+
+}
+
+.drawer-list-single {
+  column-count: 1;
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+}
+
+.drawer-list-double {
   column-count: 2;
   -webkit-column-count: 2;
   -moz-column-count: 2;
@@ -139,13 +149,22 @@ svg {
 }
 
 #drawer-item {
-  width: 125px;
-  -webkit-column-width: 125px;
- /* Chrome, Safari, Opera */
-  column-width: 100px;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 21px;
   color: #f2f2e7;
+}
+.drawer-item-single {
+  width: 125px;
+  -webkit-column-width: 125px;
+ /* Chrome, Safari, Opera */
+  column-width: 125px;
+}
+
+.drawer-item-double {
+  width: 250px;
+  -webkit-column-width: 250px;
+ /* Chrome, Safari, Opera */
+  column-width: 250px;
 }
 
 #drawer-item:hover {
@@ -156,9 +175,14 @@ svg {
 }
 
 #drawer-results {
-  display: block;
+  display: inline-block;
   color: grey;
   background-color: white;
+}
+
+#drawer-results-text {
+  background-color: white;
+  display: inline-block;
 }
 
 

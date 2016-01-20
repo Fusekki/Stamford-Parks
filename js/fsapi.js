@@ -1,19 +1,41 @@
+var fsStart = function() {
+      console.log('FS Start.');
+      // Add code here to add progress bar in CSS.
+  };
+
+var fsComplete = function() {
+      console.log('Foursquare complete.');
+      // Add code here to end progress bar in CSS.
+};
+
+
+
+
 var fsConnect = function(nameLocation) {
+      console.log(self);
     var httpMethod = 'GET',
-        fsurl = 'https://api.foursquare.com/v2/venues/search',
+        url = ['https://api.foursquare.com/v2/venues/search?client_id=',
+               '&client_secret=',
+               '&v=20130815&near=',
+               '&query='],
         clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
         clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
         near = 'Stamford, CT',
         latLon = '41.07,73.54';
 
+    var urlParams = url[0] + clientId +
+                    url[1] + clientSecret +
+                    url[2] + near +
+                    url[3] + nameLocation;
+
     var settings = {
+        url: urlParams,
         type: httpMethod,
-        url: 'https://api.foursquare.com/v2/venues/search' +
-            '?client_id=' + clientId +
-            '&client_secret=' + clientSecret +
-            '&v=20130815' +
-            '&near=' + near +
-            '&query=' + nameLocation,
+        cache: true,
+        // jsonpCallback: 'localJsonpCallback',
+        dataType: 'jsonp',
+        complete: fsComplete,
+        beforeSend: fsStart,
         success: function(results) {
             console.log("FS SUCCESS! %o", results);
             var resultsTotal = results.response.venues.length;
@@ -39,7 +61,8 @@ var fsConnect = function(nameLocation) {
                 console.log('Nothing found from FourSquare.');
                 $('#four-square').hide();
                 $('#galleryTab').hide();
-                $('#fsNone').show();
+                $('#fs-noresult').show();
+                $('#gallery-pill').hide();
             }
         },
         error: function(results) {
@@ -52,14 +75,14 @@ var fsConnect = function(nameLocation) {
 
 var fsDetails = function(fsID) {
     var httpMethod = 'GET',
-        fsurl = 'https://api.foursquare.com/v2/venues/' + fsID,
+        url = 'https://api.foursquare.com/v2/venues/' + fsID,
         clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
         clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
         near = 'Stamford, CT';
 
     var settings = {
         type: httpMethod,
-        url: fsurl +
+        url: url +
             '?client_id=' + clientId +
             '&client_secret=' + clientSecret +
             '&v=20130815' +
@@ -70,7 +93,8 @@ var fsDetails = function(fsID) {
             var city = near.slice(0, -4);
             console.log(city);
             console.log('Venue added to Foursquare.');
-            fsParseResults(results);
+            console.log(self);
+            self.ViewModel.fsParseResults(results);
 
         },
         error: function(results) {
