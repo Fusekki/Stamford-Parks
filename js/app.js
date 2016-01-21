@@ -43,8 +43,60 @@ var Map = {
             console.log('resize1');
         });
 
-    }
+    },
+    toggleBounce: function(marker) {
+
+        console.log('togglebounce called. marker animation = ' + marker.getAnimation());
+
+       if (self.currentMarker === marker) {
+        if (marker.getAnimation() !== null) {
+            console.log('disabling animation')
+            marker.setAnimation(null);
+            console.log('animation set to ' + marker.getAnimation());
+            }
+
+       } else {
+        console.log('going to enable bounce for ' + marker.title);
+
+                // set this marker to the currentMarker
+        self.currentMarker = marker;
+        // add a bounce to this marker
+
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+       }
+        console.log('finished calls.');
+
+
+
+
+        // console.log(marker.title + ' - toggleBound: current marker animation = ' + marker.getAnimation());
+
+        //   if ((marker.getAnimation() !== null) && (marker.getAnimation() !== 2)) {
+        //     console.log(marker.title + ' - set animation to null.');
+        //     marker.setAnimation(null);
+        //   } else {
+        //     console.log(marker.title + ' - set animation to bounce.');
+        //     marker.setAnimation(google.maps.Animation.BOUNCE);
+        //   }
+        }
+
+    // enableBounce: function(marker) {
+    //     console.log('enabling bounce for ' + marker.title + ' with former animation = ' + marker.getAnimation());
+    //     marker.setAnimation(google.maps.Animation.BOUNCE);
+    //     console.log(marker.title + ' animation set to = ' + marker.getAnimation());
+
+
+    // },
+
+    // disableBounce: function(marker) {
+    //     console.log('disabling bounce for ' + marker.title + ' with former animation = ' + marker.getAnimation());
+    //     marker.setAnimation(null);
+    //     console.log(marker.title + ' animation set to = ' + marker.getAnimation());
+
+    // }
+
 };
+
 
 var Helpers = {
     handleError: function(msg) {
@@ -83,7 +135,6 @@ function Place(data, num) {
 var ViewModel = function() {
 
     var self = this;
-    console.log(self);
 
     self.isBorder = false;
 
@@ -122,14 +173,11 @@ var ViewModel = function() {
     self.currentName = ko.observable();
     self.currentDesc = ko.observable();
 
-    self.infoWindow = new google.maps.InfoWindow();
-    self.helpers = Helpers;
+
 
     // This Knockout computer variable adjusts the number of columns to display based on the filtered list count.
     self.resultsFound = ko.pureComputed(function() {
-        var count = self.places().length;
-        return count;
-
+        return self.places().length;
     });
 
     self.resultsStyle = ko.pureComputed(function() {
@@ -142,6 +190,10 @@ var ViewModel = function() {
 
     // End Knockout Declarations
 
+    self.infoWindow = new google.maps.InfoWindow();
+    self.helpers = Helpers;
+
+    self.currentMarker = null;
 
     // Function Declarations
 
@@ -188,7 +240,43 @@ var ViewModel = function() {
         self.markers.push(marker);
 
         marker.addListener('click', function() {
-            self.initAjax(place);
+            console.log('clicked marker for ' + this.title + '. current animation = ' + this.getAnimation());
+
+
+            if (this !== self.markers[self.currentPlace()]) {
+                console.log('click event selecting new location to be ' + this.title)
+                self.initAjax(place);
+            } else {
+                console.log('clicked same location. Calling togglebounce.')
+                console.log('current animation is ' + this.getAnimation());
+                Map.toggleBounce(this);
+            }
+
+            // } else if (this.getAnimation() !== null) {
+            //     console.log('disabling animation for' + this.title);
+            //     Map.disableBounce(this);
+
+            // } else {
+            //     console.log('enabling animation for ' + this.title);
+            //     Map.enableBounce(this);
+
+            // }
+
+
+
+
+
+/*            if (this.getAnimation() !== null) {
+
+                console.log(this);
+                Map.toggleBounce(this);
+                console.log('disable animation');
+            } else {
+                console.log('click event selecting new location.')
+                self.initAjax(place);
+            }
+*/
+
         });
 
         marker.setMap(Map.instance);
@@ -226,18 +314,30 @@ var ViewModel = function() {
 
         self.clearObservables();
 
+
+        // Reset former marker back to red if it was previously chosen and disable animation.
+        if (self.currentPlace() != null) {
+            console.log('currentPlace = ' + self.currentPlace());
+            console.log('here');
+       //     Map.disableBounce(self.markers[self.currentPlace()]);
+     //       Map.toggleBounce(self.markers[self.currentPlace()]);
+
+            self.markers[self.currentPlace()].setIcon('');
+        }
+
         self.currentPlace(place.number);
         self.currentDesc(place.description);
         self.currentName(place.name);
 
 
-        // Reset former marker back to red if it was previously chosen.
-        if (self.currentPlace != null) {
-            self.markers[self.currentPlace()].setIcon('');
-        }
+
 
         var latLng = new google.maps.LatLng(place.lat, place.lng);
         Map.instance.panTo(latLng);
+
+       // console.log(self.markers[self.currentPlace()]);
+
+        Map.toggleBounce(self.markers[self.currentPlace()]);
 
         self.fillcontentWindow();
 
@@ -279,7 +379,7 @@ var ViewModel = function() {
     this.parseResults = function(element) {
 
         if (element != null) {
-            console.log('Current entry: ' + element.name);
+        //    console.log('Current entry: ' + element.name);
 
             self.yelpName(element.name);
             self.yelpRatingUrl(element.rating_img_url);
@@ -301,7 +401,7 @@ var ViewModel = function() {
 
         }
 
-        console.log(self.yelpName());
+      //  console.log(self.yelpName());
 
         if ($("#resultLink".length != 0)) {
 
@@ -314,13 +414,13 @@ var ViewModel = function() {
     this.fsParseResults = function(element) {
 
         if (element != null) {
-            console.log('FS Parse. Current entry: ' + element.name);
-            console.log(element);
+         //   console.log('FS Parse. Current entry: ' + element.name);
+        //    console.log(element);
 
             self.fsName(element.name);
 
             for (var i = 0; i < element.location.formattedAddress.length; i++) {
-                console.log(element.location.formattedAddress[i]);
+        //        console.log(element.location.formattedAddress[i]);
                 self.fsAddress.push(element.location.formattedAddress[i]);
             }
 
@@ -329,11 +429,11 @@ var ViewModel = function() {
             self.fsZip(element.location.postalCode);
 
             for (i = 0; i < element.tips.groups[0].items.length; i++) {
-                console.log(element.tips.groups[0].items[i].text);
+        //        console.log(element.tips.groups[0].items[i].text);
                 self.fsTips.push('"' + element.tips.groups[0].items[i].text + '"');
             }
 
-            console.log(self.fsTips().length);
+       //     console.log(self.fsTips().length);
 
             // if (self.fsTips().length > 3) {
             //     $('#fs-body-content').css('overflow', 'auto');
@@ -341,9 +441,9 @@ var ViewModel = function() {
             //     $('#fs-body-content').css('overflow', 'none');
             // }
 
-            console.log(element.photos.groups[0].items.length);
+      //      console.log(element.photos.groups[0].items.length);
             for (i = 0; i < element.photos.groups[0].items.length; i++) {
-                console.log(element.photos.groups[0].items[i].prefix);
+        //        console.log(element.photos.groups[0].items[i].prefix);
                 self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
             }
 
@@ -359,13 +459,13 @@ var ViewModel = function() {
 
 
 
-        console.log(self.fsName());
-        console.log(self.fsImg());
+    //    console.log(self.fsName());
+    //    console.log(self.fsImg());
         for (var i = 0; i < self.fsAddress().length; i++) {
-            console.log(self.fsAddress()[i]);
+   //         console.log(self.fsAddress()[i]);
         }
 
-        console.log(self.fsTips());
+   //     console.log(self.fsTips());
 
         if ($("#resultLink".length != 0)) {
 
@@ -374,7 +474,7 @@ var ViewModel = function() {
             });
         }
 
-        console.log("$('#carousel-control').addClass('active')");
+    //    console.log("$('#carousel-control').addClass('active')");
 
         $('#carousel-control').addClass('active');
         $('#carousel-item').addClass('active');
@@ -392,15 +492,15 @@ var ViewModel = function() {
     };
 
     this.toggleBorder = function() {
-        console.log('toggle');
+  //      console.log('toggle');
         if (self.isBorder) {
-            console.log('turning off');
-            console.log($("*").css("border"));
+   //         console.log('turning off');
+    //        console.log($("*").css("border"));
             $("*").css("border", "none");
             self.isBorder = false;
         } else {
-            console.log('turning on');
-            console.log($("*").css("border"));
+    //        console.log('turning on');
+    //        console.log($("*").css("border"));
             $("*").css("border", "1px solid red");
             self.isBorder = true;
 
@@ -417,12 +517,12 @@ var localJsonpCallback = function(data) {
   };
 
 var callStart = function(apiName) {
-      console.log(apiName +' Start.');
+  //    console.log(apiName +' Start.');
       // Add code here to add progress bar in CSS.
   };
 
 var callComplete = function(apiName) {
-      console.log(apiName + ' complete.');
+   //   console.log(apiName + ' complete.');
       // Add code here to end progress bar in CSS.
   };
 
@@ -461,8 +561,8 @@ var YelpConnect = function(nameLocation) {
           complete: callComplete('Yelp'),
           beforeSend: callStart('Yelp'),
           success: function(results) {
-              console.log("YELP SUCCESS! %o", results);
-              console.log(results.total + ' results found for Yelp. Analyzing...');
+    //          console.log("YELP SUCCESS! %o", results);
+    //          console.log(results.total + ' results found for Yelp. Analyzing...');
               var resultsTotal = results.total;
               var filteredResults = 0;
               var city = local.slice(0, -4);
@@ -470,16 +570,16 @@ var YelpConnect = function(nameLocation) {
               $.each(results.businesses, function(index, element) {
                   if ((element.name === nameLocation) && (element.location.city === city)) {
                       filteredResults++;
-                      console.log(self);
+     //                 console.log(self);
                       self.parseResults(element);
                   } else {
-                      console.log('Rejected: ' + element.name + ' in ' + element.location.city);
+    //                  console.log('Rejected: ' + element.name + ' in ' + element.location.city);
                   }
 
               });
 
               if (filteredResults === 0) {
-                  console.log('Nothing found from Yelp.');
+    //              console.log('Nothing found from Yelp.');
                   $('#yelp-noresult').show();
                   $('#yelp').hide();
                   // parseResults(yelpObject, null);
@@ -487,7 +587,7 @@ var YelpConnect = function(nameLocation) {
 
           },
           error: function(results) {
-              console.log("error %o", results);
+    //          console.log("error %o", results);
           }
       }
 
@@ -497,7 +597,7 @@ var YelpConnect = function(nameLocation) {
 
 
 var fsConnect = function(nameLocation) {
-      console.log(self);
+ //     console.log(self);
     var httpMethod = 'GET',
         url = ['https://api.foursquare.com/v2/venues/search?client_id=',
                '&client_secret=',
@@ -522,28 +622,28 @@ var fsConnect = function(nameLocation) {
         complete: callComplete('fs'),
         beforeSend: callStart('fs'),
         success: function(results) {
-            console.log("FS SUCCESS! %o", results);
+     //       console.log("FS SUCCESS! %o", results);
             var resultsTotal = results.response.venues.length;
             var results = results.response.venues;
-            console.log(results);
-            console.log(resultsTotal + ' results found in FS. Analyzing...');
+    //        console.log(results);
+    //        console.log(resultsTotal + ' results found in FS. Analyzing...');
             var filteredResults = 0;
             var city = near.slice(0, -4);
-            console.log(city);
+    //        console.log(city);
             $.each(results, function(index, element) {
                 if ((element.name === nameLocation) && (element.location.city === city)) {
-                    console.log('element added to Foursquare.');
+    //                console.log('element added to Foursquare.');
                     filteredResults++;
                     fsDetails(element.id);
                 } else {
-                    console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
+    //                console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
                 }
 
             });
-            console.log(filteredResults + ' results from FS.');
+    //        console.log(filteredResults + ' results from FS.');
 
             if (filteredResults === 0) {
-                console.log('Nothing found from FourSquare.');
+    //            console.log('Nothing found from FourSquare.');
                 $('#four-square').hide();
                 $('#galleryTab').hide();
                 $('#fs-noresult').show();
@@ -551,7 +651,7 @@ var fsConnect = function(nameLocation) {
             }
         },
         error: function(results) {
-            console.log("ERROR! %o", results);
+    //        console.log("ERROR! %o", results);
         }
     }
 
@@ -573,17 +673,17 @@ var fsDetails = function(fsID) {
             '&v=20130815' +
             '&near=' + near,
         success: function(results) {
-            console.log("FS Details SUCCESS! %o", results);
+    //        console.log("FS Details SUCCESS! %o", results);
             var results = results.response.venue;
             var city = near.slice(0, -4);
-            console.log(city);
-            console.log('Venue added to Foursquare.');
-            console.log(self);
+    //        console.log(city);
+    //        console.log('Venue added to Foursquare.');
+    //        console.log(self);
             self.fsParseResults(results);
 
         },
         error: function(results) {
-            console.log("ERROR! %o", results);
+  //          console.log("ERROR! %o", results);
         }
     }
 

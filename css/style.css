@@ -153,14 +153,14 @@ svg {
   font-size: 21px;
   color: #f2f2e7;
 }
-.drawer-item-single {
+.drawer-item-double {
   width: 125px;
   -webkit-column-width: 125px;
  /* Chrome, Safari, Opera */
   column-width: 125px;
 }
 
-.drawer-item-double {
+.drawer-item-single {
   width: 250px;
   -webkit-column-width: 250px;
  /* Chrome, Safari, Opera */
