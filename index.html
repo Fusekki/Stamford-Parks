@@ -44,7 +44,7 @@
             <span id="drawer-header">Parks List</span>
         </div><span id="search-bar"><input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search"></span><span data-bind="text: resultsFound" + id="drawer-results"></span><span id="drawer-results-text">results found.</span>
         <ul data-bind="foreach: places, css: drawerStyle" id="drawer-list">
-            <li data-bind="text: name, click: $parent.initAjax, css: $parent.resultsStyle" id="drawer-item" ></li>
+            <li data-bind="text: name, click: $parent.selectPlace, css: $parent.resultsStyle" id="drawer-item" ></li>
         </ul><span id="btn-wrapper"><svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns=
         "http://www.w3.org/2000/svg">
         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path></svg></span>
