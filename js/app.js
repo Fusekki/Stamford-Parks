@@ -44,52 +44,26 @@ var Map = {
         });
 
     },
+
     toggleBounce: function(marker) {
 
         console.log(marker.title + ' has an animation of ' + marker.getAnimation());
 
-        if ((!marker.getAnimation()) || (marker.getAnimation() === 2)) {
-            console.log('no animation detected.  Activating animation for ' + marker.title )
-            marker.setAnimation(google.maps.Animation.BOUNCE);
+            if (marker.getAnimation() !== null){
+                console.log('not enabling animation because item is currently animated with animation = ' + marker.getAnimation());
+                console.log('animation detected.  Disabling animation for ' + marker.title);
+                marker.setAnimation(null);
+                console.log('animation set to = ' + marker.getAnimation());
+
+            }
+             else {
+                console.log('no animation detected.  Activating animation for ' + marker.title);
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                console.log('animation set to = ' + marker.getAnimation());
+            }
+            console.log('marker = ' + marker.getAnimation());
             console.log('animation set to = ' + marker.getAnimation());
-        } else {
-            console.log('animation detected.  Disabling animation for ' + marker.title)
-            marker.setAnimation(null);
-            console.log('animation set to = ' + marker.getAnimation());
-        }
-
-
-
-
-
-
-
-        // console.log(marker.title + ' - toggleBound: current marker animation = ' + marker.getAnimation());
-
-        //   if ((marker.getAnimation() !== null) && (marker.getAnimation() !== 2)) {
-        //     console.log(marker.title + ' - set animation to null.');
-        //     marker.setAnimation(null);
-        //   } else {
-        //     console.log(marker.title + ' - set animation to bounce.');
-        //     marker.setAnimation(google.maps.Animation.BOUNCE);
-        //   }
-        }
-
-    // enableBounce: function(marker) {
-    //     console.log('enabling bounce for ' + marker.title + ' with former animation = ' + marker.getAnimation());
-    //     marker.setAnimation(google.maps.Animation.BOUNCE);
-    //     console.log(marker.title + ' animation set to = ' + marker.getAnimation());
-
-
-    // },
-
-    // disableBounce: function(marker) {
-    //     console.log('disabling bounce for ' + marker.title + ' with former animation = ' + marker.getAnimation());
-    //     marker.setAnimation(null);
-    //     console.log(marker.title + ' animation set to = ' + marker.getAnimation());
-
-    // }
-
+    }
 };
 
 
@@ -165,6 +139,7 @@ var ViewModel = function() {
     self.menuVisible = ko.observable('true');
 
     self.currentPlace = ko.observable(-1); // contains index value that wires model elements to drawer list
+
     self.currentName = ko.observable();
     self.currentDesc = ko.observable();
 
@@ -233,7 +208,8 @@ var ViewModel = function() {
             title: place.name,
             position: pos,
             label: place.marker,
-            number: num
+            number: num,
+            animation: null
          //   animation: google.maps.Animation.DROP
         })
 
@@ -241,42 +217,7 @@ var ViewModel = function() {
 
         marker.addListener('click', function() {
             console.log('clicked marker for ' + this.title + '. current animation = ' + this.getAnimation());
-
-
-            if (this !== self.markers[self.currentPlace()]) {
-                console.log('click event selecting new location to be ' + this.title)
-                self.initAjax(place);
-            } else {
-                console.log('clicked same location. Calling togglebounce.')
-                console.log('current animation is ' + this.getAnimation());
-                Map.toggleBounce(this);
-            }
-
-            // } else if (this.getAnimation() !== null) {
-            //     console.log('disabling animation for' + this.title);
-            //     Map.disableBounce(this);
-
-            // } else {
-            //     console.log('enabling animation for ' + this.title);
-            //     Map.enableBounce(this);
-
-            // }
-
-
-
-
-
-/*            if (this.getAnimation() !== null) {
-
-                console.log(this);
-                Map.toggleBounce(this);
-                console.log('disable animation');
-            } else {
-                console.log('click event selecting new location.')
-                self.initAjax(place);
-            }
-*/
-
+            self.selectPlace(place);
         });
 
         marker.setMap(Map.instance);
@@ -310,13 +251,13 @@ var ViewModel = function() {
 
     this.selectPlace = function(place) {
         console.log(place);
-        console.log('Drawer item clicked for ' + place.name);
+        console.log('Drawer or map item clicked for ' + place.name);
 
         if (typeof self.currentMarker() != 'undefined') {
             console.log('item defined.');
             if (self.currentMarker().title === place.name) {
                 console.log('Item is already selected.');
-                Map.toggleBounce(self.currentMarker());
+                Map.toggleBounce(self.currentMarker(), null);
                 return;
                 } else {
                     console.log('new item is selected : ' + place.name );
@@ -324,10 +265,9 @@ var ViewModel = function() {
                     console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
                     self.markers[self.currentPlace()].setIcon('');
 
-                    console.log('Toggle animation on previous item: ' + self.markers[self.currentPlace()].title);
+                    console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
                     // Check for icon animation for previous entry.  If it is active, set it to null.
-                    Map.toggleBounce(self.currentMarker());
-
+                    self.currentMarker().setAnimation(null);
                 }
         } else {
             console.log('Currentitem not defined.');
@@ -343,123 +283,29 @@ var ViewModel = function() {
             console.log('Pan to started for ' + place.name);
             var latLng = new google.maps.LatLng(place.lat, place.lng);
             Map.instance.panTo(latLng);
-            console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].name);
+             console.log(self.markers[place.number]);
+            console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].title);
             console.log('Pan to ended.');
+            console.log(self.markers[place.number]);
 
-            console.log('Toggle animation for current item : ' + self.markers[place.number].name);
+            console.log('Toggle animation for current item : ' + self.markers[place.number].title);
             Map.toggleBounce(self.markers[place.number]);
-            console.log('Toggle animation completed for : ' + self.markers[place.number].name);
+            console.log('Toggle animation completed for : ' + self.markers[place.number].title);
 
-            console.log('Setting new currentPlace to ' + self.markers[place.number].name);
+            console.log('Setting new currentPlace to ' + self.markers[place.number].title);
             // Populate observables with new current marker informaton.
             self.currentPlace(place.number);
             self.currentDesc(place.description);
             self.currentName(place.name);
             self.initAjax(place);
-
-
-
-
-
-
-
-
-
-
-
-/*        try {
-            if (self.currentMarker().title === place.name) {
-                console.log('Item is already selected.');
-                Map.toggleBounce(self.currentMarker());
-                } else {
-                    console.log('new item is selected');
-                    // Clear the marker of the previously selected item.
-                    self.markers[self.currentPlace()].setIcon('');
-
-                    // Chnage the selected Marker icon to green.
-                    console.log('Setting icon color to green.')
-                    self.markers[self.place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-
-
-
-                    console.log('Toggle animation on previous item.');
-                    // Check for icon animation for previous entry.  If it is active, set it to null.
-                    Map.toggleBounce(self.currentMarker());
-
-                    console.log('Pan to started.');
-                    var latLng = new google.maps.LatLng(place.lat, place.lng);
-                    Map.instance.panTo(latLng);
-                    console.log('Pan to ended.');
-
-                    console.log('Toggle animation for current item');
-                    Map.toggleBounce(self.markers[place.number]);
-                    console.log('Toggle animation completed.');
-
-                    console.log('Setting new currentPlace.');
-                    // Populate observables with new current marker informaton.
-                    self.currentPlace(place.number);
-                    self.currentDesc(place.description);
-                    self.currentName(place.name);
-                    initAjax(place);
-                }
-        } catch (err) {
-            console.log("First time click.");
-
-            // Chnage the selected Marker icon to green.
-            console.log('Setting icon color to green.')
-            self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-
-            console.log('Pan to started.');
-            var latLng = new google.maps.LatLng(place.lat, place.lng);
-            Map.instance.panTo(latLng);
-            console.log('Pan to ended.');
-
-            console.log('Toggle animation for current item');
-            Map.toggleBounce(self.markers[place.number]);
-            console.log('Toggle animation completed.');
-
-            console.log('Setting new currentPlace.');
-            // Populate observables with new current marker informaton.
-            self.currentPlace(place.number);
-            self.currentDesc(place.description);
-            self.currentName(place.name);
-            initAjax(place);
-        }*/
-
-
-
-
-
-
-
-
-        // First, check to see if this is initial load.  Initially, the value should return empty.
-
-           // console.log('exists.');
-
-
-
-        //self.initAjax(place);
-
-
-
-
-
     };
 
     this.initAjax = function(place) {
 
         console.log('initAjax called for ' + place.name);
+        console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
 
         self.clearObservables();
-
-
-        // var latLng = new google.maps.LatLng(place.lat, place.lng);
-        // Map.instance.panTo(latLng);
-
-       // console.log(self.markers[self.currentPlace()]);
-
-      //  Map.toggleBounce(self.markers[self.currentPlace()]);
 
         self.fillcontentWindow();
 
@@ -480,6 +326,8 @@ var ViewModel = function() {
 
 
     this.fillcontentWindow = function() {
+
+        console.log(self.places()[self.currentPlace()]);
 
         var contentString = '<div id="content">' +
             '<div id="siteNotice">' +
@@ -610,7 +458,30 @@ var ViewModel = function() {
     };
 
     this.menuToggle = function() {
-        $("#drawer").toggle("slide");
+
+
+        if ($('#drawer').css('display') == 'none') {
+            console.log('Drawer to become visible.');
+            $('#pg-container').click(function() {
+                self.menuToggle();
+            });
+        }
+
+        else {
+            console.log('Drawer to become hidden.');
+          //  $('#drawer').fadeOut();
+            $('#pg-container').unbind('click');
+        }
+
+    // $('#drawer').fadeOut(function () {
+    //     $('#drawer').toggle('slide', {
+    //         direction: 'left'
+    //     }, 1000);
+    // });
+
+
+       $('#drawer').toggle('slide');
+
     };
 
     this.toggleBorder = function() {
@@ -822,6 +693,10 @@ var fsDetails = function(fsID) {
     // This event triggers the street view to display in the modal.
     $('#modal-place').on('shown.bs.modal', function() {
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
+    });
+
+    $('#pg-container').click(function() {
+        self.menuToggle();
     });
 
 
