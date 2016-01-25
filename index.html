@@ -27,9 +27,9 @@
     <link href="./css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="header">
+<!-- <div id="header"> -->
 
-    <div id="btn-wrapper">
+<!--     <div id="btn-wrapper">
         <svg data-bind="click: menuToggle" style="width: 40px, background-color: black;" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"></path></svg>
     </div>
@@ -47,7 +47,30 @@
     <div id = "pg-container">
     <div id="title-wrapper">
         <h1 id="title">Stamford Parks</h1>
+    </div> -->
+
+  <header>
+
+        <div id="navbar">
+      <a href="#" class="menubtn">menu</a>
+      <!-- use captain icon for toggle menu -->
+      <div id="hamburgermenu">
+
+ <div id="header-wrapper">
+            <span id="drawer-header">Parks List</span>
+        </div><span id="search-bar"><input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search"></span><span data-bind="text: resultsFound" + id="drawer-results"></span><span id="drawer-results-text">results found.</span>
+        <ul data-bind="foreach: places, css: drawerStyle" id="drawer-list">
+            <li data-bind="text: name, click: $parent.selectPlace, css: $parent.resultsStyle" id="drawer-item" ></li>
+        </ul>
+      </div>
     </div>
+    <div class="overlay"></div>
+    <div id="title-wrapper">
+        <h1 id="title">Stamford Parks</h1>
+    </div>
+  </header>
+
+
 
 
     <div id="main">
@@ -127,10 +150,11 @@
                                         <div id="fs-header">
                                             <ul data-bind="foreach: fsAddress" id="fs-address-li">
                                                 <li data-bind="text: $data" id="fsAddress-item"></li>
-                                            </ul>Cross Street: <span data-bind="text: fsCrossStreet" id="fsCrossStreet"></span> <span data-bind="text: fsPhone"
+                                            </ul>
+                                            <span data-bind="css: fsCrossStyle">Cross Street: </span><span data-bind="text: fsCrossStreet" id="fsCrossStreet" ></span> <span data-bind="text: fsPhone"
                                             id="fs-phone"></span>
                                         </div>
-                                        <div id="fs-body-content">Tips:<ul data-bind="foreach: fsTips" id="fs-tips-li">
+                                        <div id="fs-body-content" data-bind="css: fsTipsStyle">Tips:<ul data-bind="foreach: fsTips" id="fs-tips-li">
                                             <li data-bind="text: $data, click: $parent.initAjax" id="fs-tips-item"></li></ul>
                                         </div>
                                     </div>

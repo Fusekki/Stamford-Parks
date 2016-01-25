@@ -70,7 +70,11 @@ var Map = {
 var Helpers = {
     handleError: function(msg) {
         return alert(msg);
+    },
+    logError: function(msg) {
+        return console.log(msg);
     }
+
 
 };
 
@@ -95,7 +99,6 @@ function Place(data, num) {
     this.name = data.name;
     this.lat = data.address.lat;
     this.lng = data.address.lng;
-    this.marker = data.marker;
     this.number = num;
     this.description = data.description;
 
@@ -158,7 +161,76 @@ var ViewModel = function() {
         return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-double";
      });
 
+    self.fsTipsStyle = ko.pureComputed(function() {
+        console.log(self.fsTips() > 0);
+        return self.fsTips() > 0 ? "fs-element-show" : "fs-element-hide";
+     });
+
+    self.fsCrossStyle = ko.pureComputed(function() {
+        return self.fsCrossStreet() === ""  ? "fs-element-show" : "fs-element-hide";
+     });
+
+
+
     // End Knockout Declarations
+    // Credit to Jake Rocheleau @ http://blog.templatemonster.com/2014/06/23/responsive-sliding-drawer-menu-lightbox-effect/
+  var menuwidth  = 30; // vw value for sliding menu width
+  var menuspeed  = 400; // milliseconds for sliding menu animation time
+  var btnpadding = 2;
+
+/*  var $bdy       = $('body');
+  var $container = $('#pgcontainer');
+  var $burger    = $('#hamburgermenu');*/
+  var negwidth   = "-"+menuwidth+"vw";
+  var poswidth   = menuwidth+"vw";
+  var pospadding = 2 * menuwidth + btnpadding + "vw";
+  var negpadding = btnpadding + "vw";
+//First we create a number of variables which are used throughout the script. I previously mentioned the menuwidth being set dynamically. Also the animation speed is adjustable by updating the menuspeed variable in milliseconds.
+
+//The last few variables contain jQuery selector objects to save memory, along with calculations for how many pixels to hide & show the menu.
+
+  $('.menubtn').on('click',function(e){
+    if($('body').hasClass('openmenu')) {
+      jsAnimateMenu('close');
+    } else {
+      jsAnimateMenu('open');
+    }
+  });
+
+  $('.overlay').on('click', function(e){
+    if($('body').hasClass('openmenu')) {
+      jsAnimateMenu('close');
+    }
+  });
+
+  $('a[href$="#"]').on('click', function(e){
+    e.preventDefault();
+  });
+
+  function jsAnimateMenu(tog) {
+    if(tog == 'open') {
+      $('body').addClass('openmenu');
+
+      //$container.animate({marginRight: negwidth, marginLeft: poswidth}, menuspeed);
+      $('.menubtn').animate({'padding-left': pospadding}, menuspeed);
+      $('#hamburgermenu').animate({width: poswidth}, menuspeed);
+      $('.overlay').animate({left: poswidth}, menuspeed);
+    }
+
+    if(tog == 'close') {
+      $('body').removeClass('openmenu');
+      $('.menubtn').animate({'padding-left': negpadding}, menuspeed);
+
+     // $container.animate({marginRight: "0", marginLeft: "0"}, menuspeed);
+      $('#hamburgermenu').animate({width: "0"}, menuspeed);
+      $('.overlay').animate({left: "0"}, menuspeed);
+    }
+  };
+
+
+
+
+
 
     self.infoWindow = new google.maps.InfoWindow();
     self.helpers = Helpers;
@@ -207,7 +279,6 @@ var ViewModel = function() {
         var marker = new google.maps.Marker({
             title: place.name,
             position: pos,
-            label: place.marker,
             number: num,
             animation: null
          //   animation: google.maps.Animation.DROP
@@ -384,7 +455,7 @@ var ViewModel = function() {
     this.fsParseResults = function(element) {
 
         if (element != null) {
-         //   console.log('FS Parse. Current entry: ' + element.name);
+            console.log('FS Parse. Current entry: ' + element.name);
         //    console.log(element);
 
             self.fsName(element.name);
@@ -398,10 +469,30 @@ var ViewModel = function() {
             self.fsCrossStreet(element.location.crossStreet);
             self.fsZip(element.location.postalCode);
 
+
+
             for (i = 0; i < element.tips.groups[0].items.length; i++) {
-        //        console.log(element.tips.groups[0].items[i].text);
+    //            console.log(element.tips.groups[0].items[i].text);
                 self.fsTips.push('"' + element.tips.groups[0].items[i].text + '"');
+
+                }
+
+           // $('#fs-body-content').show();
+
+
+            try {
+                for (i = 0; i < element.photos.groups[0].items.length; i++) {
+        //      console.log(element.photos.groups[0].items[i].prefix);
+                    self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
+
+                 }
+                 $('#gallery-pill').show();
+            } catch (err) {
+                Helpers.logError("No photos found for this venue.");
+                $('#gallery-pill').hide();
             }
+
+
 
        //     console.log(self.fsTips().length);
 
@@ -412,17 +503,14 @@ var ViewModel = function() {
             // }
 
       //      console.log(element.photos.groups[0].items.length);
-            for (i = 0; i < element.photos.groups[0].items.length; i++) {
-        //        console.log(element.photos.groups[0].items[i].prefix);
-                self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
-            }
+
 
             self.fsUrl(element.shortUrl);
 
             // Specify divs to display based on results.
             $('#fs-noresult').hide();
             $('#four-square').show();
-            $('#gallery-pill').show();
+          //  $('#gallery-pill').show();
             //$('carousel-inner:nth-child(2)').addClass('active');
 
         }
@@ -440,7 +528,7 @@ var ViewModel = function() {
         if ($("#resultLink".length != 0)) {
 
             $('#fs-logo').click(function() {
-                openSite(self.fsUrl());
+                self.openSite(self.fsUrl());
             });
         }
 
@@ -615,7 +703,7 @@ var fsConnect = function(nameLocation) {
         complete: callComplete('fs'),
         beforeSend: callStart('fs'),
         success: function(results) {
-     //       console.log("FS SUCCESS! %o", results);
+            console.log("FS SUCCESS! %o", results);
             var resultsTotal = results.response.venues.length;
             var results = results.response.venues;
     //        console.log(results);
@@ -629,14 +717,14 @@ var fsConnect = function(nameLocation) {
                     filteredResults++;
                     fsDetails(element.id);
                 } else {
-    //                console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
+                    console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
                 }
 
             });
     //        console.log(filteredResults + ' results from FS.');
 
             if (filteredResults === 0) {
-    //            console.log('Nothing found from FourSquare.');
+                console.log('Nothing found from FourSquare.');
                 $('#four-square').hide();
                 $('#galleryTab').hide();
                 $('#fs-noresult').show();
@@ -644,7 +732,7 @@ var fsConnect = function(nameLocation) {
             }
         },
         error: function(results) {
-    //        console.log("ERROR! %o", results);
+            console.log("ERROR! %o", results);
         }
     }
 
@@ -666,7 +754,7 @@ var fsDetails = function(fsID) {
             '&v=20130815' +
             '&near=' + near,
         success: function(results) {
-    //        console.log("FS Details SUCCESS! %o", results);
+            console.log("FS Details SUCCESS! %o", results);
             var results = results.response.venue;
             var city = near.slice(0, -4);
     //        console.log(city);
@@ -676,7 +764,7 @@ var fsDetails = function(fsID) {
 
         },
         error: function(results) {
-  //          console.log("ERROR! %o", results);
+            console.log("ERROR! %o", results);
         }
     }
 
