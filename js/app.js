@@ -1,5 +1,3 @@
-"use strict";
-
 var Map = {
 
     initMap: function() {
@@ -23,6 +21,7 @@ var Map = {
     },
 
     showStreet: function(lat, lng) {
+        "use strict";
         var loc = {
             lat: lat,
             lng: lng
@@ -46,31 +45,31 @@ var Map = {
     },
 
     toggleBounce: function(marker) {
+        "use strict";
 
         console.log(marker.title + ' has an animation of ' + marker.getAnimation());
 
-            if (marker.getAnimation() !== null){
-                console.log('not enabling animation because item is currently animated with animation = ' + marker.getAnimation());
-                console.log('animation detected.  Disabling animation for ' + marker.title);
-                marker.setAnimation(null);
-                console.log('animation set to = ' + marker.getAnimation());
-
-            }
-             else {
-                console.log('no animation detected.  Activating animation for ' + marker.title);
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-                console.log('animation set to = ' + marker.getAnimation());
-            }
-            console.log('marker = ' + marker.getAnimation());
+        if (marker.getAnimation() !== null) {
+            console.log('not enabling animation because item is currently animated with animation = ' + marker.getAnimation());
+            console.log('animation detected.  Disabling animation for ' + marker.title);
+            marker.setAnimation(null);
             console.log('animation set to = ' + marker.getAnimation());
+
+        } else {
+            console.log('no animation detected.  Activating animation for ' + marker.title);
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            console.log('animation set to = ' + marker.getAnimation());
+        }
+        console.log('marker = ' + marker.getAnimation());
+        console.log('animation set to = ' + marker.getAnimation());
     }
 };
 
 
 var Helpers = {
-    handleError: function(msg) {
-        return alert(msg);
-    },
+    // handleError: function(msg) {
+    //     return alert(msg);
+    // },
     logError: function(msg) {
         return console.log(msg);
     }
@@ -80,6 +79,7 @@ var Helpers = {
 
 
 function mark(place, map) {
+    "use strict";
     var myMap = map;
     var pos = new google.maps.LatLng(place.lat(), place.lng());
     var marker = new google.maps.Marker({
@@ -92,19 +92,21 @@ function mark(place, map) {
 
     self.markers.push(marker);
     marker.setMap(myMap);
-};
+}
 
 
 function Place(data, num) {
+    "use strict";
     this.name = data.name;
     this.lat = data.address.lat;
     this.lng = data.address.lng;
     this.number = num;
     this.description = data.description;
 
-};
+}
 
 var ViewModel = function() {
+    "use strict";
 
     var self = this;
 
@@ -155,125 +157,137 @@ var ViewModel = function() {
 
     self.resultsStyle = ko.pureComputed(function() {
         return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-double";
-     });
+    });
 
     self.drawerStyle = ko.pureComputed(function() {
         return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-double";
-     });
+    });
 
     self.fsTipsStyle = ko.pureComputed(function() {
         console.log(self.fsTips() > 0);
         return self.fsTips() > 0 ? "fs-element-show" : "fs-element-hide";
-     });
+    });
 
     self.fsCrossStyle = ko.pureComputed(function() {
-        return self.fsCrossStreet() === ""  ? "fs-element-show" : "fs-element-hide";
-     });
+        return self.fsCrossStreet() === "" ? "fs-element-show" : "fs-element-hide";
+    });
 
 
 
     // End Knockout Declarations
     // Credit to Jake Rocheleau @ http://blog.templatemonster.com/2014/06/23/responsive-sliding-drawer-menu-lightbox-effect/
-  var menuwidth  = 30; // vw value for sliding menu width
-  var menuspeed  = 400; // milliseconds for sliding menu animation time
-  var btnpadding = 2;
+    var menuwidth = 350; // vw value for sliding menu width
+    var menuspeed = 400; // milliseconds for sliding menu animation time
+    var btnpadding = 2;
 
-/*  var $bdy       = $('body');
-  var $container = $('#pgcontainer');
-  var $burger    = $('#hamburgermenu');*/
-  var negwidth   = "-"+menuwidth+"vw";
-  var poswidth   = menuwidth+"vw";
-  var pospadding = 2 * menuwidth + btnpadding + "vw";
-  var negpadding = btnpadding + "vw";
-//First we create a number of variables which are used throughout the script. I previously mentioned the menuwidth being set dynamically. Also the animation speed is adjustable by updating the menuspeed variable in milliseconds.
+    /*  var $bdy       = $('body');
+      var $container = $('#pgcontainer');
+      var $burger    = $('#hamburgermenu');*/
+    // var negwidth   = "-"+menuwidth+"px";
+     var poswidth   = menuwidth+"px";
+    //  var pospadding = 2 * menuwidth + btnpadding + "vw";
+    var negpadding = btnpadding + "vw";
+    //First we create a number of variables which are used throughout the script. I previously mentioned the menuwidth being set dynamically. Also the animation speed is adjustable by updating the menuspeed variable in milliseconds.
 
-//The last few variables contain jQuery selector objects to save memory, along with calculations for how many pixels to hide & show the menu.
+    //The last few variables contain jQuery selector objects to save memory, along with calculations for how many pixels to hide & show the menu.
 
-  $('.menubtn').on('click',function(e){
-    if($('body').hasClass('openmenu')) {
-      jsAnimateMenu('close');
-    } else {
-      jsAnimateMenu('open');
+    this.menubtnTgl = function() {
+        if ($('body').hasClass('openmenu')) {
+            jsAnimateMenu('close');
+        } else {
+            jsAnimateMenu('open');
+        }
+    };
+
+
+
+    $('#titlediv, #maprow, #footer').on('click', function(e) {
+        if ($('body').hasClass('openmenu')) {
+            jsAnimateMenu('close');
+        }
+    });
+
+    $('a[href$="#"]').on('click', function(e) {
+        e.preventDefault();
+    });
+
+    function jsAnimateMenu(tog) {
+
+        if (tog == 'open') {
+            $('body').addClass('openmenu');
+
+            //$container.animate({marginRight: negwidth, marginLeft: poswidth}, menuspeed);
+            // $('.menubtn').animate({'padding-left': pospadding}, menuspeed);
+            //  $('.menubtn').hide();
+            $('#hamburgermenu').animate({
+                width: poswidth
+            }, menuspeed);
+            $('.overlay').animate({
+                left: poswidth
+            }, menuspeed);
+        }
+
+        if (tog == 'close') {
+
+            $('body').removeClass('openmenu');
+            //   $('.menubtn').animate({'padding-left': negpadding}, menuspeed);
+
+            // $container.animate({marginRight: "0", marginLeft: "0"}, menuspeed);
+            $('#hamburgermenu').animate({
+                width: "0"
+            }, menuspeed);
+            $('.overlay').animate({
+                left: "0"
+            }, menuspeed);
+            //    $('.menubtn').show();
+        }
     }
-  });
-
-  $('.overlay').on('click', function(e){
-    if($('body').hasClass('openmenu')) {
-      jsAnimateMenu('close');
-    }
-  });
-
-  $('a[href$="#"]').on('click', function(e){
-    e.preventDefault();
-  });
-
-  function jsAnimateMenu(tog) {
-    if(tog == 'open') {
-      $('body').addClass('openmenu');
-
-      //$container.animate({marginRight: negwidth, marginLeft: poswidth}, menuspeed);
-      $('.menubtn').animate({'padding-left': pospadding}, menuspeed);
-      $('#hamburgermenu').animate({width: poswidth}, menuspeed);
-      $('.overlay').animate({left: poswidth}, menuspeed);
-    }
-
-    if(tog == 'close') {
-      $('body').removeClass('openmenu');
-      $('.menubtn').animate({'padding-left': negpadding}, menuspeed);
-
-     // $container.animate({marginRight: "0", marginLeft: "0"}, menuspeed);
-      $('#hamburgermenu').animate({width: "0"}, menuspeed);
-      $('.overlay').animate({left: "0"}, menuspeed);
-    }
-  };
-
-
-
-
-
 
     self.infoWindow = new google.maps.InfoWindow();
     self.helpers = Helpers;
 
     this.currentMarker = function() {
-       // console.log(self.currentPlace())
-             return self.markers[self.currentPlace()];
+
+            // console.log(self.currentPlace())
+            return self.markers[self.currentPlace()];
 
 
-    },
+        },
 
-    // Function Declarations
+        // Function Declarations
 
-    this.search = function(value) {
-        // remove all the current places, which removes them from the view
-        self.places.removeAll();
+        this.search = function(value) {
 
-        for (var i in places) {
-            if (places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                self.places.push(places[i]);
+            // remove all the current places, which removes them from the view
+            self.places.removeAll();
+
+            for (var i in places) {
+                if (places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                    self.places.push(places[i]);
+                }
             }
-        }
 
-        //console.log(self.markers);
-        for (var i in self.markers) {
-            //console.log(value);
-            //console.log(self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()));
-            if (self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
-                self.markers[i].setVisible(false);
-            } else {
-                self.markers[i].setVisible(true);
+            //console.log(self.markers);
+            for (i in self.markers) {
+                //console.log(value);
+                //console.log(self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()));
+                if (self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+                    self.markers[i].setVisible(false);
+                } else {
+                    self.markers[i].setVisible(true);
+                }
             }
-        }
 
-        if (value.length === 0) {
-            self.populateLocations();
-            console.log('empty value');
-        }
+            if (value.length === 0) {
+                self.populateLocations();
+                console.log('empty value');
+            }
 
-    };
+        };
 
 
     this.placeMarker = function(place, num) {
+
         var pos = new google.maps.LatLng(place.lat, place.lng);
 
         var marker = new google.maps.Marker({
@@ -281,8 +295,8 @@ var ViewModel = function() {
             position: pos,
             number: num,
             animation: null
-         //   animation: google.maps.Animation.DROP
-        })
+                //   animation: google.maps.Animation.DROP
+        });
 
         self.markers.push(marker);
 
@@ -297,6 +311,7 @@ var ViewModel = function() {
 
 
     this.populateLocations = function() {
+
         self.places.removeAll();
         var i = 0;
         places.forEach(function(placeItem) {
@@ -306,14 +321,14 @@ var ViewModel = function() {
 
         // Check to make sure markers do not exist.
         if (self.markers.length === 0) {
-            for (var i = 0; i < self.places().length; i++) {
+            for (i = 0; i < self.places().length; i++) {
                 var place = self.places()[i];
                 //console.log(place);
                 self.placeMarker(place, i);
             }
         }
 
-        for (var i in self.markers) {
+        for (i in self.markers) {
             if (self.markers[i].visible === false) {
                 self.markers[i].setVisible(true);
             }
@@ -321,6 +336,7 @@ var ViewModel = function() {
     };
 
     this.selectPlace = function(place) {
+
         console.log(place);
         console.log('Drawer or map item clicked for ' + place.name);
 
@@ -330,16 +346,16 @@ var ViewModel = function() {
                 console.log('Item is already selected.');
                 Map.toggleBounce(self.currentMarker(), null);
                 return;
-                } else {
-                    console.log('new item is selected : ' + place.name );
-                    // Clear the marker of the previously selected item.
-                    console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
-                    self.markers[self.currentPlace()].setIcon('');
+            } else {
+                console.log('new item is selected : ' + place.name);
+                // Clear the marker of the previously selected item.
+                console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
+                self.markers[self.currentPlace()].setIcon('');
 
-                    console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
-                    // Check for icon animation for previous entry.  If it is active, set it to null.
-                    self.currentMarker().setAnimation(null);
-                }
+                console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
+                // Check for icon animation for previous entry.  If it is active, set it to null.
+                self.currentMarker().setAnimation(null);
+            }
         } else {
             console.log('Currentitem not defined.');
             console.log("First time click.");
@@ -347,31 +363,32 @@ var ViewModel = function() {
 
         console.log('out of if else loops for ' + place.name);
 
-            // Chnage the selected Marker icon to green.
-            console.log('Setting icon color to green for ' + place.name)
-            self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        // Chnage the selected Marker icon to green.
+        console.log('Setting icon color to green for ' + place.name);
+        self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 
-            console.log('Pan to started for ' + place.name);
-            var latLng = new google.maps.LatLng(place.lat, place.lng);
-            Map.instance.panTo(latLng);
-             console.log(self.markers[place.number]);
-            console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].title);
-            console.log('Pan to ended.');
-            console.log(self.markers[place.number]);
+        console.log('Pan to started for ' + place.name);
+        var latLng = new google.maps.LatLng(place.lat, place.lng);
+        Map.instance.panTo(latLng);
+        console.log(self.markers[place.number]);
+        console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].title);
+        console.log('Pan to ended.');
+        console.log(self.markers[place.number]);
 
-            console.log('Toggle animation for current item : ' + self.markers[place.number].title);
-            Map.toggleBounce(self.markers[place.number]);
-            console.log('Toggle animation completed for : ' + self.markers[place.number].title);
+        console.log('Toggle animation for current item : ' + self.markers[place.number].title);
+        Map.toggleBounce(self.markers[place.number]);
+        console.log('Toggle animation completed for : ' + self.markers[place.number].title);
 
-            console.log('Setting new currentPlace to ' + self.markers[place.number].title);
-            // Populate observables with new current marker informaton.
-            self.currentPlace(place.number);
-            self.currentDesc(place.description);
-            self.currentName(place.name);
-            self.initAjax(place);
+        console.log('Setting new currentPlace to ' + self.markers[place.number].title);
+        // Populate observables with new current marker informaton.
+        self.currentPlace(place.number);
+        self.currentDesc(place.description);
+        self.currentName(place.name);
+        self.initAjax(place);
     };
 
     this.initAjax = function(place) {
+
 
         console.log('initAjax called for ' + place.name);
         console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
@@ -389,6 +406,7 @@ var ViewModel = function() {
 
     this.clearObservables = function() {
 
+
         // This function clears the existing Knockout observable array variables before the Ajax call.
         self.fsAddress.removeAll();
         self.fsImg.removeAll();
@@ -397,6 +415,7 @@ var ViewModel = function() {
 
 
     this.fillcontentWindow = function() {
+
 
         console.log(self.places()[self.currentPlace()]);
 
@@ -419,8 +438,9 @@ var ViewModel = function() {
 
     this.parseResults = function(element) {
 
-        if (element != null) {
-        //    console.log('Current entry: ' + element.name);
+
+        if (element !== null) {
+            //    console.log('Current entry: ' + element.name);
 
             self.yelpName(element.name);
             self.yelpRatingUrl(element.rating_img_url);
@@ -442,9 +462,9 @@ var ViewModel = function() {
 
         }
 
-      //  console.log(self.yelpName());
+        //  console.log(self.yelpName());
 
-        if ($("#resultLink".length != 0)) {
+        if ($("#resultLink".length !== 0)) {
 
             $('#yelp-logo').click(function() {
                 openSite(self.yelpUrl());
@@ -454,14 +474,15 @@ var ViewModel = function() {
 
     this.fsParseResults = function(element) {
 
-        if (element != null) {
+
+        if (element !== null) {
             console.log('FS Parse. Current entry: ' + element.name);
-        //    console.log(element);
+            //    console.log(element);
 
             self.fsName(element.name);
 
             for (var i = 0; i < element.location.formattedAddress.length; i++) {
-        //        console.log(element.location.formattedAddress[i]);
+                //        console.log(element.location.formattedAddress[i]);
                 self.fsAddress.push(element.location.formattedAddress[i]);
             }
 
@@ -472,21 +493,21 @@ var ViewModel = function() {
 
 
             for (i = 0; i < element.tips.groups[0].items.length; i++) {
-    //            console.log(element.tips.groups[0].items[i].text);
+                //            console.log(element.tips.groups[0].items[i].text);
                 self.fsTips.push('"' + element.tips.groups[0].items[i].text + '"');
 
-                }
+            }
 
-           // $('#fs-body-content').show();
+            // $('#fs-body-content').show();
 
 
             try {
                 for (i = 0; i < element.photos.groups[0].items.length; i++) {
-        //      console.log(element.photos.groups[0].items[i].prefix);
+                    //      console.log(element.photos.groups[0].items[i].prefix);
                     self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
 
-                 }
-                 $('#gallery-pill').show();
+                }
+                $('#gallery-pill').show();
             } catch (err) {
                 Helpers.logError("No photos found for this venue.");
                 $('#gallery-pill').hide();
@@ -494,7 +515,7 @@ var ViewModel = function() {
 
 
 
-       //     console.log(self.fsTips().length);
+            //     console.log(self.fsTips().length);
 
             // if (self.fsTips().length > 3) {
             //     $('#fs-body-content').css('overflow', 'auto');
@@ -502,7 +523,7 @@ var ViewModel = function() {
             //     $('#fs-body-content').css('overflow', 'none');
             // }
 
-      //      console.log(element.photos.groups[0].items.length);
+            //      console.log(element.photos.groups[0].items.length);
 
 
             self.fsUrl(element.shortUrl);
@@ -510,29 +531,29 @@ var ViewModel = function() {
             // Specify divs to display based on results.
             $('#fs-noresult').hide();
             $('#four-square').show();
-          //  $('#gallery-pill').show();
+            //  $('#gallery-pill').show();
             //$('carousel-inner:nth-child(2)').addClass('active');
 
         }
 
 
 
-    //    console.log(self.fsName());
-    //    console.log(self.fsImg());
-        for (var i = 0; i < self.fsAddress().length; i++) {
-   //         console.log(self.fsAddress()[i]);
+        //    console.log(self.fsName());
+        //    console.log(self.fsImg());
+        for (i = 0; i < self.fsAddress().length; i++) {
+            //         console.log(self.fsAddress()[i]);
         }
 
-   //     console.log(self.fsTips());
+        //     console.log(self.fsTips());
 
-        if ($("#resultLink".length != 0)) {
+        if ($("#resultLink".length !== 0)) {
 
             $('#fs-logo').click(function() {
                 self.openSite(self.fsUrl());
             });
         }
 
-    //    console.log("$('#carousel-control').addClass('active')");
+        //    console.log("$('#carousel-control').addClass('active')");
 
         $('#carousel-control').addClass('active');
         $('#carousel-item').addClass('active');
@@ -541,6 +562,7 @@ var ViewModel = function() {
 
     this.openSite = function(url) {
 
+
         var win = window.open(url, '_blank');
         win.focus();
     };
@@ -548,40 +570,40 @@ var ViewModel = function() {
     this.menuToggle = function() {
 
 
+
         if ($('#drawer').css('display') == 'none') {
             console.log('Drawer to become visible.');
             $('#pg-container').click(function() {
                 self.menuToggle();
             });
-        }
-
-        else {
+        } else {
             console.log('Drawer to become hidden.');
-          //  $('#drawer').fadeOut();
+            //  $('#drawer').fadeOut();
             $('#pg-container').unbind('click');
         }
 
-    // $('#drawer').fadeOut(function () {
-    //     $('#drawer').toggle('slide', {
-    //         direction: 'left'
-    //     }, 1000);
-    // });
+        // $('#drawer').fadeOut(function () {
+        //     $('#drawer').toggle('slide', {
+        //         direction: 'left'
+        //     }, 1000);
+        // });
 
 
-       $('#drawer').toggle('slide');
+        $('#drawer').toggle('slide');
 
     };
 
     this.toggleBorder = function() {
-  //      console.log('toggle');
+
+        //      console.log('toggle');
         if (self.isBorder) {
-   //         console.log('turning off');
-    //        console.log($("*").css("border"));
+            //         console.log('turning off');
+            //        console.log($("*").css("border"));
             $("*").css("border", "none");
             self.isBorder = false;
         } else {
-    //        console.log('turning on');
-    //        console.log($("*").css("border"));
+            //        console.log('turning on');
+            //        console.log($("*").css("border"));
             $("*").css("border", "1px solid red");
             self.isBorder = true;
 
@@ -589,194 +611,198 @@ var ViewModel = function() {
 
     };
 
-var nonce_generate = function() {
-      return (Math.floor(Math.random() * 1e12).toString());
-  };
+    var nonce_generate = function() {
 
-var localJsonpCallback = function(data) {
-      console.log(JSON.stringify(data));
-  };
+        return (Math.floor(Math.random() * 1e12).toString());
+    };
 
-var callStart = function(apiName) {
-  //    console.log(apiName +' Start.');
-      // Add code here to add progress bar in CSS.
-  };
+    var localJsonpCallback = function(data) {
 
-var callComplete = function(apiName) {
-   //   console.log(apiName + ' complete.');
-      // Add code here to end progress bar in CSS.
-  };
+        console.log(JSON.stringify(data));
+    };
 
-var YelpConnect = function(nameLocation) {
-      var httpMethod = 'GET',
-          consumerKey = 'YsPDWGOo52SXK3U-FoNm6g',
-          consumerKeySecret = 'd4oiThmVyRCZrZR1o8phpOV4FjI',
-          url = 'https://api.yelp.com/v2/search?',
-          token = 'MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2',
-          signatureMethod = 'HMAC-SHA1',
-          version = '1.0',
-          local = 'Stamford, CT',
-          tokenSecret = 'IKtJiQ-P4Gk_arqDvP3buDE-Wio'
+    var callStart = function(apiName) {
 
-      var parameters = {
-          term: nameLocation,
-          location: local,
-          oauth_consumer_key: consumerKey,
-          oauth_token: token,
-          oauth_nonce: nonce_generate(),
-          oauth_timestamp: Math.floor(Date.now() / 1000),
-          oauth_signature_method: 'HMAC-SHA1',
-          callback: 'localJsonpCallback'
-      };
+        //    console.log(apiName +' Start.');
+        // Add code here to add progress bar in CSS.
+    };
 
-      var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
-      parameters.oauth_signature = encodedSignature;
+    var callComplete = function(apiName) {
 
-      var settings = {
-          type: httpMethod,
-          url: url,
-          data: parameters,
-          cache: true,
-       //   jsonpCallback: 'localJsonpCallback',  // Not sure if need this since the callback in parameters is necessary.
-          dataType: 'jsonp',
-          complete: callComplete('Yelp'),
-          beforeSend: callStart('Yelp'),
-          success: function(results) {
-    //          console.log("YELP SUCCESS! %o", results);
-    //          console.log(results.total + ' results found for Yelp. Analyzing...');
-              var resultsTotal = results.total;
-              var filteredResults = 0;
-              var city = local.slice(0, -4);
-              // console.log(city);
-              $.each(results.businesses, function(index, element) {
-                  if ((element.name === nameLocation) && (element.location.city === city)) {
-                      filteredResults++;
-     //                 console.log(self);
-                      self.parseResults(element);
-                  } else {
-    //                  console.log('Rejected: ' + element.name + ' in ' + element.location.city);
-                  }
+        //   console.log(apiName + ' complete.');
+        // Add code here to end progress bar in CSS.
+    };
 
-              });
+    var YelpConnect = function(nameLocation) {
 
-              if (filteredResults === 0) {
-    //              console.log('Nothing found from Yelp.');
-                  $('#yelp-noresult').show();
-                  $('#yelp').hide();
-                  // parseResults(yelpObject, null);
-              }
+        var httpMethod = 'GET',
+            consumerKey = 'YsPDWGOo52SXK3U-FoNm6g',
+            consumerKeySecret = 'd4oiThmVyRCZrZR1o8phpOV4FjI',
+            url = 'https://api.yelp.com/v2/search?',
+            token = 'MyX8vDPrsgUCTH3qWMK4M3zp8oLuBkE2',
+            local = 'Stamford, CT',
+            tokenSecret = 'IKtJiQ-P4Gk_arqDvP3buDE-Wio';
 
-          },
-          error: function(results) {
-    //          console.log("error %o", results);
-          }
-      }
+        var parameters = {
+            term: nameLocation,
+            location: local,
+            oauth_consumer_key: consumerKey,
+            oauth_token: token,
+            oauth_nonce: nonce_generate(),
+            oauth_timestamp: Math.floor(Date.now() / 1000),
+            oauth_signature_method: 'HMAC-SHA1',
+            callback: 'localJsonpCallback'
+        };
 
-      $.ajax(settings);
-  };
+        var encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerKeySecret, tokenSecret);
+        parameters.oauth_signature = encodedSignature;
 
+        var settings = {
+            type: httpMethod,
+            url: url,
+            data: parameters,
+            cache: true,
+            //   jsonpCallback: 'localJsonpCallback',  // Not sure if need this since the callback in parameters is necessary.
+            dataType: 'jsonp',
+            complete: callComplete('Yelp'),
+            beforeSend: callStart('Yelp'),
+            success: function(results) {
+                //          console.log("YELP SUCCESS! %o", results);
+                //          console.log(results.total + ' results found for Yelp. Analyzing...');
+                var filteredResults = 0;
+                var city = local.slice(0, -4);
+                // console.log(city);
+                $.each(results.businesses, function(index, element) {
+                    if ((element.name === nameLocation) && (element.location.city === city)) {
+                        filteredResults++;
+                        //                 console.log(self);
+                        self.parseResults(element);
+                    } else {
+                        //                  console.log('Rejected: ' + element.name + ' in ' + element.location.city);
+                    }
 
+                });
 
-var fsConnect = function(nameLocation) {
- //     console.log(self);
-    var httpMethod = 'GET',
-        url = ['https://api.foursquare.com/v2/venues/search?client_id=',
-               '&client_secret=',
-               '&v=20130815&near=',
-               '&query='],
-        clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
-        clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
-        near = 'Stamford, CT',
-        latLon = '41.07,73.54';
-
-    var urlParams = url[0] + clientId +
-                    url[1] + clientSecret +
-                    url[2] + near +
-                    url[3] + nameLocation;
-
-    var settings = {
-        url: urlParams,
-        type: httpMethod,
-        cache: true,
-        // jsonpCallback: 'localJsonpCallback',
-        dataType: 'jsonp',
-        complete: callComplete('fs'),
-        beforeSend: callStart('fs'),
-        success: function(results) {
-            console.log("FS SUCCESS! %o", results);
-            var resultsTotal = results.response.venues.length;
-            var results = results.response.venues;
-    //        console.log(results);
-    //        console.log(resultsTotal + ' results found in FS. Analyzing...');
-            var filteredResults = 0;
-            var city = near.slice(0, -4);
-    //        console.log(city);
-            $.each(results, function(index, element) {
-                if ((element.name === nameLocation) && (element.location.city === city)) {
-    //                console.log('element added to Foursquare.');
-                    filteredResults++;
-                    fsDetails(element.id);
-                } else {
-                    console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
+                if (filteredResults === 0) {
+                    //              console.log('Nothing found from Yelp.');
+                    $('#yelp-noresult').show();
+                    $('#yelp').hide();
+                    // parseResults(yelpObject, null);
                 }
 
-            });
-    //        console.log(filteredResults + ' results from FS.');
-
-            if (filteredResults === 0) {
-                console.log('Nothing found from FourSquare.');
-                $('#four-square').hide();
-                $('#galleryTab').hide();
-                $('#fs-noresult').show();
-                $('#gallery-pill').hide();
+            },
+            error: function(results) {
+                //          console.log("error %o", results);
             }
-        },
-        error: function(results) {
-            console.log("ERROR! %o", results);
-        }
-    }
+        };
 
-    $.ajax(settings);
-};
+        $.ajax(settings);
+    };
 
-var fsDetails = function(fsID) {
-    var httpMethod = 'GET',
-        url = 'https://api.foursquare.com/v2/venues/' + fsID,
-        clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
-        clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
-        near = 'Stamford, CT';
 
-    var settings = {
-        type: httpMethod,
-        url: url +
-            '?client_id=' + clientId +
-            '&client_secret=' + clientSecret +
-            '&v=20130815' +
-            '&near=' + near,
-        success: function(results) {
-            console.log("FS Details SUCCESS! %o", results);
-            var results = results.response.venue;
-            var city = near.slice(0, -4);
-    //        console.log(city);
-    //        console.log('Venue added to Foursquare.');
-    //        console.log(self);
-            self.fsParseResults(results);
 
-        },
-        error: function(results) {
-            console.log("ERROR! %o", results);
-        }
-    }
+    var fsConnect = function(nameLocation) {
 
-    $.ajax(settings);
-};
+        //     console.log(self);
+        var httpMethod = 'GET',
+            url = ['https://api.foursquare.com/v2/venues/search?client_id=',
+                '&client_secret=',
+                '&v=20130815&near=',
+                '&query='
+            ],
+            clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
+            clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
+            near = 'Stamford, CT';
+
+        var urlParams = url[0] + clientId +
+            url[1] + clientSecret +
+            url[2] + near +
+            url[3] + nameLocation;
+
+        var settings = {
+            url: urlParams,
+            type: httpMethod,
+            cache: true,
+            // jsonpCallback: 'localJsonpCallback',
+            dataType: 'jsonp',
+            complete: callComplete('fs'),
+            beforeSend: callStart('fs'),
+            success: function(results) {
+                console.log("FS SUCCESS! %o", results);
+                // var resultsTotal = results.response.venues.length;
+                results = results.response.venues;
+                //        console.log(results);
+                //        console.log(resultsTotal + ' results found in FS. Analyzing...');
+                var filteredResults = 0;
+                var city = near.slice(0, -4);
+                //        console.log(city);
+                $.each(results, function(index, element) {
+                    if ((element.name === nameLocation) && (element.location.city === city)) {
+                        //                console.log('element added to Foursquare.');
+                        filteredResults++;
+                        fsDetails(element.id);
+                    } else {
+                        console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
+                    }
+
+                });
+                //        console.log(filteredResults + ' results from FS.');
+
+                if (filteredResults === 0) {
+                    console.log('Nothing found from FourSquare.');
+                    $('#four-square').hide();
+                    $('#galleryTab').hide();
+                    $('#fs-noresult').show();
+                    $('#gallery-pill').hide();
+                }
+            },
+            error: function(results) {
+                console.log("ERROR! %o", results);
+            }
+        };
+
+        $.ajax(settings);
+    };
+
+    var fsDetails = function(fsID) {
+
+        var httpMethod = 'GET',
+            url = 'https://api.foursquare.com/v2/venues/' + fsID,
+            clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
+            clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
+            near = 'Stamford, CT';
+
+        var settings = {
+            type: httpMethod,
+            url: url +
+                '?client_id=' + clientId +
+                '&client_secret=' + clientSecret +
+                '&v=20130815' +
+                '&near=' + near,
+            success: function(results) {
+                console.log("FS Details SUCCESS! %o", results);
+                results = results.response.venue;
+                //  var city = near.slice(0, -4);
+                //        console.log(city);
+                //        console.log('Venue added to Foursquare.');
+                //        console.log(self);
+                self.fsParseResults(results);
+
+            },
+            error: function(results) {
+                console.log("ERROR! %o", results);
+            }
+        };
+
+        $.ajax(settings);
+    };
 
     // End Function declarations
 
     // Statements
     this.query.subscribe(self.search);
 
-    $('modal-place').on('hidden.bs.modal', function() {})
+    $('modal-place').on('hidden.bs.modal', function() {});
 
     // This event triggers the street view to display in the modal.
     $('#modal-place').on('shown.bs.modal', function() {
