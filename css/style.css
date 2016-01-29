@@ -32,7 +32,7 @@ header {
 }
 
 
-#border-wrapper {
+#border-inner {
   text-align: right;
 }
 #map-row {
@@ -56,7 +56,7 @@ header {
 
 }
 
-#btn-wrapper {
+#btn-inner {
   position: fixed;
   display: block;
   top: .5vh;
@@ -185,7 +185,7 @@ body.openmenu {
   z-index: 1;
 }
 
-#header-wrapper {
+#header-inner {
   background-color: white;
 }
 
@@ -219,7 +219,7 @@ body.openmenu {
   text-indent: 8px;
 }
 
-#search-wrapper {
+#search-inner {
   background-color: white;
 }
 
@@ -341,7 +341,7 @@ body.openmenu {
   margin-top: 10px;
 }
 
-#yelp-img-wrapper {
+#yelp-img-inner {
   max-height: 60px;
 
 }
@@ -381,7 +381,7 @@ body.openmenu {
 .fs-element-show {
   display: inherit;
 }
-#fs-img-wrapper {
+#fs-img-inner {
 
    min-height: 60px;
 }
@@ -425,7 +425,7 @@ body.openmenu {
   padding: 10px;
 }
 
-#img-wrapper {
+#img-inner {
   max-height: 60px;
   max-width: 60px;
   height: 60px;
@@ -436,7 +436,7 @@ body.openmenu {
 
 }
 
-#detailsWrapper {
+#detailsinner {
   display: inline;
   width: 70%;
 }

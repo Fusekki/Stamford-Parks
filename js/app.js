@@ -199,18 +199,6 @@ var ViewModel = function() {
         }
     };
 
-
-
-    $('#titlediv, #maprow, #footer').on('click', function(e) {
-        if ($('body').hasClass('openmenu')) {
-            jsAnimateMenu('close');
-        }
-    });
-
-    $('a[href$="#"]').on('click', function(e) {
-        e.preventDefault();
-    });
-
     function jsAnimateMenu(tog) {
 
         if (tog == 'open') {
@@ -411,6 +399,11 @@ var ViewModel = function() {
         self.fsAddress.removeAll();
         self.fsImg.removeAll();
         self.fsTips.removeAll();
+
+        // Set the first tab to active in the Modal.
+        $('.nav-pills a:first').tab('show');
+        $('.carousel-indicators a:first').tab('show');
+
     };
 
 
@@ -467,7 +460,7 @@ var ViewModel = function() {
         if ($("#resultLink".length !== 0)) {
 
             $('#yelp-logo').click(function() {
-                openSite(self.yelpUrl());
+                self.openSite(self.yelpUrl());
             });
         }
     };
@@ -567,49 +560,6 @@ var ViewModel = function() {
         win.focus();
     };
 
-    this.menuToggle = function() {
-
-
-
-        if ($('#drawer').css('display') == 'none') {
-            console.log('Drawer to become visible.');
-            $('#pg-container').click(function() {
-                self.menuToggle();
-            });
-        } else {
-            console.log('Drawer to become hidden.');
-            //  $('#drawer').fadeOut();
-            $('#pg-container').unbind('click');
-        }
-
-        // $('#drawer').fadeOut(function () {
-        //     $('#drawer').toggle('slide', {
-        //         direction: 'left'
-        //     }, 1000);
-        // });
-
-
-        $('#drawer').toggle('slide');
-
-    };
-
-    this.toggleBorder = function() {
-
-        //      console.log('toggle');
-        if (self.isBorder) {
-            //         console.log('turning off');
-            //        console.log($("*").css("border"));
-            $("*").css("border", "none");
-            self.isBorder = false;
-        } else {
-            //        console.log('turning on');
-            //        console.log($("*").css("border"));
-            $("*").css("border", "1px solid red");
-            self.isBorder = true;
-
-        }
-
-    };
 
     var nonce_generate = function() {
 
@@ -802,16 +752,35 @@ var ViewModel = function() {
     // Statements
     this.query.subscribe(self.search);
 
-    $('modal-place').on('hidden.bs.modal', function() {});
-
     // This event triggers the street view to display in the modal.
     $('#modal-place').on('shown.bs.modal', function() {
+        console.log('display modal.');
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
+        $('.carousel').carousel('cycle');
     });
+
+    //  Pause the auto-slide on the carousel when the modal is hidden.
+    $('#modal-place').on('hidden.bs.modal', function () {
+        $('.carousel').carousel('pause');
+        // Add code to reset the tab active on the tabs to #modal-yelp.
+    });
+
 
     $('#pg-container').click(function() {
         self.menuToggle();
     });
+
+    $('#titlediv, #maprow, #footer').on('click', function(e) {
+        if ($('body').hasClass('openmenu')) {
+            jsAnimateMenu('close');
+        }
+    });
+
+    $('.menubtn').on('click', function(e) {
+        e.preventDefault();
+    });
+
+
 
 
     Map.initMap(self);

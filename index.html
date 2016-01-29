@@ -5,18 +5,12 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Neighborhood Map</title>
-    <script src="http://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript">
-    </script>
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js">
-    </script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js">
-    </script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js">
-    </script>
-    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js">
-    </script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
-    </script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
@@ -29,11 +23,13 @@
         <header>
             <a class="menubtn" data-bind="click: menubtnTgl" href="#"></a>
             <div id="hamburgermenu">
-                <div class="text-center" id="header-wrapper">
+                <div class="text-center" id="header-inner">
                     <span id="drawer-header">Parks List</span>
-                </div><span id="search-bar"><input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder=
-                "Type name" type="search"></span>
-                <div id="search-wrapper">
+                </div>
+                <span id="search-bar">
+                <input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search">
+                </span>
+                <div id="search-inner">
                     <span data-bind="text: resultsFound" id="drawer-results"></span> <span id="drawer-results-text">results found.</span>
                 </div>
                 <ul data-bind="foreach: places, css: drawerStyle" id="drawer-list">
@@ -54,10 +50,11 @@
         <div class="row" id="footer">
             <div class="row" id="model-data" style="display: none">
                 <h1 data-bind="text: currentName" id="firstHeading"></h1><span id="bodyContent"></span>
-                <p data-bind="text: currentDesc" id="model-desc"></p><button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type=
-                "button">More Info</button>
+                <p data-bind="text: currentDesc" id="model-desc"></p>
+                <button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button>
             </div>
         </div>
+<!--         Modal Start -->
         <div aria-hidden="true" aria-labelledby="modal-label" class="modal fade" id="modal-place" role="dialog" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -72,28 +69,28 @@
                         <div class="pills"></div>
                         <div class="pills modal-results">
                             <ul class="nav nav-pills">
-                                <li class="active">
+                                <li id="yelp-pill" class="active">
                                     <a data-toggle="pill" href="#pill-yelp">Yelp</a>
                                 </li>
-                                <li>
+                                <li id="fs-pill" >
                                     <a data-toggle="pill" href="#pill-foursquare">Foursquare</a>
                                 </li>
                                 <li id="gallery-pill">
                                     <a data-toggle="pill" href="#pill-gallery" id="g-pill">Gallery</a>
                                 </li>
                             </ul>
-                            <div class="tab-content">
+                            <div class="tab-content" id ="tabmaster">
                                 <div class="tab-pane active" id="pill-yelp">
-                                    <div class="modal-yelp" id="yelp-tab">
-                                        <div id="yelp-img-wrapper"><img alt='Yelp Logo' id='yelp-logo' src=
+                                    <div class="tab-pane" id="yelp-tab">
+                                        <div id="yelp-img-inner"><img alt='Yelp Logo' id='yelp-logo' src=
                                         "http://s3-media2.fl.yelpcdn.com/assets/srv0/yelp_styleguide/e0bcd848f6ae/assets/img/logos/header_logo.png"></div>
                                         <div id="yelp-noresult" style="">
                                             <p id="yelp-status">No Yelp Results Found</p>
                                         </div>
                                         <div id="yelp">
                                             <div id="yelp-header">
-                                                <span id="img-wrapper"><img alt="Park picture" data-bind="attr: {src: yelpImg}" id="yelp-img"></span> <span data-bind=
-                                                "text: yelpAddress" id="yelp-address"></span> <span data-bind="text: yelpPhone" id="yelp-phone"></span>
+                                                <span id="img-inner"><img alt="Park picture" data-bind="attr: {src: yelpImg}" id="yelp-img"></span>
+                                                <span data-bind="text: yelpAddress" id="yelp-address"></span> <span data-bind="text: yelpPhone" id="yelp-phone"></span>
                                             </div>
                                             <div id="yelp-body-content">
                                                 <p id="body-paragraph"><span data-bind="text: yelpDesc"></span></p>Yelp Score: <img alt="Yelp Score" data-bind=
@@ -105,7 +102,7 @@
                                 </div>
                                 <div class="tab-pane" id="pill-foursquare">
                                     <div class="modal-foursquare" id="fs-tab">
-                                        <div id="fs-img-wrapper"><img alt='Foursquare Logo' id='fs-logo' src=
+                                        <div id="fs-img-inner"><img alt='Foursquare Logo' id='fs-logo' src=
                                         "https://ss0.4sqi.net/img/chrome/logo_foursquare8-50f95c75a6ba64c854bb3c2acf24c96c.png"></div>
                                         <div id="fs-noresult">
                                             <p id="fs-status">No Foursquare Results Found</p>
