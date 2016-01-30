@@ -32,14 +32,6 @@ var places = [{
     number: null,
     description: "Carpinella Park is located just outside of downtown on the east side and is a wonderful place to stay active or simply pass some time. The facility features ball fields of all kinds as well as tennis and basketball courts. There are also benches, picnic tables and restrooms on the premise."
 }, {
-    name: "Carwin Park",
-    address: {
-        lat: 41.0534302,
-        lng: -73.5387341
-    },
-    number: null,
-    description: "West Main Street: 1.4 acres. Carwin Park was dedicated in 1976 and was named for Dr. Joseph L. Carwin, a Stamford physician. Dr. Carwin was a dedicated worker and champion of the black community.  Carwin Park is a friendly neighborhood recreation area located on the west side of town. The park entrance is on Spruce Street and the facility features benches and a picnic area as well as a playground and small field. Park hours are every day until 10pm and rules don't allow alcohol, gambling or glass containers of any kind."
-}, {
     name: "Chestnut Hill Park",
     address: {
         lat: 41.126026,
@@ -66,8 +58,8 @@ var places = [{
 }, {
     name: "Cummings Park",
     address: {
-        lat: 41.225,
-        lng: -73.3112
+        lat: 41.04346565550601,
+        lng: -73.52037906646729
     },
     number: null,
     description: "Shippan Avenue 79.29 acres Cummings Park was originally called “Halloween Park”, since the final negotiations took place on Halloween Eve under the administration of the Mayor at that time, Homer Cummings, in 1906. After his death, the park was renamed Cummings Park in his honor. 79-acre beachfront park provides a boardwalk & fishing pier, playground, snack bar & sports fields."
@@ -234,19 +226,11 @@ var places = [{
 }, {
     name: "Lione Park",
     address: {
-        lat: 41.053955,
-        lng: -73.556100
+        lat: 41.05482977856113,
+        lng: -73.55627546209354
     },
     number: null,
     description: "Stillwater & Merrill Avenue: 9.20 acres. Originally known as Vidal Park, it was purchased in 1946. This park was renamed in 1954 in honor of Michael Lione, a well-known Stamford athlete. Michael F. Lione Park is a neighborhood recreational area located near the corner of West Broad Street and Stillwater Avenue. Features of the park include picnic tables, swings, playsets, grills and grassy fields for children to run and play. There is also a basketball and volleyball court as well as a baseball and soccer field on the premise."
-}, {
-    name: "Mianus River Park & Glen",
-    address: {
-        lat: 41.085817,
-        lng: -73.587385
-    },
-    number: null,
-    description: "108.23 acres. The Mianus River flows through this public park, a 389-acre deciduous forest that straddles the Stamford-Greenwich border. It's a haven for dog walkers, mountain bikers, fishermen, hikers and joggers alike. The best entrance to the park is from Merribrook Lane, which is a well-hidden street accessible from Westover Road about a mile south of the Merritt Parkway."
 }, {
     name: "Mill River Park",
     address: {
@@ -255,14 +239,6 @@ var places = [{
     },
     number: null,
     description: "Mill River Street & West Broad St: 4.1 acres. The Japanese Cherry Trees in Mill River Park were donated by Junzo Nojima, and planted on Arbor Day, April 27, 1957. The Gazebo which was built in 1983, was made possible by the generous donation of Mr. Mordechai Gorn and through the efforts of others in the community. It is a lovely addition to Mill River Park, which is the largest green space in the downtown area.Community urban green space with a playground, artisan carousel & summertime family activities. Hours: 6am - 4pm."
-}, {
-    name: "Newman Mills",
-    address: {
-        lat: 41.106370,
-        lng: -73.589593
-    },
-    number: null,
-    description: "Riverbank and June Road: 7.57 acres. (Riverbank Park) Newmans Mills Park is a scenic North Stamford recreational area that is completely forest enclosed.&nbsp; The facility is located about a mile north of the Merritt Parkway and is perfect for the outdoorsy types in the region.&nbsp; Features include a flowing stream that leisure fisherman don't seem to mind casting their rods into as well as tall trees, hiking trails and picnic pavilions.&nbsp; Newmans Mills closes nightly at 10pm and park services encourages visitors to follow the rules which include no smoking, fires or alcohol."
 }, {
     name: "Northrup",
     address: {
@@ -279,14 +255,6 @@ var places = [{
     },
     number: null,
     description: "Facility. Washington Boulevard & Main Street: 0.15 acres. Washington Boulevard, West Broad Street & Whitaker Street: 2.37 acres. Also know as Rippowam Park is located across from the Rippowam Place shops and businesses. The park adds a pleasant touch of green to this large downtown intersection with its&nbsp;many local varieties of plants and flowers. Rippowam Park also houses a monument to Charles E. Rowell, a Stamford physician who served as Mayor of the city from 1911 to 1913."
-}, {
-    name: "Rosa Hartman Park",
-    address: {
-        lat: 41.0431526,
-        lng: -73.5634572
-    },
-    number: null,
-    description: "Brownhouse Road 13.70 acres. Rosa Hartman Park was named for the mother of Mr. Jesse Hartman, who donated the land and some funds for the park. It was dedicated in 1961. Rosa Hartman Park in Stamford and Laddins Rock Sanctuary in Old Greenwich are a combined 32-acre piece of preserved land that once faced the possibility of development, when the city of Stamford accepted a proposal for the construction of an amusement park several years ago. However, the plan was blocked by concerned residents, who helped transform the land into a preserve. Today, the property remains a sanctuary for wildlife and people hoping to escape the commotion of a neighborhood in transition."
 }, {
     name: "Rotary Park",
     address: {
@@ -320,53 +288,29 @@ var places = [{
     number: null,
     description: "Bridge Street  48.12 acres. Formerly known as Woodside Park, Scalzi Park was opened to the public in 1868 as a race track which was owned by T.I. and S.H. Ferris. The City purchased the land for a park in 1927 and it was renamed in 1962 for John Scalzi, famed Stamford athlete. A portion of the park was used for the J.M. Wright Technical School and Cubeta Stadium and was built by the State. Ample green space with facilities for basketball, tennis, baseball, skateboarding, walking & more."
 }, {
-    name: "Scofieldtown Park",
-    address: {
-        lat: 41.139592,
-        lng: -73.559045
-    },
-    number: null,
-    description: "AKA Scofieldtown Recreation Complex. Scofieldtown Road & Rockrimmon Road: 18.1 acres. Scofieldtown Park is a recreational area located near the corner of Scofieldtown and Rock Rimmon Roads about three miles north of the Merritt Parkway.&nbsp;It features wooded areas, picnic tables, ballfields and basketball hoops. The facility is mainly used for North Stamford Pony League baseball and is open daily until 10pm or shortly after games are completed.&nbsp;Park rules include no alcohol or smoking."
-}, {
-    name: "Sleepy Hollow Park",
-    address: {
-        lat: 41.092355,
-        lng: -73.525178
-    },
-    number: null,
-    description: "Haig Avenue and Lawton Avenue: 22.85 acres. Sleepy Hollow Park is a backwoods recreation area located between Haig and Woodbury avenues. The parks main features are a mossy stream, tall trees, trails and lovely scenery. There are also picnic table and pavilions nestled deep in the forest."
-}, {
     name: "Southfield Park",
     address: {
-        lat: 41.032922,
-        lng: -73.546530
+        lat: 41.033353261108644,
+        lng: -73.54733184331482
     },
     number: null,
     description: "Formerly known as John J. Boccuzzi Park."
 }, {
-    name: "Stamford Museum & Nature Center",
-    address: {
-        lat: 41.126101,
-        lng: -73.545515
-    },
-    number: null,
-    description: "The Stamford Museum & Nature Center, located in Stamford, Connecticut, is an art, history, nature, and agricultural sciences museum. The property covers 118 acres beginning about half a mile north of the Merritt Parkway."
-}, {
     name: "Springdale Park",
     address: {
-        lat: 41.098812,
-        lng: -73.517999
+        lat: 41.097923278808594,
+        lng: -73.51419067382812
     },
     number: null,
     description: "Facility. Hope St. : 0.07 acres. The memorial in Springdale Park was dedicated in 1919 to 80 soldiers & sailors (from then Springdale village). AKA Michael J. Drotar Park.  The playground located right next to Springdale Elementary School in Stamford's East Side. Students of the school use the park for recess and gym class activities, while the ballfield is home to the Springdale Little League team. Swings, playsets and a concession stand are also found on the premises."
 }, {
-    name: "Veterans Memorial Park",
+    name: "Stamford Museum & Nature Center",
     address: {
-        lat: 41.053430,
-        lng: -73.538734
+        lat: 41.125187752404855,
+        lng: -73.54579039638527
     },
     number: null,
-    description: "Facility. Main & Atlantic Streets: 1.44 acres. Veteran’s Park was originally called Central Park until 1972 when it was changed to Veteran’s Park. Central Park was the original meeting ground of the first settlers in Stamford. It was deeded in 1859 from Edward B. Hewes, with the stipulation that the ground should be used forever as a public park. A granite monument was dedicated in November 1977 honoring the servicemen from World War II, the Korean Conflict and the Vietnam era. The monument was designed and erected by Geno Lupinacci, a Stamford resident. The funds for the monument were raised by ‘Old Sarge’ Tony Pia from public contributions."
+    description: "The Stamford Museum & Nature Center, located in Stamford, Connecticut, is an art, history, nature, and agricultural sciences museum. The property covers 118 acres beginning about half a mile north of the Merritt Parkway."
 }, {
     name: "Vine Road Little League Field",
     address: {
@@ -408,8 +352,6 @@ var places = [{
     number: null,
     description: "Off Scofieldtown Road: 19.15 acres. Woodley Road Bird Sanctuary is a wooded area enclosed by a North Stamford neighborhood where locals come to take in the scenery.&nbsp;A large variety of plant and animal life attracts visitors, making this particular facility the perfect place for a morning hike or afternoon picnic.&nbsp;The park can be found in the hills about 2 miles from the Merritt Parkway and has a couple of different entrances.&nbsp;The easiest way to access by car is from either Woodley Road or Brookdale Drive, but residents can walk into the park from a number of locations."
 }];
-
-
 // Specify features and elements to define styles.
 var styleArray = [{
     "featureType": "administrative",
