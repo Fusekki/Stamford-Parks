@@ -1,6 +1,7 @@
+// Google Maps object
 var Map = {
     initMap: function() {
-        console.log($('#map'));
+        // console.log($('#map'));
         var stamford = new google.maps.LatLng(41.074448, -73.541316);
         try {
             // Create a map object and specify the DOM element dor display.
@@ -36,21 +37,22 @@ var Map = {
     },
     toggleBounce: function(marker) {
         "use strict";
-        console.log(marker.title + ' has an animation of ' + marker.getAnimation());
+        // console.log(marker.title + ' has an animation of ' + marker.getAnimation());
         if (marker.getAnimation() !== null) {
-            console.log('not enabling animation because item is currently animated with animation = ' + marker.getAnimation());
-            console.log('animation detected.  Disabling animation for ' + marker.title);
+            // console.log('not enabling animation because item is currently animated with animation = ' + marker.getAnimation());
+            // console.log('animation detected.  Disabling animation for ' + marker.title);
             marker.setAnimation(null);
-            console.log('animation set to = ' + marker.getAnimation());
+            // console.log('animation set to = ' + marker.getAnimation());
         } else {
-            console.log('no animation detected.  Activating animation for ' + marker.title);
+            // console.log('no animation detected.  Activating animation for ' + marker.title);
             marker.setAnimation(google.maps.Animation.BOUNCE);
-            console.log('animation set to = ' + marker.getAnimation());
+            // console.log('animation set to = ' + marker.getAnimation());
         }
-        console.log('marker = ' + marker.getAnimation());
-        console.log('animation set to = ' + marker.getAnimation());
+        // console.log('marker = ' + marker.getAnimation());
+        // console.log('animation set to = ' + marker.getAnimation());
     }
 };
+// Helper Objects (for error handling).
 var Helpers = {
     handleError: function(msg) {
         return alert(msg);
@@ -59,30 +61,32 @@ var Helpers = {
         return console.log(msg);
     }
 };
-
+// Mark object for creating array of markers.
 function mark(place, map) {
-    "use strict";
-    var myMap = map;
-    var pos = new google.maps.LatLng(place.lat(), place.lng());
-    var marker = new google.maps.Marker({
-        title: place.name(),
-        position: pos,
-        number: place.number(),
-        label: place.marker(),
-        animation: google.maps.Animation.DROP
-    });
-    self.markers.push(marker);
-    marker.setMap(myMap);
-}
+        "use strict";
+        var myMap = map;
+        var pos = new google.maps.LatLng(place.lat(), place.lng());
+        var marker = new google.maps.Marker({
+            title: place.name(),
+            position: pos,
+            number: place.number(),
+            label: place.marker(),
+            animation: google.maps.Animation.DROP
+        });
+        self.markers.push(marker);
+        marker.setMap(myMap);
+    }
+    // Place object for model information (totally seperate from AJAX calls.)
 
 function Place(data, num) {
-    "use strict";
-    this.name = data.name;
-    this.lat = data.address.lat;
-    this.lng = data.address.lng;
-    this.number = num;
-    this.description = data.description;
-}
+        "use strict";
+        this.name = data.name;
+        this.lat = data.address.lat;
+        this.lng = data.address.lng;
+        this.number = num;
+        this.description = data.description;
+    }
+    // Viewmodel with Knockout.
 var ViewModel = function() {
     "use strict";
     var self = this;
@@ -119,6 +123,7 @@ var ViewModel = function() {
     self.resultsFound = ko.pureComputed(function() {
         return self.places().length;
     });
+    // These knockout computed variables handle the CSS to apply based on the logic below.
     self.resultsStyle = ko.pureComputed(function() {
         return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-double";
     });
@@ -132,12 +137,8 @@ var ViewModel = function() {
         return self.fsCrossStreet() === "" ? "fs-element-show" : "fs-element-hide";
     });
     // End Knockout Declarations
+    // This is the hamburger menu code.
     // Credit to Jake Rocheleau @ http://blog.templatemonster.com/2014/06/23/responsive-sliding-drawer-menu-lightbox-effect/
-    var menuwidth = 350; // vw value for sliding menu width
-    var menuspeed = 400; // milliseconds for sliding menu animation time
-    var btnpadding = 2;
-    var poswidth = menuwidth + "px";
-    var negpadding = btnpadding + "vw";
     this.menubtnTgl = function() {
         if ($('body').hasClass('openmenu')) {
             jsAnimateMenu('close');
@@ -147,31 +148,30 @@ var ViewModel = function() {
     };
 
     function jsAnimateMenu(tog) {
-        if (tog == 'open') {
-            $('body').addClass('openmenu');
-            $('#hamburgermenu').animate({
-                width: poswidth
-            }, menuspeed);
-            $('.overlay').animate({
-                left: poswidth
-            }, menuspeed);
+            if (tog == 'open') {
+                $('body').addClass('openmenu');
+                $('#hamburgermenu').animate({
+                    width: poswidth
+                }, menuspeed);
+                $('.overlay').animate({
+                    left: poswidth
+                }, menuspeed);
+            }
+            if (tog == 'close') {
+                $('body').removeClass('openmenu');
+                $('#hamburgermenu').animate({
+                    width: "0"
+                }, menuspeed);
+                $('.overlay').animate({
+                    left: "0"
+                }, menuspeed);
+            }
         }
-        if (tog == 'close') {
-            $('body').removeClass('openmenu');
-            $('#hamburgermenu').animate({
-                width: "0"
-            }, menuspeed);
-            $('.overlay').animate({
-                left: "0"
-            }, menuspeed);
-        }
-    }
-    self.infoWindow = new google.maps.InfoWindow();
-    self.helpers = Helpers;
+        // End hamburger menu.
+        // Function Declarations
     this.currentMarker = function() {
-            return self.markers[self.currentPlace()];
-        };
-    // Function Declarations
+        return self.markers[self.currentPlace()];
+    };
     this.search = function(value) {
         // remove all the current places, which removes them from the view
         self.places.removeAll();
@@ -189,7 +189,7 @@ var ViewModel = function() {
         }
         if (value.length === 0) {
             self.populateLocations();
-            console.log('empty value');
+            // console.log('empty value');
         }
     };
     this.placeMarker = function(place, num) {
@@ -202,7 +202,7 @@ var ViewModel = function() {
         });
         self.markers.push(marker);
         marker.addListener('click', function() {
-            console.log('clicked marker for ' + this.title + '. current animation = ' + this.getAnimation());
+            // console.log('clicked marker for ' + this.title + '. current animation = ' + this.getAnimation());
             self.selectPlace(place);
         });
         marker.setMap(Map.instance);
@@ -228,42 +228,42 @@ var ViewModel = function() {
         }
     };
     this.selectPlace = function(place) {
-        console.log(place);
-        console.log('Drawer or map item clicked for ' + place.name);
+        // console.log(place);
+        //  console.log('Drawer or map item clicked for ' + place.name);
         if (typeof self.currentMarker() != 'undefined') {
-            console.log('item defined.');
+            //    console.log('item defined.');
             if (self.currentMarker().title === place.name) {
-                console.log('Item is already selected.');
+                //       console.log('Item is already selected.');
                 Map.toggleBounce(self.currentMarker(), null);
                 return;
             } else {
-                console.log('new item is selected : ' + place.name);
+                // console.log('new item is selected : ' + place.name);
                 // Clear the marker of the previously selected item.
-                console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
+                // console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
                 self.markers[self.currentPlace()].setIcon('');
-                console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
+                // console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
                 // Check for icon animation for previous entry.  If it is active, set it to null.
                 self.currentMarker().setAnimation(null);
             }
         } else {
-            console.log('Currentitem not defined.');
-            console.log("First time click.");
+           // onsole.log('Currentitem not defined.');
+            // console.log("First time click.");
         }
-        console.log('out of if else loops for ' + place.name);
+
         // Chnage the selected Marker icon to green.
-        console.log('Setting icon color to green for ' + place.name);
+
         self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-        console.log('Pan to started for ' + place.name);
+        // console.log('Pan to started for ' + place.name);
         var latLng = new google.maps.LatLng(place.lat, place.lng);
         Map.instance.panTo(latLng);
-        console.log(self.markers[place.number]);
-        console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].title);
-        console.log('Pan to ended.');
-        console.log(self.markers[place.number]);
-        console.log('Toggle animation for current item : ' + self.markers[place.number].title);
+        // console.log(self.markers[place.number]);
+        // console.log('Pan to animation = ' + self.markers[place.number].getAnimation() + ' for ' + self.markers[place.number].title);
+        // console.log('Pan to ended.');
+        // console.log(self.markers[place.number]);
+        // console.log('Toggle animation for current item : ' + self.markers[place.number].title);
         Map.toggleBounce(self.markers[place.number]);
-        console.log('Toggle animation completed for : ' + self.markers[place.number].title);
-        console.log('Setting new currentPlace to ' + self.markers[place.number].title);
+        // console.log('Toggle animation completed for : ' + self.markers[place.number].title);
+        // console.log('Setting new currentPlace to ' + self.markers[place.number].title);
         // Populate observables with new current marker informaton.
         self.currentPlace(place.number);
         self.currentDesc(place.description);
@@ -271,8 +271,8 @@ var ViewModel = function() {
         self.initAjax(place);
     };
     this.initAjax = function(place) {
-        console.log('initAjax called for ' + place.name);
-        console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
+        // console.log('initAjax called for ' + place.name);
+        // console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
         self.clearObservables();
         self.fillcontentWindow();
         $('#model-data').show();
@@ -289,7 +289,7 @@ var ViewModel = function() {
         $('.carousel-indicators a:first').tab('show');
     };
     this.fillcontentWindow = function() {
-        console.log(self.places()[self.currentPlace()]);
+        // console.log(self.places()[self.currentPlace()]);
         var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + self.places()[self.currentPlace()].name + '</b> ' + '</div>';
         self.infoWindow.setOptions({
             content: contentString
@@ -325,7 +325,7 @@ var ViewModel = function() {
     };
     this.fsParseResults = function(element) {
         if (element !== null) {
-            console.log('FS Parse. Current entry: ' + element.name);
+            // console.log('FS Parse. Current entry: ' + element.name);
             self.fsName(element.name);
             for (var i = 0; i < element.location.formattedAddress.length; i++) {
                 self.fsAddress.push(element.location.formattedAddress[i]);
@@ -338,7 +338,7 @@ var ViewModel = function() {
             try {
                 for (i = 0; i < element.photos.groups[0].items.length; i++) {
                     self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
-                    console.log(element.photos.groups[0].items.length + ' photos found.');
+                    //            console.log(element.photos.groups[0].items.length + ' photos found.');
                 }
                 $('#gallery-pill').show();
             } catch (err) {
@@ -359,21 +359,21 @@ var ViewModel = function() {
         $('#carousel-item').addClass('active');
     };
     this.openSite = function(url) {
-        var win = window.open(url, '_blank');
-        //  win.focus();
+        window.open(url, '_blank');
+        // win.focus();
     };
     var nonce_generate = function() {
         return (Math.floor(Math.random() * 1e12).toString());
     };
     var localJsonpCallback = function(data) {
-        console.log(JSON.stringify(data));
+        // console.log(JSON.stringify(data));
     };
     var callStart = function(apiName) {
-        //    console.log(apiName +' Start.');
+        // console.log(apiName +' Start.');
         // Add code here to add progress bar in CSS.
     };
     var callComplete = function(apiName) {
-        //   console.log(apiName + ' complete.');
+        // console.log(apiName + ' complete.');
         // Add code here to end progress bar in CSS.
     };
     var YelpConnect = function(nameLocation) {
@@ -405,8 +405,8 @@ var ViewModel = function() {
             complete: callComplete('Yelp'),
             beforeSend: callStart('Yelp'),
             success: function(results) {
-                //          console.log("YELP SUCCESS! %o", results);
-                //          console.log(results.total + ' results found for Yelp. Analyzing...');
+                // console.log("YELP SUCCESS! %o", results);
+                // console.log(results.total + ' results found for Yelp. Analyzing...');
                 var filteredResults = 0;
                 var city = local.slice(0, -4);
                 $.each(results.businesses, function(index, element) {
@@ -414,7 +414,7 @@ var ViewModel = function() {
                         filteredResults++;
                         self.parseResults(element);
                     } else {
-                        //     console.log('Rejected: ' + element.name + ' in ' + element.location.city);
+                        // console.log('Rejected: ' + element.name + ' in ' + element.location.city);
                     }
                 });
                 if (filteredResults === 0) {
@@ -445,7 +445,7 @@ var ViewModel = function() {
             complete: callComplete('fs'),
             beforeSend: callStart('fs'),
             success: function(results) {
-                console.log("FS SUCCESS! %o", results);
+                //      console.log("FS SUCCESS! %o", results);
                 results = results.response.venues;
                 //        console.log(resultsTotal + ' results found in FS. Analyzing...');
                 var filteredResults = 0;
@@ -456,12 +456,12 @@ var ViewModel = function() {
                         filteredResults++;
                         fsDetails(element.id);
                     } else {
-                        console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
+                        // console.log('Rejected from FS: ' + element.name + ' in ' + element.location.city);
                     }
                 });
                 // console.log(filteredResults + ' results from FS.');
                 if (filteredResults === 0) {
-                    console.log('Nothing found from FourSquare.');
+                    //           console.log('Nothing found from FourSquare.');
                     $('#four-square').hide();
                     $('#galleryTab').hide();
                     $('#fs-noresult').show();
@@ -485,35 +485,47 @@ var ViewModel = function() {
             type: httpMethod,
             url: url + '?client_id=' + clientId + '&client_secret=' + clientSecret + '&v=20130815' + '&near=' + near,
             success: function(results) {
-                console.log("FS Details SUCCESS! %o", results);
+                // console.log("FS Details SUCCESS! %o", results);
                 results = results.response.venue;
                 self.fsParseResults(results);
             },
             error: function(results) {
-                console.log("ERROR! %o", results);
+                // console.log("ERROR! %o", results);
             }
         };
         $.ajax(settings);
     };
     // End Function declarations
+    // Hamburger menu variables.
+    if (window.matchMedia('(min-width: 400px)').matches) {
+        var menuwidth = 350;
+    } else {
+        var menuwidth = 250;
+    }
+    var menuspeed = 400; // milliseconds for sliding menu animation time
+    var btnpadding = 2;
+    var poswidth = menuwidth + "px";
     // Statements
     this.query.subscribe(self.search);
     // This event triggers the street view to display in the modal.
     $('#modal-place').on('shown.bs.modal', function() {
-        console.log('display modal.');
-        console.log(Map);
+        //  console.log('display modal.');
+        //   console.log(Map);
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
+        //    console.log('carousel set to cycle.');
         $('.carousel').carousel('cycle');
     });
     //  Pause the auto-slide on the carousel when the modal is hidden.
     $('#modal-place').on('hidden.bs.modal', function() {
-        $('.carousel').carousel('pause');
+        //  console.log('carousel set to pause.');
+        $('.carousel').carousel('pause').removeData();
+        //  console.log($('.carousel').Carousel);
         // Add code to reset the tab active on the tabs to #modal-yelp.
     });
     $('#pg-container').click(function() {
         self.menuToggle();
     });
-    $('#titlediv, #maprow, #footer').on('click', function(e) {
+    $('#titlediv, #map-row, #footer').on('click', function(e) {
         if ($('body').hasClass('openmenu')) {
             jsAnimateMenu('close');
         }
@@ -521,11 +533,12 @@ var ViewModel = function() {
     $('.menubtn').on('click', function(e) {
         e.preventDefault();
     });
-
+    // Initialize the map.
     Map.initMap(self);
     //Populate Map with Markers on initial load.
     self.populateLocations();
-
+    self.infoWindow = new google.maps.InfoWindow();
+    self.helpers = Helpers;
     // End Statements
 };
 ko.applyBindings(new ViewModel());

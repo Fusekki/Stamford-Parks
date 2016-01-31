@@ -10,8 +10,7 @@
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
-        <script src="./js/bootstrap.js"></script>
-<!--         // <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+        <script src="./js/bootstrap-min.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
@@ -53,8 +52,9 @@
                     <h1 data-bind="text: currentName" id="firstHeading"></h1>
                     <div id="bodyContent">
                         <p data-bind="text: currentDesc" id="model-desc"></p>
-                        <button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button>
                     </div>
+                    <button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button>
+
                 </div>
             </div>
             <!--         Modal Start -->
@@ -120,7 +120,7 @@
                                                     <span id='fs-tips-inner' data-bind="css:fsTipsStyle">Tips</span>
                                                     <div data-bind="css: fsTipsStyle" id="fs-body-content">
                                                         <ul data-bind="foreach: fsTips" id="fs-tips-li">
-                                                            <li data-bind="text: $data, click: $parent.initAjax" id="fs-tips-item"></li>
+                                                            <li data-bind="text: $data" id="fs-tips-item"></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -164,5 +164,6 @@
                 <script src="js/oauth-signature.js">
                 </script>
             </div>
+            <!--         Modal End -->
         </body>
     </html>

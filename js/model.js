@@ -46,7 +46,7 @@ var places = [{
         lng: -73.542020
     },
     number: null,
-    description: "Mini park. Washington Boulevard & Main Street: .56 acres. Originally known as West Park, prior to becoming a park, this land was the first burial ground for Stamford’s earliest settlers. The graves were moved in 1800 to allow the State to widen the Post Road. The park was renamed Columbus Park on October 12, 1958 and the monument was designed and cut by sculptor Lorenzo Ascasibar. It was donated by the Stamford Chapel of UNICO.Located directly between Tiernan's Pub and Curley's Diner, Columbus Park is a great place to spend part of your day. Surrounded by restaurants, its location makes it a great place to grab some takeout and enjoy a meal on the lawn. A bronze statue of two women, as well as of the park's namesake, Christopher Columbus, give parkgoers an interesting view no matter where they sit."
+    description: "Mini park. Washington Boulevard & Main Street: .56 acres. Originally known as West Park, this land was the first burial ground for Stamford’s earliest settlers. The graves were moved in 1800 to allow the State to widen the Post Road. The park was renamed Columbus Park on October 12, 1958 and the monument was designed and cut by sculptor Lorenzo Ascasibar. It was donated by the Stamford Chapel of UNICO.Located directly between Tiernan's Pub and Curley's Diner, Columbus Park is a great place to spend part of your day. Surrounded by restaurants, its location makes it a great place to grab some takeout and enjoy a meal on the lawn. A bronze statue of two women, as well as of the park's namesake, Christopher Columbus, give parkgoers an interesting view no matter where they sit."
 }, {
     name: "Cove Island Park",
     address: {
@@ -78,7 +78,7 @@ var places = [{
         lng: -73.527111
     },
     number: null,
-    description: "Mini park. Glenbrook Road & Daskam Place: 0.64 acres. Daskam Park was named for Walter D. Daskam, who was the first Treasurer of the Stamford Trust Company in 1891. Daskam Park is a quiet little park located near the intersection of Glenbook Road and Daskam Place on the city's east side.&nbsp; The area is perfect for a midday break or a late-day stroll and features park benches, tall trees and a grassy field."
+    description: "Mini park. Glenbrook Road & Daskam Place: 0.64 acres. Daskam Park was named for Walter D. Daskam, who was the first Treasurer of the Stamford Trust Company in 1891. Daskam Park is a quiet little park located near the intersection of Glenbook Road and Daskam Place on the city's east side. The area is perfect for a midday break or a late-day stroll and features park benches, tall trees and a grassy field."
 }, {
     name: "DePreta Park",
     address: {
@@ -126,7 +126,7 @@ var places = [{
         lng: -73.513500
     },
     number: null,
-    description: "Courtland Avenue & E. Main Street: 4.9 acres. The Edward Hunt Recreation Complex was named in honor of Edward Hunt, who was Superintendent of the Board of Recreation from 1928 to 1972. The Edward Hunt Recreation Complex is a large park located on the city's east side at the corner of East Main Street and Courtland Avenue.&nbsp; The park is pet friendly and features playsets, swings, picnic tables and pavilions. There are also many restaurants and other businesses located nearby making lunch or dinner only a short walk away."
+    description: "Courtland Avenue & E. Main Street: 4.9 acres. The Edward Hunt Recreation Complex was named in honor of Edward Hunt, who was Superintendent of the Board of Recreation from 1928 to 1972. The Edward Hunt Recreation Complex is a large park located on the city's east side at the corner of East Main Street and Courtland Avenue. The park is pet friendly and features playsets, swings, picnic tables and pavilions. There are also many restaurants and other businesses located nearby making lunch or dinner only a short walk away."
 }, {
     name: "Fort Stamford",
     address: {
@@ -166,7 +166,7 @@ var places = [{
         lng: -73.550855
     },
     number: null,
-    description: "Richmond Hill Avenue 1.05 acres. Hatch Field was named for Alfred H. Hatch, who donated land to the City in 1917 to be used for park purposes. Hatch Field Park is a cozy recreation area located on the city's west side near the corner of Richmond Hill and Fairfield Avenue.&nbsp; The facility features a jungle gym, swings and slides for children to enjoy as well as park benches and a pavilion.&nbsp; There is also a regulation basketball court on the premise where 5 on 5 games get rather competitive at times."
+    description: "Richmond Hill Avenue 1.05 acres. Hatch Field was named for Alfred H. Hatch, who donated land to the City in 1917 to be used for park purposes. Hatch Field Park is a cozy recreation area located on the city's west side near the corner of Richmond Hill and Fairfield Avenue. The facility features a jungle gym, swings and slides for children to enjoy as well as park benches and a pavilion. There is also a regulation basketball court on the premise where 5 on 5 games get rather competitive at times."
 }, {
     name: "Hope Street Island Park",
     address: {
@@ -214,7 +214,7 @@ var places = [{
         lng: -73.538298
     },
     number: null,
-    description: "Facility. Bedford Street: 0.37 acres. Formerly Bedford Park, Latham Park was renamed in 1970 after John C. Latham, who was Stamford’s first Congressional Medal of Honor winner during World War I. Mr. Latham was an expert horticulturist. He had a florist business on Bedford Street and also worked with the Park Department. Latham Park is one of the oldest parks in the City. Across from the Avon Theater sits John Latham park, a large swatch of green in the heart of downtown.&nbsp; The park includes bronze art of two women talking and a sculpture of a little girl sitting on a bench.&nbsp; The tables located along the east side of the park are perfect for picnicking or chess games.&nbsp; Many local employees enjoy this park as an area for an outdoor lunch on nice days."
+    description: "Facility. Bedford Street: 0.37 acres. Formerly Bedford Park, Latham Park was renamed in 1970 after John C. Latham, who was Stamford’s first Congressional Medal of Honor winner during World War I. Mr. Latham was an expert horticulturist. He had a florist business on Bedford Street and also worked with the Park Department. Latham Park is one of the oldest parks in the City. Across from the Avon Theater sits John Latham park, a large swatch of green in the heart of downtown. The park includes bronze art of two women talking and a sculpture of a little girl sitting on a bench. The tables located along the east side of the park are perfect for picnicking or chess games. Many local employees enjoy this park as an area for an outdoor lunch on nice days."
 }, {
     name: "Lawn Avenue Park",
     address: {
@@ -246,7 +246,7 @@ var places = [{
         lng: -73.523488
     },
     number: null,
-    description: "Glenbrook Road & Scofield Avenue: 2.35 acres. Northrop Park is a friendly neighborhood playground located on the city's East Side near the corner of Glenbrook Road and Scofield Avenue.&nbsp;It is mainly used as a recess and gym class area for the nearby Julia Stark Elementary School, but&nbsp;it&nbsp;is accessible to all.&nbsp;The grounds feature play sets, slides and swings, as well as a ballpark that is the home field&nbsp;for the Northrop Baseball League for children ages 4 to 12."
+    description: "Glenbrook Road & Scofield Avenue: 2.35 acres. Northrop Park is a friendly neighborhood playground located on the city's East Side near the corner of Glenbrook Road and Scofield Avenue. It is mainly used as a recess and gym class area for the nearby Julia Stark Elementary School, but it is accessible to all. The grounds feature play sets, slides and swings, as well as a ballpark that is the home field for the Northrop Baseball League for children ages 4 to 12."
 }, {
     name: "Rippowam Park",
     address: {
@@ -254,7 +254,7 @@ var places = [{
         lng: -73.539335
     },
     number: null,
-    description: "Facility. Washington Boulevard & Main Street: 0.15 acres. Washington Boulevard, West Broad Street & Whitaker Street: 2.37 acres. Also know as Rippowam Park is located across from the Rippowam Place shops and businesses. The park adds a pleasant touch of green to this large downtown intersection with its&nbsp;many local varieties of plants and flowers. Rippowam Park also houses a monument to Charles E. Rowell, a Stamford physician who served as Mayor of the city from 1911 to 1913."
+    description: "Facility. Washington Boulevard & Main Street: 0.15 acres. Washington Boulevard, West Broad Street & Whitaker Street: 2.37 acres. Also know as Rippowam Park is located across from the Rippowam Place shops and businesses. The park adds a pleasant touch of green to this large downtown intersection with its many local varieties of plants and flowers. Rippowam Park also houses a monument to Charles E. Rowell, a Stamford physician who served as Mayor of the city from 1911 to 1913."
 }, {
     name: "Rotary Park",
     address: {
@@ -263,14 +263,6 @@ var places = [{
     },
     number: null,
     description: "Facility. Tresser Boulevard & Greenwich Avenue: 0.55 acres. The Rotary Club paid for the design and landscaping of this City property to commemorate its 50th anniversary. Rotary Park, connected by the Greenbelt to Roger Smith Park, runs alongside Mill River and West Main Street. The park includes a large, creatively designed playground and the end of a walking trail which heads north from the park. The playgrounds are separated by age and require parent supervision."
-}, {
-    name: "St. John's Park",
-    address: {
-        lat: 41.060579,
-        lng: -73.535251
-    },
-    number: null,
-    description: "Facility. Main Street: 0.78 acres. St. John’s Park appears on a map of Stamford Village dated 1837 as ‘East Green’ and has been used as a park for over 140 years. The monument is a memorial to soldiers of the French & Indian War, Revolutionary War, War of 1812, Mexican War, Civil War, Spanish American War and World War I and was dedicated in 1923."
 }, {
     name: "Saunders Park",
     address: {
@@ -312,6 +304,14 @@ var places = [{
     number: null,
     description: "The Stamford Museum & Nature Center, located in Stamford, Connecticut, is an art, history, nature, and agricultural sciences museum. The property covers 118 acres beginning about half a mile north of the Merritt Parkway."
 }, {
+    name: "St. John's Park",
+    address: {
+        lat: 41.060579,
+        lng: -73.535251
+    },
+    number: null,
+    description: "Facility. Main Street: 0.78 acres. St. John’s Park appears on a map of Stamford Village dated 1837 as ‘East Green’ and has been used as a park for over 140 years. The monument is a memorial to soldiers of the French & Indian War, Revolutionary War, War of 1812, Mexican War, Civil War, Spanish American War and World War I and was dedicated in 1923."
+}, {
     name: "Vine Road Little League Field",
     address: {
         lat: 41.099120,
@@ -350,7 +350,7 @@ var places = [{
         lng: -73.555748
     },
     number: null,
-    description: "Off Scofieldtown Road: 19.15 acres. Woodley Road Bird Sanctuary is a wooded area enclosed by a North Stamford neighborhood where locals come to take in the scenery.&nbsp;A large variety of plant and animal life attracts visitors, making this particular facility the perfect place for a morning hike or afternoon picnic.&nbsp;The park can be found in the hills about 2 miles from the Merritt Parkway and has a couple of different entrances.&nbsp;The easiest way to access by car is from either Woodley Road or Brookdale Drive, but residents can walk into the park from a number of locations."
+    description: "Off Scofieldtown Road: 19.15 acres. Woodley Road Bird Sanctuary is a wooded area enclosed by a North Stamford neighborhood where locals come to take in the scenery. A large variety of plant and animal life attracts visitors, making this particular facility the perfect place for a morning hike or afternoon picnic. The park can be found in the hills about 2 miles from the Merritt Parkway and has a couple of different entrances. The easiest way to access by car is from either Woodley Road or Brookdale Drive, but residents can walk into the park from a number of locations."
 }];
 // Specify features and elements to define styles.
 var styleArray = [{

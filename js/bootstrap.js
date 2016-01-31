@@ -394,7 +394,6 @@ if (typeof jQuery === 'undefined') {
     }
 
     this.interval = clearInterval(this.interval)
-
     return this
   }
 

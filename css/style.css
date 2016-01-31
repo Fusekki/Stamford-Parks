@@ -229,7 +229,6 @@ body.openmenu {
 #drawer-item:hover {
     color: #fff;
     background-color: #a52a2a;
-
 }
 
 #drawer-results {
@@ -431,3 +430,103 @@ body.openmenu {
 }
 
 /*End Drawer CSS*/
+@media (max-width:800px) {
+    #map-canvas {
+        height: 95%;
+        padding-top: 2%;
+    }
+
+    #drawer-item {
+        font-size: 22px;
+    }
+
+    #fs-header {
+        height: 32%;
+    }
+}
+
+@media (max-width:450px) {
+    .drawer-item-double {
+        width: 100px;
+        -webkit-column-width: 100px;
+    /* Chrome, Safari, Opera */
+        column-width: 100px;
+    }
+
+    .drawer-item-single {
+        width: 200px;
+        -webkit-column-width: 200px;
+    /* Chrome, Safari, Opera */
+        column-width: 200px;
+    }
+
+    .page-title {
+        font-size: 25px;
+    }
+
+    #firstHeading {
+        font-size: 19px;
+    }
+
+    .modal-dialog {
+        margin-top: 1px;
+        margin-bottom: 0;
+        height: 600px;
+    }
+
+    #model-desc {
+        font-size: 11px;
+        margin: 7px;
+    }
+
+    #bodyContent {
+        overflow-y: auto;
+        height: 49%;
+    }
+
+    #yelp-img-inner {
+        height: 22%;
+    }
+
+    #fs-img-inner {
+        height: 16%;
+    }
+
+    #fsAddress-item,#yelp-status,#fs-status,#fs-tips-item,.fs-element-show,#yelp-description,#yelp-address,#yelpPhone {
+        font-size: 11px;
+    }
+
+    #yelp-header,#yelp-status,#fs-status {
+        height: 18%;
+    }
+
+    #img-inner,#fsCrossStreet {
+        display: none;
+    }
+
+    #fs-tips-li {
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+
+    #fs-tips-content {
+        margin-top: 10px;
+    }
+
+    .modal-gallery,#gallery,#gallery-header,.carousel,.carousel-inner {
+        height: 97%;
+    }
+
+    #map-canvas {
+        height: 95%;
+        padding-top: 2%;
+    }
+
+    #drawer-item {
+        font-size: 14px;
+    }
+
+    #fs-header {
+        height: 20%;
+    }
+}
