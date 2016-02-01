@@ -162,7 +162,6 @@ body.openmenu {
     font-family: 'Gloria Hallelujah',cursive;
     color: #000;
     margin: 0 auto;
-    width: 10em;
     background-color: #fff;
 }
 
@@ -183,6 +182,11 @@ body.openmenu {
 
 #search-inner {
     background-color: #fff;
+}
+
+#list-inner {
+    height: 100vh;
+    overflow-y: auto;
 }
 
 #drawer-list {
@@ -246,7 +250,7 @@ body.openmenu {
 .modal-dialog {
     margin-top: 20px;
     margin-bottom: 0;
-    height: 900px;
+    height: 96vh;
 }
 
 .modal-content {
@@ -348,7 +352,7 @@ body.openmenu {
     margin: 10px;
 }
 
-#fs-body-content {
+#fs-body-content,#fs-body-container {
     height: 61%;
 }
 
@@ -357,15 +361,12 @@ body.openmenu {
 }
 
 #fs-tips-li {
-    height: 134%;
+    height: 100%;
     overflow-y: auto;
 }
 
 .fs-element-show {
     display: inherit;
-}
-
-#fs-header {
 }
 
 #fs-logo {
@@ -430,7 +431,86 @@ body.openmenu {
 }
 
 /*End Drawer CSS*/
-@media (max-width:800px) {
+/* iPad */
+@media screen and (max-width: 768px) {
+    .modal-dialog {
+        height: 96vh;
+    }
+
+    #yelp-img-inner {
+        height: 95%;
+    }
+
+    #yelp-address {
+        margin-top: 17px;
+    }
+
+    .tab-content {
+        height: 84%;
+    }
+
+    .pill-text {
+        font-size: 18px;
+    }
+
+    #yelp-status,#fs-status {
+        margin: 24px;
+    }
+
+    #pill-yelp,#pill-foursquare,#pill-gallery {
+        height: 95%;
+    }
+
+    .modal-results {
+        height: 52%;
+    }
+
+    #bodyContent {
+        height: 33%;
+        overflow-y: auto;
+    }
+
+    #img-inner,#fsCrossStreet {
+        display: none;
+    }
+
+    #yelp-img-inner {
+        height: 21%;
+    }
+
+    #yelp-header {
+        height: 15%;
+    }
+
+    #fs-header {
+        height: 40%;
+    }
+
+    #fs-body-content,#fs-body-container {
+        height: 80%;
+    }
+
+    .modal-gallery {
+        height: 94%;
+    }
+
+    #model-desc {
+        font-size: 17px;
+        margin: 15px;
+    }
+
+    .modal-body {
+        height: 82%;
+    }
+
+    .modal-results {
+        height: 52%;
+    }
+
+    #bodyContent {
+        height: 48%;
+    }
+
     #map-canvas {
         height: 95%;
         padding-top: 2%;
@@ -440,12 +520,25 @@ body.openmenu {
         font-size: 22px;
     }
 
+    .modal-results {
+        height: 70%;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        height: 74%;
+    }
+
     #fs-header {
         height: 32%;
     }
+
+    #fsAddress-item,#yelp-status,#fs-status,#fs-tips-item,.fs-element-show,#yelp-description,#yelp-address,#yelpPhone {
+        font-size: 18px;
+    }
 }
 
-@media (max-width:450px) {
+/* iPhone/Small phone screen */
+@media screen and (max-width: 400px) {
     .drawer-item-double {
         width: 100px;
         -webkit-column-width: 100px;
@@ -471,7 +564,11 @@ body.openmenu {
     .modal-dialog {
         margin-top: 1px;
         margin-bottom: 0;
-        height: 600px;
+        height: 99vh;
+    }
+
+    .pill-text,#yelp-phone {
+        font-size: 12px;
     }
 
     #model-desc {
@@ -479,9 +576,13 @@ body.openmenu {
         margin: 7px;
     }
 
+    .modal-body {
+        height: 79%;
+    }
+
     #bodyContent {
         overflow-y: auto;
-        height: 49%;
+        height: 35%;
     }
 
     #yelp-img-inner {
@@ -490,6 +591,10 @@ body.openmenu {
 
     #fs-img-inner {
         height: 16%;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        height: 40%;
     }
 
     #fsAddress-item,#yelp-status,#fs-status,#fs-tips-item,.fs-element-show,#yelp-description,#yelp-address,#yelpPhone {
@@ -510,11 +615,11 @@ body.openmenu {
     }
 
     #fs-tips-content {
-        margin-top: 10px;
+        margin-top: 26px;
     }
 
     .modal-gallery,#gallery,#gallery-header,.carousel,.carousel-inner {
-        height: 97%;
+        height: 95%;
     }
 
     #map-canvas {

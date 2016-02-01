@@ -125,10 +125,10 @@ var ViewModel = function() {
     });
     // These knockout computed variables handle the CSS to apply based on the logic below.
     self.resultsStyle = ko.pureComputed(function() {
-        return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-double";
+        return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-single";
     });
     self.drawerStyle = ko.pureComputed(function() {
-        return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-double";
+        return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-single";
     });
     self.fsTipsStyle = ko.pureComputed(function() {
         return self.fsTips().length > 0 ? "fs-element-show" : "fs-element-hide";
@@ -136,8 +136,9 @@ var ViewModel = function() {
     self.fsCrossStyle = ko.pureComputed(function() {
         return self.fsCrossStreet() === "" ? "fs-element-show" : "fs-element-hide";
     });
-    // End Knockout Declarations
-    // This is the hamburger menu code.
+    // <!-- End Knockout Declarations -->
+    //
+    // <!-- This is the hamburger menu code. -->
     // Credit to Jake Rocheleau @ http://blog.templatemonster.com/2014/06/23/responsive-sliding-drawer-menu-lightbox-effect/
     this.menubtnTgl = function() {
         if ($('body').hasClass('openmenu')) {
@@ -167,26 +168,30 @@ var ViewModel = function() {
                 }, menuspeed);
             }
         }
-        // End hamburger menu.
-        // Function Declarations
+        // <!-- End hamburger menu -->
     this.currentMarker = function() {
         return self.markers[self.currentPlace()];
     };
     this.search = function(value) {
         // remove all the current places, which removes them from the view
+        // console.log(self.markers);
+        // console.log(self.places());
         self.places.removeAll();
-        for (var i in places) {
-            if (places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                self.places.push(places[i]);
+        // for (var i in places) {
+        var i = 0;
+        places.forEach(function(placeItem) {
+            if (placeItem.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+                self.places.push(new Place(placeItem, i));
+                i++;
             }
-        }
-        for (i in self.markers) {
-            if (self.markers[i].title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+        });
+        self.markers.forEach(function(markerItem) {
+            if (markerItem.title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
                 self.markers[i].setVisible(false);
             } else {
-                self.markers[i].setVisible(true);
+                markerItem.setVisible(true);
             }
-        }
+        });
         if (value.length === 0) {
             self.populateLocations();
             // console.log('empty value');
@@ -228,7 +233,7 @@ var ViewModel = function() {
         }
     };
     this.selectPlace = function(place) {
-        // console.log(place);
+        //  console.log(place);
         //  console.log('Drawer or map item clicked for ' + place.name);
         if (typeof self.currentMarker() != 'undefined') {
             //    console.log('item defined.');
@@ -246,12 +251,10 @@ var ViewModel = function() {
                 self.currentMarker().setAnimation(null);
             }
         } else {
-           // onsole.log('Currentitem not defined.');
+            // onsole.log('Currentitem not defined.');
             // console.log("First time click.");
         }
-
         // Chnage the selected Marker icon to green.
-
         self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
         // console.log('Pan to started for ' + place.name);
         var latLng = new google.maps.LatLng(place.lat, place.lng);
@@ -338,7 +341,7 @@ var ViewModel = function() {
             try {
                 for (i = 0; i < element.photos.groups[0].items.length; i++) {
                     self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
-                    //            console.log(element.photos.groups[0].items.length + ' photos found.');
+                    // console.log(element.photos.groups[0].items.length + ' photos found.');
                 }
                 $('#gallery-pill').show();
             } catch (err) {
@@ -445,9 +448,9 @@ var ViewModel = function() {
             complete: callComplete('fs'),
             beforeSend: callStart('fs'),
             success: function(results) {
-                //      console.log("FS SUCCESS! %o", results);
+                // console.log("FS SUCCESS! %o", results);
                 results = results.response.venues;
-                //        console.log(resultsTotal + ' results found in FS. Analyzing...');
+                // console.log(resultsTotal + ' results found in FS. Analyzing...');
                 var filteredResults = 0;
                 var city = near.slice(0, -4);
                 $.each(results, function(index, element) {
@@ -495,12 +498,12 @@ var ViewModel = function() {
         };
         $.ajax(settings);
     };
-    // End Function declarations
+    var menuwidth = null;
     // Hamburger menu variables.
     if (window.matchMedia('(min-width: 400px)').matches) {
-        var menuwidth = 350;
+        menuwidth = 250;
     } else {
-        var menuwidth = 250;
+        menuwidth = 150;
     }
     var menuspeed = 400; // milliseconds for sliding menu animation time
     var btnpadding = 2;
@@ -512,13 +515,15 @@ var ViewModel = function() {
         //  console.log('display modal.');
         //   console.log(Map);
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
-        //    console.log('carousel set to cycle.');
-        $('.carousel').carousel('cycle');
+        $('.slide').attr('data-ride', 'carousel');
+        // console.log('carousel set to cycle.');
+        // $('.carousel').carousel('cycle');
     });
     //  Pause the auto-slide on the carousel when the modal is hidden.
     $('#modal-place').on('hidden.bs.modal', function() {
+        $('.slide').attr('data-ride', '');
         //  console.log('carousel set to pause.');
-        $('.carousel').carousel('pause').removeData();
+        //  $('.carousel').carousel('pause').removeData();
         //  console.log($('.carousel').Carousel);
         // Add code to reset the tab active on the tabs to #modal-yelp.
     });
