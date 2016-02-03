@@ -1,11 +1,15 @@
-/** {
+* {
   border: 1px solid red !important;
-}*/
+}
 /*  Main Area */
 html,body {
     margin: 0;
     overflow: hidden;
     height: 100%;
+}
+
+body {
+    background-color: #ee7401;
 }
 
 header {
@@ -17,17 +21,19 @@ a {
     color: #fff;
 }
 
+
 .container-fluid {
+    padding: 0;
     height: 100%;
-    z-index: -1;
 }
+
 
 .page-title {
     font-family: 'Candal',sans-serif;
     font-size: 45px;
     color: #000;
-    margin: 0;
     background-color: #fff;
+    z-index: -1;
 }
 
 #border-inner {
@@ -35,8 +41,9 @@ a {
 }
 
 #map-row {
-    height: 55%;
+    height: 55vh;
     background-color: #6a2474;
+    margin: 0;
 }
 
 #map-canvas {
@@ -60,7 +67,8 @@ a {
 
 #footer {
     background-color: #d10031;
-    height: 38%;
+    height: 38vh;
+    margin: 0;
 }
 
 #openBtn {
@@ -80,8 +88,8 @@ a {
     max-width: 1000px;
 }
 
-.menubtn {
-/* needs positioning for z-index http://stackoverflow.com/a/10600930/477958 */
+/*.menubtn {
+
     position: relative;
     z-index: 1;
     color: #274a61;
@@ -92,28 +100,159 @@ a {
     background-position: 50% 50%;
     background-size: 25px 25px;
     background-repeat: no-repeat;
-}
+}*/
 
-.menubtn:hover,.openmenu .menubtn {
+/*.menubtn:hover,.openmenu .menubtn {
     color: #bdd43e;
     background-image: url(hamburger-active.png);
-}
+}*/
+
+/*.menubtn:target {
+    transition-prop
+}*/
 
 /** toggle menu **/
-body.openmenu {
+/*body.openmenu {
     overflow: hidden;
-}
+}*/
 
-#pgcontainer {
-    padding: 45px 0;
-    margin: 0;
-}
-
-.openmenu {
+/*.openmenu {
     top: 0;
 }
 
-#hamburgermenu {
+.navigation {
+    height: 100%;
+    width: 100%;
+    background: #373737;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+
+    background-color: #ee7401;
+    z-index: 1;
+}*/
+#search-bar, #search-input, #list-inner, #drawer-list, #drawer-item {
+    z-index: 1;
+}
+
+                /* Navigation Menu - Background */
+                .navigation {
+                  /* critical sizing and position styles */
+                  width: 100%;
+                  height: 100%;
+                  position: fixed;
+                  top: 0;
+                  right: 0;
+                  bottom: 0;
+                  left: 0;
+                  z-index: 0;
+
+                  /* non-critical appearance styles */
+
+                }
+
+                /* Navigation Menu - List items */
+                .nav-item {
+                  /* non-critical appearance styles */
+
+                  border-top: 1px solid #111;
+                  border-bottom: 1px solid #000;
+                }
+
+                .nav-item a {
+                  /* non-critical appearance styles */
+                  display: block;
+                  padding: 1em;
+                  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+                  color: white;
+                  font-size: 1.2em;
+                  text-decoration: none;
+                  transition: color 0.2s, background 0.5s;
+                }
+
+                .nav-item a:hover {
+                  color: #c74438;
+                  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);
+                }
+
+                /* Site Wrapper - Everything that isn't navigation */
+                .site-wrap {
+                  /* Critical position and size styles */
+                  min-height: 100%;
+                  min-width: 100%;
+                  background-color: white; /* Needs a background or else the nav will show through */
+                  position: relative;
+                  top: 0;
+                  bottom: 100%;
+                  left: 0;
+                  z-index: 1;
+
+                  /* non-critical apperance styles */
+/*                  padding: 4em;*/
+                  background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);
+                  background-size: 200%;
+                }
+
+                /* Nav Trigger */
+                .nav-trigger {
+                  /* critical styles - hide the checkbox input */
+                  position: absolute;
+                  clip: rect(0, 0, 0, 0);
+                }
+
+                label[for="nav-trigger"] {
+                  /* critical positioning styles */
+                  position: fixed;
+                  left: 15px; top: 15px;
+                  z-index: 2;
+
+                  /* non-critical apperance styles */
+                  height: 30px;
+                  width: 30px;
+                  cursor: pointer;
+                  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+                  background-size: contain;
+                }
+
+                /* Make the Magic Happen */
+                .nav-trigger + label, .site-wrap {
+                  transition: left 0.2s;
+                }
+
+                .nav-trigger:checked + label {
+                  left: 265px;
+                }
+
+                .nav-trigger:checked ~ .site-wrap {
+                 left: 254px;
+                  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+                }
+
+                body {
+                    /* Without this, the body has excess horizontal scroll when the menu is open */
+                  overflow-x: hidden;
+                }
+
+                /* Additional non-critical styles */
+
+                h1, h3, p {
+                /*  max-width: 600px;*/
+                  margin: 0 auto 1em;
+                }
+
+                code {
+                    padding: 2px;
+                    background: #ddd;
+                }
+
+#search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar{
+    width: 250px;
+}
+
+/*.navigation {
     height: 100%;
     width: 0;
     background: #373737;
@@ -128,7 +267,7 @@ body.openmenu {
     background-color: #ee7401;
     z-index: 1;
 }
-
+*/
 #hamburgermenu ul {
     z-index: 101;
     overflow-y: auto;
@@ -168,7 +307,6 @@ body.openmenu {
 #search-input {
     top: 0;
     left: 0;
-    width: 100%;
     line-height: 15px;
     margin: 0;
     height: 30px;
@@ -185,16 +323,21 @@ body.openmenu {
 }
 
 #list-inner {
-    height: 100vh;
+    height: 89%;
     overflow-y: auto;
+    list-style: none;
+    overflow-x: hidden;
 }
 
 #drawer-list {
     list-style: none;
     padding: 0;
-    margin: 5% 0 0 1%;
+/*    margin: 5% 0 0 1%;*/
     color: #f2f2f2;
     background-color: #ee7401;
+    column-count: 1;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
 }
 
 .drawer-list-single {
@@ -214,6 +357,7 @@ body.openmenu {
     font-size: 20px;
     color: #f2f2e7;
     display: inline-block;
+
 }
 
 .drawer-item-double {
@@ -247,6 +391,10 @@ body.openmenu {
 }
 
 /*  Modal Area */
+
+.modal-open {
+
+}
 .modal-dialog {
     margin-top: 20px;
     margin-bottom: 0;

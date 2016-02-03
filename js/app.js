@@ -9,7 +9,7 @@ var Map = {
                 center: stamford,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scroolwheel: true,
-                zoom: 15,
+                zoom: 12,
                 styles: styleArray
             });
         } catch (err) {
@@ -46,6 +46,10 @@ var Map = {
         } else {
             // console.log('no animation detected.  Activating animation for ' + marker.title);
             marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                marker.setAnimation(null);
+                }, 3000);
+
             // console.log('animation set to = ' + marker.getAnimation());
         }
         // console.log('marker = ' + marker.getAnimation());
@@ -73,7 +77,7 @@ function mark(place, map) {
             label: place.marker(),
             animation: google.maps.Animation.DROP
         });
-        self.markers.push(marker);
+        //self.markers.push(marker);
         marker.setMap(myMap);
     }
     // Place object for model information (totally seperate from AJAX calls.)
@@ -85,13 +89,16 @@ function Place(data, num) {
         this.lng = data.address.lng;
         this.number = num;
         this.description = data.description;
+        this._destroy = ko.observable(false);
+        this.marker = null;
+       // this.marker = null;
     }
     // Viewmodel with Knockout.
 var ViewModel = function() {
     "use strict";
     var self = this;
     self.isBorder = false;
-    self.markers = [];
+//    self.markers = [];
     // Knockout declarations
     self.yelpName = ko.observable();
     self.yelpPhone = ko.observable();
@@ -119,120 +126,136 @@ var ViewModel = function() {
     self.currentPlace = ko.observable(-1); // contains index value that wires model elements to drawer list
     self.currentName = ko.observable();
     self.currentDesc = ko.observable();
+    self.showModel = ko.observable(false);
+    self.ajax = ko.observable(false);
+
+
     // This Knockout computer variable adjusts the number of columns to display based on the filtered list count.
     self.resultsFound = ko.pureComputed(function() {
-        return self.places().length;
+        var i = 0;
+        self.places().forEach(function(placeItem) {
+            if (placeItem._destroy() === false) {
+                i++;
+            }
+        })
+        return i;
     });
     // These knockout computed variables handle the CSS to apply based on the logic below.
-    self.resultsStyle = ko.pureComputed(function() {
-        return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-single";
-    });
-    self.drawerStyle = ko.pureComputed(function() {
-        return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-single";
-    });
+    // self.resultsStyle = ko.pureComputed(function() {
+    //     return self.resultsFound() < 26 ? "drawer-item-single" : "drawer-item-single";
+    // });
+    // self.drawerStyle = ko.pureComputed(function() {
+    //     return self.resultsFound() < 26 ? "drawer-list-single" : "drawer-list-single";
+    // });
     self.fsTipsStyle = ko.pureComputed(function() {
         return self.fsTips().length > 0 ? "fs-element-show" : "fs-element-hide";
     });
     self.fsCrossStyle = ko.pureComputed(function() {
         return self.fsCrossStreet() === "" ? "fs-element-show" : "fs-element-hide";
     });
-    // <!-- End Knockout Declarations -->
-    //
-    // <!-- This is the hamburger menu code. -->
-    // Credit to Jake Rocheleau @ http://blog.templatemonster.com/2014/06/23/responsive-sliding-drawer-menu-lightbox-effect/
-    this.menubtnTgl = function() {
-        if ($('body').hasClass('openmenu')) {
-            jsAnimateMenu('close');
-        } else {
-            jsAnimateMenu('open');
-        }
-    };
+    self.tabActive = ko.pureComputed(function() {
+        return self.ajax() === true ? "active" : "";
+    })
 
-    function jsAnimateMenu(tog) {
-            if (tog == 'open') {
-                $('body').addClass('openmenu');
-                $('#hamburgermenu').animate({
-                    width: poswidth
-                }, menuspeed);
-                $('.overlay').animate({
-                    left: poswidth
-                }, menuspeed);
-            }
-            if (tog == 'close') {
-                $('body').removeClass('openmenu');
-                $('#hamburgermenu').animate({
-                    width: "0"
-                }, menuspeed);
-                $('.overlay').animate({
-                    left: "0"
-                }, menuspeed);
-            }
-        }
-        // <!-- End hamburger menu -->
+    // <!-- End Knockout Declarations -->
+
+
     this.currentMarker = function() {
-        return self.markers[self.currentPlace()];
+        return self.places()[self.currentPlace()];
     };
     this.search = function(value) {
         // remove all the current places, which removes them from the view
         // console.log(self.markers);
-        // console.log(self.places());
-        self.places.removeAll();
+         console.log(self.places());
+      //  self.places.removeAll();
         // for (var i in places) {
-        var i = 0;
-        places.forEach(function(placeItem) {
+        // var i = 0;
+        self.places().forEach(function(placeItem) {
+            console.log(placeItem);
             if (placeItem.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-                self.places.push(new Place(placeItem, i));
-                i++;
-            }
-        });
-        self.markers.forEach(function(markerItem) {
-            if (markerItem.title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
-                self.markers[i].setVisible(false);
+                console.log(placeItem);
+                placeItem._destroy(false);
+                placeItem.marker.setVisible(true);
+              //  self.places.push(new Place(placeItem, i));
+                // i++;
             } else {
-                markerItem.setVisible(true);
+                console.log(placeItem);
+                placeItem._destroy(true);
+                placeItem.marker.setVisible(false);
             }
+
         });
+        // self.markers.forEach(function(markerItem) {
+        //     if (markerItem.title.toLowerCase().indexOf(value.toLowerCase()) < 0) {
+        //         markerItem.setVisible(false);
+        //     } else {
+        //         markerItem.setVisible(true);
+        //     }
+        // });
         if (value.length === 0) {
-            self.populateLocations();
+            //self.populateLocations();
             // console.log('empty value');
         }
     };
     this.placeMarker = function(place, num) {
-        var pos = new google.maps.LatLng(place.lat, place.lng);
+        console.log('in placeMarker.');
+        var pos = new google.maps.LatLng(place.address.lat, place.address.lng);
+      //  var bounds = new google.maps.LatLngBounds();
         var marker = new google.maps.Marker({
             title: place.name,
             position: pos,
             number: num,
-            animation: null
+            animation: null,
         });
-        self.markers.push(marker);
+
+        //bounds.extend(pos);
+       // Map.instance.fitBounds(bounds);
+
+
+        //self.places()[num].push(marker);
+       // self.markers.push(marker);
         marker.addListener('click', function() {
             // console.log('clicked marker for ' + this.title + '. current animation = ' + this.getAnimation());
             self.selectPlace(place);
         });
+
+     //   console.log(marker);
+
+        self.places()[num].marker = marker;
+        console.log(marker);
         marker.setMap(Map.instance);
+        console.log('after set map.');
+    //    console.log(marker);
+
     };
     this.populateLocations = function() {
-        self.places.removeAll();
-        var i = 0;
-        places.forEach(function(placeItem) {
-            self.places.push(new Place(placeItem, i));
-            i++;
-        });
-        // Check to make sure markers do not exist.
-        if (self.markers.length === 0) {
-            for (i = 0; i < self.places().length; i++) {
-                var place = self.places()[i];
-                self.placeMarker(place, i);
-            }
-        }
-        for (i in self.markers) {
-            if (self.markers[i].visible === false) {
-                self.markers[i].setVisible(true);
-            }
-        }
+        console.log('in populate');
+
+        // self.places.removeAll();
+         var i = 0;
+         places.forEach(function(placeItem) {
+             self.places.push(new Place(placeItem, i));
+    //         console.log(self.places());
+             self.placeMarker(placeItem, i);
+ //            console.log(placeItem);
+             i++;
+         });
+  //       console.log(self.places());
+        // // Check to make sure markers do not exist.
+        // if (self.markers.length === 0) {
+        //     for (i = 0; i < self.places().length; i++) {
+        //         var place = self.places()[i];
+        //         self.placeMarker(place, i);
+        //     }
+        // }
+        // for (i in self.markers) {
+        //     if (self.markers[i].visible === false) {
+        //         self.markers[i].setVisible(true);
+        //     }
+        // }
     };
     this.selectPlace = function(place) {
+        var currentPlace = self.places()[place.number];
         //  console.log(place);
         //  console.log('Drawer or map item clicked for ' + place.name);
         if (typeof self.currentMarker() != 'undefined') {
@@ -245,17 +268,18 @@ var ViewModel = function() {
                 // console.log('new item is selected : ' + place.name);
                 // Clear the marker of the previously selected item.
                 // console.log('removing green from previous icon : ' + self.markers[self.currentPlace()].title);
-                self.markers[self.currentPlace()].setIcon('');
+                currentPlace.marker.setIcon('');
                 // console.log('Remove animation on previous item: ' + self.markers[self.currentPlace()].title);
                 // Check for icon animation for previous entry.  If it is active, set it to null.
-                self.currentMarker().setAnimation(null);
+                currentPlace.marker.setAnimation(null);
             }
         } else {
             // onsole.log('Currentitem not defined.');
             // console.log("First time click.");
         }
         // Chnage the selected Marker icon to green.
-        self.markers[place.number].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        console.log(self.places());
+        currentPlace.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
         // console.log('Pan to started for ' + place.name);
         var latLng = new google.maps.LatLng(place.lat, place.lng);
         Map.instance.panTo(latLng);
@@ -264,26 +288,33 @@ var ViewModel = function() {
         // console.log('Pan to ended.');
         // console.log(self.markers[place.number]);
         // console.log('Toggle animation for current item : ' + self.markers[place.number].title);
-        Map.toggleBounce(self.markers[place.number]);
+        Map.toggleBounce(place.marker);
         // console.log('Toggle animation completed for : ' + self.markers[place.number].title);
         // console.log('Setting new currentPlace to ' + self.markers[place.number].title);
         // Populate observables with new current marker informaton.
         self.currentPlace(place.number);
         self.currentDesc(place.description);
         self.currentName(place.name);
+        console.log(self.currentName());
+        console.log(self.currentDesc());
+        console.log(place);
         self.initAjax(place);
     };
     this.initAjax = function(place) {
         // console.log('initAjax called for ' + place.name);
         // console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
+        self.ajax(true);
+        console.log(place);
         self.clearObservables();
-        self.fillcontentWindow();
-        $('#model-data').show();
+        self.fillcontentWindow(place.number);
+        self.showModel(true);
+       // $('#model-data').show();
         YelpConnect(place.name);
         fsConnect(place.name);
     };
     this.clearObservables = function() {
         // This function clears the existing Knockout observable array variables before the Ajax call.
+        self.ajax(false);
         self.fsAddress.removeAll();
         self.fsImg.removeAll();
         self.fsTips.removeAll();
@@ -291,15 +322,16 @@ var ViewModel = function() {
         $('.nav-pills a:first').tab('show');
         $('.carousel-indicators a:first').tab('show');
     };
-    this.fillcontentWindow = function() {
-        // console.log(self.places()[self.currentPlace()]);
-        var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + self.places()[self.currentPlace()].name + '</b> ' + '</div>';
+    this.fillcontentWindow = function(number) {
+        var currentPlace = self.places()[number];
+        console.log(self.places()[number]);
+        var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + currentPlace.name + '</b> ' + '</div>';
         self.infoWindow.setOptions({
             content: contentString
         });
-        self.infoWindow.open(Map.instance, self.markers[self.currentPlace()]);
+        self.infoWindow.open(Map.instance, currentPlace.marker);
         // Chnage the selected Marker icon to green.
-        self.markers[self.currentPlace()].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        currentPlace.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
     };
     this.parseResults = function(element) {
         if (element !== null) {
@@ -527,17 +559,7 @@ var ViewModel = function() {
         //  console.log($('.carousel').Carousel);
         // Add code to reset the tab active on the tabs to #modal-yelp.
     });
-    $('#pg-container').click(function() {
-        self.menuToggle();
-    });
-    $('#titlediv, #map-row, #footer').on('click', function(e) {
-        if ($('body').hasClass('openmenu')) {
-            jsAnimateMenu('close');
-        }
-    });
-    $('.menubtn').on('click', function(e) {
-        e.preventDefault();
-    });
+
     // Initialize the map.
     Map.initMap(self);
     //Populate Map with Markers on initial load.
