@@ -89,18 +89,20 @@
                             <hr>
                             <div class="pills modal-results">
                                 <ul class="nav nav-pills">
-                                    <li class="active" id="yelp-pill">
+                                    <li id="yelp-pill" class="active">
                                         <a class="pill-text" data-toggle="pill" href="#pill-yelp">Yelp</a>
                                     </li>
                                     <li id="fs-pill">
                                         <a class="pill-text" data-toggle="pill" href="#pill-foursquare">Foursquare</a>
                                     </li>
-                                    <li id="gallery-pill">
+
+                                    <!-- Cannot get the gallery to work properly in having to rely solely on Knockout for DOM manipulation. -->
+<!--                                     <li id="gallery-pill">
                                         <a class="pill-text" data-toggle="pill" href="#pill-gallery">Gallery</a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                                 <div class="tab-content" id="tabmaster">
-                                    <div class="tab-pane" data-bind="css: tabActive" id="pill-yelp">
+                                    <div class="tab-pane active" id="pill-yelp">
                                         <div id="yelp-img-inner"><img alt='Yelp Logo' id='yelp-logo' src="./img/yelp_logo.png"></div>
                                         <div id="yelp-noresult" style="">
                                             <p id="yelp-status">No Yelp Results Found</p>
@@ -137,8 +139,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="pill-gallery">
-                                        <div class="modal-gallery" id="gallery-tab">
+                                    <!-- Cannot get the gallery to work properly in having to rely solely on Knockout for DOM manipulation. -->
+<!--                                     <div class="tab-pane" id="pill-gallery">
+                                       <div class="modal-gallery" id="gallery-tab">
                                             <div id="gallery">
                                                 <div id="gallery-header">
                                                     <div class="carousel slide" id="carousel-images">
@@ -151,9 +154,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="modal-footer">

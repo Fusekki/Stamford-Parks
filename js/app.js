@@ -59,6 +59,7 @@ var Map = {
 // Helper Objects (for error handling).
 var Helpers = {
     handleError: function(msg) {
+        console.log('in  handle error.');
         return alert(msg);
     },
     logError: function(msg) {
@@ -122,12 +123,12 @@ var ViewModel = function() {
     self.fsUrl = ko.observable();
     self.places = ko.observableArray([]);
     self.query = ko.observable('');
-    self.menuVisible = ko.observable('true');
+  //  self.menuVisible = ko.observable('true');
     self.currentPlace = ko.observable(-1); // contains index value that wires model elements to drawer list
     self.currentName = ko.observable();
     self.currentDesc = ko.observable();
     self.showModel = ko.observable(false);
-    self.ajax = ko.observable(false);
+    //self.ajax = ko.observable(false);
 
 
     // This Knockout computer variable adjusts the number of columns to display based on the filtered list count.
@@ -154,7 +155,25 @@ var ViewModel = function() {
         return self.fsCrossStreet() === "" ? "fs-element-show" : "fs-element-hide";
     });
     self.tabActive = ko.pureComputed(function() {
-        return self.ajax() === true ? "active" : "";
+        console.log('in tab active');
+        console.log(self.ajax());
+        if (self.ajax() == true) {
+            console.log('going to return "active"');
+        } else {
+            console.log('going to return ""');
+        }
+        return self.ajax() == true ? 'active' : '';
+    })
+
+    self.tabContentActive = ko.pureComputed(function() {
+        console.log('in tab active');
+        console.log(self.ajax());
+        if (self.ajax() == true) {
+            console.log('going to return "active"');
+        } else {
+            console.log('going to return ""');
+        }
+        return self.ajax() == true ? 'active' : '';
     })
 
     // <!-- End Knockout Declarations -->
@@ -198,7 +217,7 @@ var ViewModel = function() {
         }
     };
     this.placeMarker = function(place, num) {
-        console.log('in placeMarker.');
+   //     console.log('in placeMarker.');
         var pos = new google.maps.LatLng(place.address.lat, place.address.lng);
       //  var bounds = new google.maps.LatLngBounds();
         var marker = new google.maps.Marker({
@@ -222,9 +241,9 @@ var ViewModel = function() {
      //   console.log(marker);
 
         self.places()[num].marker = marker;
-        console.log(marker);
+     //   console.log(marker);
         marker.setMap(Map.instance);
-        console.log('after set map.');
+     //   console.log('after set map.');
     //    console.log(marker);
 
     };
@@ -278,7 +297,7 @@ var ViewModel = function() {
             // console.log("First time click.");
         }
         // Chnage the selected Marker icon to green.
-        console.log(self.places());
+       // console.log(self.places());
         currentPlace.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
         // console.log('Pan to started for ' + place.name);
         var latLng = new google.maps.LatLng(place.lat, place.lng);
@@ -295,22 +314,32 @@ var ViewModel = function() {
         self.currentPlace(place.number);
         self.currentDesc(place.description);
         self.currentName(place.name);
-        console.log(self.currentName());
-        console.log(self.currentDesc());
-        console.log(place);
+    //    console.log(self.currentName());
+    //    console.log(self.currentDesc());
+    //    console.log(place);
         self.initAjax(place);
     };
     this.initAjax = function(place) {
-        // console.log('initAjax called for ' + place.name);
+        console.log('initAjax called for ' + place.name);
         // console.log(place.name + ' has an animation of ' + self.currentMarker().getAnimation());
-        self.ajax(true);
+
+        console.log('self.ajax results = ');
+        console.log(self.ajax());
         console.log(place);
         self.clearObservables();
+        self.ajax(true);
+        if (self.ajax() == true) {
+            console.log('self.ajax is true');
+        }
+        else {
+            console.log('self.ajax showing false');
+        }
         self.fillcontentWindow(place.number);
         self.showModel(true);
        // $('#model-data').show();
         YelpConnect(place.name);
         fsConnect(place.name);
+
     };
     this.clearObservables = function() {
         // This function clears the existing Knockout observable array variables before the Ajax call.
@@ -319,12 +348,14 @@ var ViewModel = function() {
         self.fsImg.removeAll();
         self.fsTips.removeAll();
         // Set the first tab to active in the Modal.
-        $('.nav-pills a:first').tab('show');
-        $('.carousel-indicators a:first').tab('show');
+       // $('.nav-pills a:first').tab('show');
+       // $('.carousel-indicators a:first').tab('show');
+
     };
     this.fillcontentWindow = function(number) {
         var currentPlace = self.places()[number];
         console.log(self.places()[number]);
+        console.log(self.ajax());
         var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + currentPlace.name + '</b> ' + '</div>';
         self.infoWindow.setOptions({
             content: contentString
@@ -353,9 +384,9 @@ var ViewModel = function() {
             $('#yelp').show();
         }
         if ($("#resultLink".length !== 0)) {
-            $('#yelp-logo').click(function() {
-                self.openSite(self.yelpUrl());
-            });
+            // $('#yelp-logo').click(function() {
+            //     self.openSite(self.yelpUrl());
+            // });
         }
     };
     this.fsParseResults = function(element) {
@@ -370,16 +401,21 @@ var ViewModel = function() {
             for (i = 0; i < element.tips.groups[0].items.length; i++) {
                 self.fsTips.push('"' + element.tips.groups[0].items[i].text + '"');
             }
-            try {
-                for (i = 0; i < element.photos.groups[0].items.length; i++) {
-                    self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
-                    // console.log(element.photos.groups[0].items.length + ' photos found.');
-                }
-                $('#gallery-pill').show();
-            } catch (err) {
-                Helpers.logError(err + " No photos found for this venue.");
-                $('#gallery-pill').hide();
-            }
+            // Cannot get the gallery/carousel to work properly in having to rely solely on Knockout for DOM manipulation.
+                        // try {
+            //     for (i = 0; i < element.photos.groups[0].items.length; i++) {
+            //         self.fsImg.push(element.photos.groups[0].items[i].prefix + '300x300' + element.photos.groups[0].items[i].suffix);
+            //         // console.log(element.photos.groups[0].items.length + ' photos found.');
+            //     }
+            //   //  $('#gallery-pill').show();
+
+
+
+            // } catch (err) {
+            //     Helpers.logError(err + " No photos found for this venue.");
+            //    // $('#gallery-pill').hide();
+
+            // }
             self.fsUrl(element.shortUrl);
             // Specify divs to display based on results.
             $('#fs-noresult').hide();
@@ -390,8 +426,8 @@ var ViewModel = function() {
                 self.openSite(self.fsUrl());
             });
         }
-        $('#carousel-control').addClass('active');
-        $('#carousel-item').addClass('active');
+        // $('#carousel-control').addClass('active');
+        // $('#carousel-item').addClass('active');
     };
     this.openSite = function(url) {
         window.open(url, '_blank');
@@ -411,7 +447,7 @@ var ViewModel = function() {
         // console.log(apiName + ' complete.');
         // Add code here to end progress bar in CSS.
     };
-    var YelpConnect = function(nameLocation) {
+     var YelpConnect = function(nameLocation) {
         var httpMethod = 'GET',
             consumerKey = 'YsPDWGOo52SXK3U-FoNm6g',
             consumerKeySecret = 'd4oiThmVyRCZrZR1o8phpOV4FjI',
@@ -437,6 +473,7 @@ var ViewModel = function() {
             data: parameters,
             cache: true,
             dataType: 'jsonp',
+            timeout: 5000,
             complete: callComplete('Yelp'),
             beforeSend: callStart('Yelp'),
             success: function(results) {
@@ -459,13 +496,13 @@ var ViewModel = function() {
                 }
             },
             error: function(results) {
-                //   console.log("error %o", results);
+             //   console.log("error %o", results);
                 Helpers.handleError('Error encountered in communicating with Yelp.  Please just your internet connection and firewall settings.');
             }
         };
         $.ajax(settings);
     };
-    var fsConnect = function(nameLocation) {
+     var fsConnect = function(nameLocation) {
         var httpMethod = 'GET',
             url = ['https://api.foursquare.com/v2/venues/search?client_id=', '&client_secret=', '&v=20130815&near=', '&query='],
             clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
@@ -476,7 +513,7 @@ var ViewModel = function() {
             url: urlParams,
             type: httpMethod,
             cache: true,
-            dataType: 'jsonp',
+            dataType: 'json',
             complete: callComplete('fs'),
             beforeSend: callStart('fs'),
             success: function(results) {
@@ -498,13 +535,13 @@ var ViewModel = function() {
                 if (filteredResults === 0) {
                     //           console.log('Nothing found from FourSquare.');
                     $('#four-square').hide();
-                    $('#galleryTab').hide();
+                   // $('#galleryTab').hide();
                     $('#fs-noresult').show();
-                    $('#gallery-pill').hide();
+                //    $('#gallery-pill').hide();
                 }
             },
             error: function(results) {
-                //console.log("ERROR! %o", results);
+           //     console.log("ERROR! %o", results);
                 Helpers.handleError('Error encountered in communicating with Foursquare.  Please just your internet connection and firewall settings.');
             }
         };
@@ -547,18 +584,18 @@ var ViewModel = function() {
         //  console.log('display modal.');
         //   console.log(Map);
         Map.showStreet(self.places()[self.currentPlace()].lat, self.places()[self.currentPlace()].lng);
-        $('.slide').attr('data-ride', 'carousel');
+        // $('.slide').attr('data-ride', 'carousel');
         // console.log('carousel set to cycle.');
         // $('.carousel').carousel('cycle');
     });
     //  Pause the auto-slide on the carousel when the modal is hidden.
-    $('#modal-place').on('hidden.bs.modal', function() {
-        $('.slide').attr('data-ride', '');
+/*    $('#modal-place').on('hidden.bs.modal', function() {
+        // $('.slide').attr('data-ride', '');
         //  console.log('carousel set to pause.');
         //  $('.carousel').carousel('pause').removeData();
         //  console.log($('.carousel').Carousel);
         // Add code to reset the tab active on the tabs to #modal-yelp.
-    });
+    });*/
 
     // Initialize the map.
     Map.initMap(self);
