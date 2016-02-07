@@ -1,6 +1,6 @@
-* {
+/** {
   border: 1px solid red !important;
-}
+}*/
 /*  Main Area */
 html,body {
     margin: 0;
@@ -10,6 +10,8 @@ html,body {
 
 body {
     background-color: #ee7401;
+     /* Without this, the body has excess horizontal scroll when the menu is open */
+    overflow-x: hidden;
 }
 
 header {
@@ -24,9 +26,12 @@ a {
 
 .container-fluid {
     padding: 0;
-    height: 100%;
+
 }
 
+.container-fluid, #map-canvas, #map, .navigation, #pill-yelp,#pill-foursquare, #yelp-pill,#fs-pill{
+  height: 100%;
+}
 
 .page-title {
     font-family: 'Candal',sans-serif;
@@ -35,11 +40,6 @@ a {
     background-color: #fff;
     z-index: -1;
 }
-
-#border-inner {
-    text-align: right;
-}
-
 #map-row {
     height: 55vh;
     background-color: #6a2474;
@@ -48,26 +48,17 @@ a {
 
 #map-canvas {
     width: 65%;
-    height: 100%;
     margin: auto;
 }
 
 #map {
-    height: 100%;
     padding: 8px;
     border: 8px solid #9ec551;
 }
 
-#btn-inner {
-    position: fixed;
-    display: block;
-    top: .5vh;
-    left: .5vw;
-}
-
 #footer {
     background-color: #d10031;
-    height: 38vh;
+    height: 37vh;
     margin: 0;
 }
 
@@ -84,211 +75,86 @@ a {
 }
 
 /*  Drawer Area */
-#navbar {
-    max-width: 1000px;
-}
 
-/*.menubtn {
-
-    position: relative;
-    z-index: 1;
-    color: #274a61;
-    font-size: 0;
-    top: 2px;
-    padding: 13px;
-    background-image: url(hamburger.png);
-    background-position: 50% 50%;
-    background-size: 25px 25px;
-    background-repeat: no-repeat;
-}*/
-
-/*.menubtn:hover,.openmenu .menubtn {
-    color: #bdd43e;
-    background-image: url(hamburger-active.png);
-}*/
-
-/*.menubtn:target {
-    transition-prop
-}*/
-
-/** toggle menu **/
-/*body.openmenu {
-    overflow: hidden;
-}*/
-
-/*.openmenu {
-    top: 0;
-}
-
-.navigation {
-    height: 100%;
-    width: 100%;
-    background: #373737;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-
-    background-color: #ee7401;
-    z-index: 1;
-}*/
 #search-bar, #search-input, #list-inner, #drawer-list, #drawer-item {
     z-index: 1;
 }
 
-                /* Navigation Menu - Background */
-                .navigation {
-                  /* critical sizing and position styles */
-                  width: 100%;
-                  height: 100%;
-                  position: fixed;
-                  top: 0;
-                  right: 0;
-                  bottom: 0;
-                  left: 0;
-                  z-index: 0;
+.navigation {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
 
-                  /* non-critical appearance styles */
+/* Site Wrapper - Everything that isn't navigation */
+.site-wrap {
+  /* Critical position and size styles */
+  min-height: 100%;
+  min-width: 100%;
+  background-color: white; /* Needs a background or else the nav will show through */
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+  padding: 2em;
 
-                }
+}
 
-                /* Navigation Menu - List items */
-                .nav-item {
-                  /* non-critical appearance styles */
+/* Nav Trigger */
+.nav-trigger {
+  /* critical styles - hide the checkbox input */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
 
-                  border-top: 1px solid #111;
-                  border-bottom: 1px solid #000;
-                }
+label[for="nav-trigger"] {
+  /* critical positioning styles */
+  position: fixed;
+  left: 15px; top: 15px;
+  z-index: 2;
+  /* non-critical apperance styles */
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+  background-size: contain;
+}
 
-                .nav-item a {
-                  /* non-critical appearance styles */
-                  display: block;
-                  padding: 1em;
-                  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-                  color: white;
-                  font-size: 1.2em;
-                  text-decoration: none;
-                  transition: color 0.2s, background 0.5s;
-                }
+/* Make the Magic Happen */
+.nav-trigger + label, .site-wrap {
+  transition: left 0.2s;
+}
 
-                .nav-item a:hover {
-                  color: #c74438;
-                  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);
-                }
+.nav-trigger:checked + label {
+  left: 265px;
+}
 
-                /* Site Wrapper - Everything that isn't navigation */
-                .site-wrap {
-                  /* Critical position and size styles */
-                  min-height: 100%;
-                  min-width: 100%;
-                  background-color: white; /* Needs a background or else the nav will show through */
-                  position: relative;
-                  top: 0;
-                  bottom: 100%;
-                  left: 0;
-                  z-index: 1;
+.nav-trigger:checked ~ .site-wrap {
+ left: 254px;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
 
-                  /* non-critical apperance styles */
-/*                  padding: 4em;*/
-                  background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);
-                  background-size: 200%;
-                }
+/* Additional non-critical styles */
 
-                /* Nav Trigger */
-                .nav-trigger {
-                  /* critical styles - hide the checkbox input */
-                  position: absolute;
-                  clip: rect(0, 0, 0, 0);
-                }
+h1, h3, p {
+/*  max-width: 600px;*/
+  margin: 0 auto 1em;
+}
 
-                label[for="nav-trigger"] {
-                  /* critical positioning styles */
-                  position: fixed;
-                  left: 15px; top: 15px;
-                  z-index: 2;
-
-                  /* non-critical apperance styles */
-                  height: 30px;
-                  width: 30px;
-                  cursor: pointer;
-                  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
-                  background-size: contain;
-                }
-
-                /* Make the Magic Happen */
-                .nav-trigger + label, .site-wrap {
-                  transition: left 0.2s;
-                }
-
-                .nav-trigger:checked + label {
-                  left: 265px;
-                }
-
-                .nav-trigger:checked ~ .site-wrap {
-                 left: 254px;
-                  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
-                }
-
-                body {
-                    /* Without this, the body has excess horizontal scroll when the menu is open */
-                  overflow-x: hidden;
-                }
-
-                /* Additional non-critical styles */
-
-                h1, h3, p {
-                /*  max-width: 600px;*/
-                  margin: 0 auto 1em;
-                }
-
-                code {
-                    padding: 2px;
-                    background: #ddd;
-                }
+code {
+    padding: 2px;
+    background: #ddd;
+}
 
 #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar{
     width: 250px;
 }
 
-/*.navigation {
-    height: 100%;
-    width: 0;
-    background: #373737;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    overflow: hidden;
-    -webkit-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
-    -moz-box-shadow: 3px 0 7px rgba(0,0,0,0.55);
-    box-shadow: 3px 0 7px rgba(0,0,0,0.55);
-    background-color: #ee7401;
-    z-index: 1;
-}
-*/
-#hamburgermenu ul {
-    z-index: 101;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-#hamburgermenu ul li a {
-    display: block;
-    min-width: 130px;
-    padding: 18px 8px;
-    color: #cdcdcd;
-    font-size: 1.45em;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-}
-
-#hamburgermenu li a:hover {
-    color: #fff;
-    background: #2c2c2c;
-}
 
 #header-inner {
     background-color: #fff;
@@ -322,13 +188,6 @@ a {
     background-color: #fff;
 }
 
-#list-inner {
-    height: 89%;
-    overflow-y: auto;
-    list-style: none;
-    overflow-x: hidden;
-}
-
 #drawer-list {
     list-style: none;
     padding: 0;
@@ -340,38 +199,12 @@ a {
     -moz-column-count: 1;
 }
 
-.drawer-list-single {
-    column-count: 1;
-    -webkit-column-count: 1;
-    -moz-column-count: 1;
-}
-
-.drawer-list-double {
-    column-count: 2;
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-}
-
 #drawer-item {
     font-family: 'Yanone Kaffeesatz',sans-serif;
     font-size: 20px;
     color: #f2f2e7;
     display: inline-block;
 
-}
-
-.drawer-item-double {
-    width: 145px;
-    -webkit-column-width: 145px;
-/* Chrome, Safari, Opera */
-    column-width: 145px;
-}
-
-.drawer-item-single {
-    width: 340px;
-    -webkit-column-width: 340px;
-/* Chrome, Safari, Opera */
-    column-width: 340px;
 }
 
 #drawer-item:hover {
@@ -392,31 +225,29 @@ a {
 
 /*  Modal Area */
 
-.modal-open {
-
-}
 .modal-dialog {
     margin-top: 20px;
     margin-bottom: 0;
     height: 96vh;
 }
-
-.modal-content {
-    background-color: #29a293;
-    height: 100%;
-}
-
-.modal-header {
-    height: 10%;
-}
-
 .modal-body {
     padding: 0 15px;
     height: 80%;
 }
 
-.modal-results {
-    height: 58%;
+.modal-content {
+    background-color: #29a293;
+    height: 95%;
+}
+
+#model-data {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    margin-top: 2%;
+    color: #fff;
+    position: relative;
+    background-color: #0096cf;
 }
 
 .modal-footer {
@@ -424,9 +255,30 @@ a {
     padding: 0;
 }
 
-.modal-header,#yelp,#yelp-noresult,#four-square,#fs-noresult {
+.modal-header, #yelp, #yelp-noresult, #four-square, #fs-noresult {
     color: #fff;
 }
+
+.modal-header {
+    height: 10%;
+}
+
+.modal-results {
+    height: 58%;
+}
+
+.modal-style {
+    background-color: #fff;
+}
+
+.modal-title {
+    font-size: 4vmin;
+}
+
+#modal-btn-close {
+    margin-top: 3%;
+}
+
 
 #street-view {
     top: 1vh;
@@ -437,15 +289,12 @@ a {
     height: 90%;
 }
 
-#yelp-pill,#fs-pill,#gallery-pill {
-    height: 100%;
-}
-
-#pill-yelp,#pill-foursquare,#pill-gallery {
-    height: 100%;
+#fs-header {
+    height: 40%;
 }
 
 #yelp,#four-square,#yelp-noresult,#fs-noresult {
+    margin-top: 6%;
     height: 83%;
 }
 
@@ -453,64 +302,34 @@ a {
     margin: 10px;
 }
 
-.carousel-inner > .item > img,.carousel-inner > .item > a > img {
-    width: 70%;
-    margin: auto;
-}
-
 #yelp-header,#yelp-status,#fs-status {
     height: 52%;
-}
-
-#fs-header {
-    height: 40%;
 }
 
 #yelp-img-inner,#fs-img-inner {
     height: 17%;
 }
 
-#yelp-address {
-    margin-top: 10px;
-}
-
-#yelp-phone,#yelp-address {
-    display: block;
-}
-
-#fs-phone {
-    display: block;
-}
-
-#fsAddress-item {
-    display: block;
-}
-
-#fs-address-li {
-    margin-top: 10px;
-    padding: 0;
-    height: 55%;
-}
-
 #yelp-body-content {
     height: 46%;
 }
 
-#yelp-description {
-    margin: 10px;
+.body-content {
+    height: 70%;
+    margin: 2%;
+    overflow-y: auto;
 }
 
-#fs-body-content,#fs-body-container {
-    height: 61%;
+.list-inner {
+    list-style: none;
+}
+.result-item:hover {
+    color: #fff;
+    background-color: #337ab7;
 }
 
 .fs-element-hide {
     display: none;
-}
-
-#fs-tips-li {
-    height: 100%;
-    overflow-y: auto;
 }
 
 .fs-element-show {
@@ -521,30 +340,10 @@ a {
     margin-top: 20px;
 }
 
-#fs-tips-content {
-    height: 100%;
-}
-
 #body-paragraph {
     margin: 30px 0 10px;
 }
 
-.modal-title {
-    font-size: 4vmin;
-}
-
-.image-modal {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.modal-style {
-    background-color: #fff;
-}
-
-#resultLink {
-    width: 60px;
-}
 
 #firstHeading {
     margin: 0 0 4px;
@@ -558,35 +357,34 @@ a {
     width: 60px;
 }
 
-#model-data {
-    width: 80%;
-    height: 80%;
-    margin: auto;
-    margin-top: 2%;
-    color: #fff;
-    position: relative;
-    background-color: #0096cf;
-}
-
-#modal-btn-close {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-}
-
-.modal-gallery,#gallery,#gallery-header,.carousel,.carousel-inner {
-    height: 100%;
-}
 
 /*End Drawer CSS*/
 /* iPad */
 @media screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 20px;
+    }
+    .page-title {
+        font-size: 35px;
+    }
+
+    .list-inner {
+        padding: 0;
+    }
+
+    #bodyContent {
+        height: 50%;
+        overflow-y: auto;
+    }
+
+
     .modal-dialog {
         height: 96vh;
     }
 
     #yelp-img-inner {
-        height: 95%;
+        height: 23%;
     }
 
     #yelp-address {
@@ -605,7 +403,7 @@ a {
         margin: 24px;
     }
 
-    #pill-yelp,#pill-foursquare,#pill-gallery {
+    #pill-yelp,#pill-foursquare {
         height: 95%;
     }
 
@@ -613,12 +411,7 @@ a {
         height: 52%;
     }
 
-    #bodyContent {
-        height: 33%;
-        overflow-y: auto;
-    }
-
-    #img-inner,#fsCrossStreet {
+    #img-inner {
         display: none;
     }
 
@@ -638,25 +431,21 @@ a {
         height: 80%;
     }
 
-    .modal-gallery {
-        height: 94%;
-    }
-
     #model-desc {
         font-size: 17px;
         margin: 15px;
     }
 
     .modal-body {
-        height: 82%;
+        height: 86%;
+    }
+
+    .modal-content {
+        height: 98%;
     }
 
     .modal-results {
         height: 52%;
-    }
-
-    #bodyContent {
-        height: 48%;
     }
 
     #map-canvas {
@@ -668,10 +457,6 @@ a {
         font-size: 22px;
     }
 
-    .modal-results {
-        height: 70%;
-    }
-
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
         height: 74%;
     }
@@ -680,27 +465,13 @@ a {
         height: 32%;
     }
 
-    #fsAddress-item,#yelp-status,#fs-status,#fs-tips-item,.fs-element-show,#yelp-description,#yelp-address,#yelpPhone {
+    #yelp-status,#fs-status, .fs-element-show {
         font-size: 18px;
     }
 }
 
 /* iPhone/Small phone screen */
 @media screen and (max-width: 400px) {
-    .drawer-item-double {
-        width: 100px;
-        -webkit-column-width: 100px;
-    /* Chrome, Safari, Opera */
-        column-width: 100px;
-    }
-
-    .drawer-item-single {
-        width: 200px;
-        -webkit-column-width: 200px;
-    /* Chrome, Safari, Opera */
-        column-width: 200px;
-    }
-
     .page-title {
         font-size: 25px;
     }
@@ -715,7 +486,7 @@ a {
         height: 99vh;
     }
 
-    .pill-text,#yelp-phone {
+    .pill-text, .list-inner {
         font-size: 12px;
     }
 
@@ -742,32 +513,16 @@ a {
     }
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
-        height: 40%;
+        height: 62%;
+        margin-top: 6%;
     }
 
-    #fsAddress-item,#yelp-status,#fs-status,#fs-tips-item,.fs-element-show,#yelp-description,#yelp-address,#yelpPhone {
+    #yelp-status,#fs-status,.fs-element-show {
         font-size: 11px;
     }
 
     #yelp-header,#yelp-status,#fs-status {
         height: 18%;
-    }
-
-    #img-inner,#fsCrossStreet {
-        display: none;
-    }
-
-    #fs-tips-li {
-        padding-left: 5px;
-        padding-right: 10px;
-    }
-
-    #fs-tips-content {
-        margin-top: 26px;
-    }
-
-    .modal-gallery,#gallery,#gallery-header,.carousel,.carousel-inner {
-        height: 95%;
     }
 
     #map-canvas {
