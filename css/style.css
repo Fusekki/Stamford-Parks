@@ -23,14 +23,21 @@ a {
     color: #fff;
 }
 
-
 .container-fluid {
     padding: 0;
-
 }
 
-.container-fluid, #map-canvas, #map, .navigation, #pill-yelp,#pill-foursquare, #yelp-pill,#fs-pill{
-  height: 100%;
+.ui-autocomplete {
+    z-index: 100;
+    color: white;
+    background-color: #5dba44;
+    width: 200px;
+    list-style: none;
+    padding: 0;
+}
+
+.container-fluid, #map-canvas, #map, .navigation, #pill-yelp,#pill-foursquare, #yelp-pill,#fs-pill {
+    height: 100%;
 }
 
 .page-title {
@@ -40,6 +47,7 @@ a {
     background-color: #fff;
     z-index: -1;
 }
+
 #map-row {
     height: 55vh;
     background-color: #6a2474;
@@ -81,13 +89,13 @@ a {
 }
 
 .navigation {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
 }
 
 /* Site Wrapper - Everything that isn't navigation */
@@ -142,7 +150,6 @@ label[for="nav-trigger"] {
 /* Additional non-critical styles */
 
 h1, h3, p {
-/*  max-width: 600px;*/
   margin: 0 auto 1em;
 }
 
@@ -191,7 +198,6 @@ code {
 #drawer-list {
     list-style: none;
     padding: 0;
-/*    margin: 5% 0 0 1%;*/
     color: #f2f2f2;
     background-color: #ee7401;
     column-count: 1;

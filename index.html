@@ -6,8 +6,8 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Neighborhood Map</title>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
     <script src="./js/bootstrap-min.js"></script>
-    <script async defer src='http://maps.googleapis.com/maps/api/js?libraries=places' type='text/javascript'></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
     <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
@@ -25,7 +25,7 @@
           <span id="drawer-header">Parks List</span>
         </div>
         <span id="search-bar">
-          <input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search">
+          <input autocomplete="on" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search">
         </span>
         <div id="search-inner">
           <span data-bind="text: resultsFound" id="drawer-results">
@@ -34,7 +34,7 @@
         </div>
         <div id="list-inner">
           <ul data-bind="foreach: self.places" id="drawer-list">
-            <li data-bind="text: name, click: $parent.selectPlace" id="drawer-item">
+            <li data-bind="text: name, click: selectPlace" id="drawer-item">
             </li>
           </ul>
         </div>
@@ -58,11 +58,9 @@
         </div>
         <div class="row" id="footer">
           <div class="row" data-bind="visible: showModel" id="model-data">
-            <h1 data-bind="text: currentName" id="firstHeading">
-            </h1>
+            <h1 data-bind="text: currentName" id="firstHeading"></h1>
             <div id="bodyContent">
-              <p data-bind="text: currentDesc" id="model-desc">
-              </p>
+              <p data-bind="text: currentDesc" id="model-desc"></p>
             </div>
             <button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button>
           </div>
@@ -140,14 +138,11 @@
           </div>
         </div>
         <!--         Modal End -->
-        <script src="js/knockout-3.4.0.js">
-        </script>
-        <script src="js/min/model-min.js">
-        </script>
-        <script src="js/min/app-min.js">
-        </script>
-        <script src="js/oauth-signature.js">
-        </script>
+        <script src="js/knockout-3.4.0.js"></script>
+        <script src="js/min/model-min.js"></script>
+        <script src="js/min/app-min.js"></script>
+        <script src="js/oauth-signature.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0lP_moM9Kig0rSywmOTtxpy_6ze0qq20&callback=initMap" async defer></script>
       </div>
     </div>
   </body>

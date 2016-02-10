@@ -8,13 +8,13 @@ This application features parks in and located around Stamford, CT.
 
 1. jQuery
 2. bootstrap.js for modal features.
-3. bootsrap.css
+3. bootstrap.css
 4. Knockout.js for MVVC
 
 
 **To Run:**
 
-Clone the repo and launch index.html from your browser of choice. Suitable for all ages.
+Clone the repo and launch index.html from your browser of choice. Please disable your popup blocker (otherwise the ajax results will not open in a new window when selected). Suitable for all ages.
 
 
 **License:**
