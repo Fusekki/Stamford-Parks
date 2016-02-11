@@ -6,10 +6,11 @@ This application features parks in and located around Stamford, CT.
 
 **Dependencies:**
 
-1. jQuery
+1. jQuery & JQuery UI
 2. bootstrap.js for modal features.
 3. bootstrap.css
 4. Knockout.js for MVVC
+
 
 
 **To Run:**
