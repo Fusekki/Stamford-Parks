@@ -10,7 +10,7 @@ html,body {
 
 body {
     background-color: #ee7401;
-     /* Without this, the body has excess horizontal scroll when the menu is open */
+/* Without this, the body has excess horizontal scroll when the menu is open */
     overflow-x: hidden;
 }
 
@@ -29,14 +29,14 @@ a {
 
 .ui-autocomplete {
     z-index: 100;
-    color: white;
+    color: #fff;
     background-color: #5dba44;
     width: 200px;
     list-style: none;
     padding: 0;
 }
 
-.container-fluid, #map-canvas, #map, .navigation, #pill-yelp,#pill-foursquare, #yelp-pill,#fs-pill {
+.container-fluid,#map-canvas,#map,.navigation,#pill-yelp,#pill-foursquare,#yelp-pill,#fs-pill {
     height: 100%;
 }
 
@@ -83,8 +83,7 @@ a {
 }
 
 /*  Drawer Area */
-
-#search-bar, #search-input, #list-inner, #drawer-list, #drawer-item {
+#search-bar,#search-input,#list-inner,#drawer-list,#drawer-item {
     z-index: 1;
 }
 
@@ -100,57 +99,57 @@ a {
 
 /* Site Wrapper - Everything that isn't navigation */
 .site-wrap {
-  /* Critical position and size styles */
-  min-height: 100%;
-  min-width: 100%;
-  background-color: white; /* Needs a background or else the nav will show through */
-  position: relative;
-  top: 0;
-  bottom: 100%;
-  left: 0;
-  z-index: 1;
-  padding: 2em;
-
+/* Critical position and size styles */
+    min-height: 100%;
+    min-width: 100%;
+    background-color: #fff;
+/* Needs a background or else the nav will show through */
+    position: relative;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    z-index: 1;
+    padding: 2em;
 }
 
 /* Nav Trigger */
 .nav-trigger {
-  /* critical styles - hide the checkbox input */
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
+/* critical styles - hide the checkbox input */
+    position: absolute;
+    clip: rect(0,0,0,0);
 }
 
 label[for="nav-trigger"] {
-  /* critical positioning styles */
-  position: fixed;
-  left: 15px; top: 15px;
-  z-index: 2;
-  /* non-critical apperance styles */
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
-  background-size: contain;
+/* critical positioning styles */
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    z-index: 2;
+/* non-critical apperance styles */
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+    background-size: contain;
 }
 
 /* Make the Magic Happen */
-.nav-trigger + label, .site-wrap {
-  transition: left 0.2s;
+.nav-trigger + label,.site-wrap {
+    transition: left .2s;
 }
 
 .nav-trigger:checked + label {
-  left: 265px;
+    left: 265px;
 }
 
 .nav-trigger:checked ~ .site-wrap {
- left: 254px;
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+    left: 254px;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
 
 /* Additional non-critical styles */
-
-h1, h3, p {
-  margin: 0 auto 1em;
+h1,h3,p {
+    margin: 0 auto 1em;
 }
 
 code {
@@ -158,10 +157,9 @@ code {
     background: #ddd;
 }
 
-#search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar{
+#search-inner,#list-inner,#drawer-list,#drawer-header,#search-input,#drawer-item,#header-inner,#search-bar {
     width: 250px;
 }
-
 
 #header-inner {
     background-color: #fff;
@@ -210,7 +208,6 @@ code {
     font-size: 20px;
     color: #f2f2e7;
     display: inline-block;
-
 }
 
 #drawer-item:hover {
@@ -230,12 +227,12 @@ code {
 }
 
 /*  Modal Area */
-
 .modal-dialog {
     margin-top: 20px;
     margin-bottom: 0;
     height: 96vh;
 }
+
 .modal-body {
     padding: 0 15px;
     height: 80%;
@@ -261,7 +258,7 @@ code {
     padding: 0;
 }
 
-.modal-header, #yelp, #yelp-noresult, #four-square, #fs-noresult {
+.modal-header,#yelp,#yelp-noresult,#four-square,#fs-noresult {
     color: #fff;
 }
 
@@ -284,7 +281,6 @@ code {
 #modal-btn-close {
     margin-top: 3%;
 }
-
 
 #street-view {
     top: 1vh;
@@ -326,9 +322,13 @@ code {
     overflow-y: auto;
 }
 
-.list-inner {
+#list-inner {
     list-style: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
 }
+
 .result-item:hover {
     color: #fff;
     background-color: #337ab7;
@@ -350,7 +350,6 @@ code {
     margin: 30px 0 10px;
 }
 
-
 #firstHeading {
     margin: 0 0 4px;
     padding: 10px;
@@ -363,14 +362,13 @@ code {
     width: 60px;
 }
 
-
 /*End Drawer CSS*/
 /* iPad */
 @media screen and (max-width: 768px) {
-
     h1 {
         font-size: 20px;
     }
+
     .page-title {
         font-size: 35px;
     }
@@ -383,7 +381,6 @@ code {
         height: 50%;
         overflow-y: auto;
     }
-
 
     .modal-dialog {
         height: 96vh;
@@ -471,7 +468,7 @@ code {
         height: 32%;
     }
 
-    #yelp-status,#fs-status, .fs-element-show {
+    #yelp-status,#fs-status,.fs-element-show {
         font-size: 18px;
     }
 }
@@ -492,7 +489,7 @@ code {
         height: 99vh;
     }
 
-    .pill-text, .list-inner {
+    .pill-text,.list-inner {
         font-size: 12px;
     }
 

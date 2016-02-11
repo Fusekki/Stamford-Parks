@@ -1,3 +1,10 @@
+    // Map animation function
+    function markerAnimation(marker) {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function() {
+            marker.setAnimation(null);
+        }, 3000);
+    }
     // Google Maps object
     function initMap() {
         var stamford = new google.maps.LatLng(41.074448, -73.541316),
@@ -38,6 +45,12 @@
 
                     infoWindow.open(map, this);
 
+                    cur_infowindow = {
+                        name: this.title,
+                        infowindow: infoWindow,
+                        marker: this
+                    };
+
                     // Change the selected Marker icon to green.
                     this.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
                     map.panTo(this.position);
@@ -45,7 +58,7 @@
                     if (this.getAnimation() !== null) {
                         this.setAnimation(null);
                     } else {
-                        this.setAnimation(google.maps.Animation.BOUNCE);
+                        markerAnimation(this);
                     }
 
                     // Check to see if the prev_marker exists.
@@ -56,7 +69,7 @@
                             if (this.getAnimation() !== null) {
                                 this.setAnimation(null);
                             } else {
-                                this.setAnimation(google.maps.Animation.BOUNCE);
+                                markerAnimation(this);
                             }
                             // This is a different marker, therefore disable animation and change color on previous one.
                         } else {
@@ -67,11 +80,10 @@
                             places[prev_marker.number].marker = prev_marker;
                         }
 
-
                         this.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
                         map.panTo(this.position);
                     } else {
-                        this.setAnimation(google.maps.Animation.BOUNCE);
+                        markerAnimation(this);
                     }
                     prev_marker = this;
                     prev_infowindow = infoWindow;
@@ -268,7 +280,11 @@
     // Helper Objects (for error handling).
     var Helpers = {
         handleError: function(msg) {
-            return alert(msg);
+            if (msg === 'map') {
+                return alert("There was an error loading the Google Maps API.  Please check your connection.");
+            } else {
+                return alert(msg);
+            }
         },
         logError: function(msg) {
             return console.log(msg);
@@ -332,7 +348,6 @@
             return self.places()[self.currentPlace()];
         };
         this.search = function(value) {
-
             self.places().forEach(function(placeItem) {
 
                 if (placeItem.name.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
@@ -340,9 +355,16 @@
                     placeItem._destroy(false);
                     placeItem.marker.setVisible(true);
                 } else {
-
                     placeItem._destroy(true);
                     placeItem.marker.setVisible(false);
+                    if (cur_infowindow) {
+                        if (placeItem.name === cur_infowindow.name) {
+                            cur_infowindow.infowindow.close();
+                            cur_infowindow.marker.setIcon('');
+                            cur_infowindow = false;
+                            showModel(false);
+                        }
+                    }
                 }
             });
 

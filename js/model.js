@@ -1,5 +1,6 @@
 // The locations for this app are parks located in Stamford, CT.
 var skip = false,
+    cur_infowindow = false,
     availableTags = [],
     selected = 100,
     mapGeneral = false;
