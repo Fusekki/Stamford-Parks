@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Neighborhood Map</title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/bootstrap-min.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha256.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/components/enc-base64-min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Candal' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="navigation">
+        <div id="header-inner">
+          <span id="drawer-header">Parks List</span>
+        </div>
+        <span id="search-bar">
+          <input autocomplete="on" data-bind="value: query, valueUpdate: 'keyup'" id="search-input" name="field-keywords" placeholder="Type name" type="search">
+        </span>
+        <div id="search-inner">
+          <span data-bind="text: resultsFound" id="drawer-results">
+          </span>
+          <span id="drawer-results-text">results found.</span>
+        </div>
+        <div id="list-inner" >
+          <ul data-bind="foreach: self.places" id="drawer-list">
+            <li data-bind="text: name, click: selectPlace" id="drawer-item">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <input class="nav-trigger" id="nav-trigger" type="checkbox">
+      <label for="nav-trigger">
+      </label>
+      <div class="site-wrap">
+        <header>
+          <div class="row" id="titlediv">
+            <div class="col-med-12 text-center">
+              <h1 class="page-title text-center">Stamford Parks</h1>
+            </div>
+          </div>
+        </header>
+        <div class="row" id="map-row">
+          <div class="col-med-6" id="map-canvas">
+            <div id="map">
+            </div>
+          </div>
+        </div>
+        <div class="row" id="footer">
+          <div class="row" data-bind="visible: showModel" id="model-data">
+            <h1 data-bind="text: currentName" id="firstHeading"></h1>
+            <div id="bodyContent">
+              <p data-bind="text: currentDesc" id="model-desc"></p>
+            </div>
+            <button class="btn btn-secondary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button>
+          </div>
+        </div>
+      </div>
+      <!-- End Site Wrap -->
+      <!--         Modal Start -->
+      <div aria-hidden="true" aria-labelledby="modal-label" class="modal fade" id="modal-place" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title text-center" data-bind="text: currentName" id="modal-label">
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="modal-map">
+                <div id="street-view" style="">
+                </div>
+              </div>
+              <hr>
+              <div class="pills modal-results">
+                <ul class="nav nav-pills">
+                  <li class="active" id="yelp-pill">
+                    <a class="pill-text" data-toggle="pill" href="#pill-yelp">Yelp</a>
+                  </li>
+                  <li id="fs-pill">
+                    <a class="pill-text" data-toggle="pill" href="#pill-foursquare">Foursquare</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="tabmaster">
+                  <div class="tab-pane active" id="pill-yelp">
+                    <div id="yelp-img-inner">
+                      <img alt='Yelp Logo' id='yelp-logo' src="./img/yelp_logo.png">
+                    </div>
+                    <div data-bind="visible: showYelpNoResult" id="yelp-noresult">
+                      <p id="yelp-status">No Yelp Results Found</p>
+                    </div>
+                    <div data-bind="visible: showYelp" id="yelp">
+                      <span>Results:</span>
+                      <div class="body-content">
+                        <div class="results-inner">
+                          <ul class="list-inner" data-bind="foreach: yelpResults">
+                            <li class="result-item" data-bind="text: name, click: $parent.openSite(url, event)">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane" id="pill-foursquare">
+                    <div id="fs-img-inner">
+                      <img alt='Foursquare Logo' id='fs-logo' src="./img/fs_logo.png">
+                    </div>
+                    <div data-bind="visible: showFSnoresult" id="fs-noresult">
+                      <p id="fs-status">No Foursquare Results Found</p>
+                    </div>
+                    <div data-bind="visible: showFS" id="four-square">
+                      <span>Results:</span>
+                      <div class="body-content">
+                        <div class="results-inner">
+                          <ul class="list-inner" data-bind="foreach: fsResults">
+                            <li class="result-item" data-bind="text: name, click: $parent.openSite(url, event)">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default modal-style" data-dismiss="modal" id="modal-btn-close" type="button">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--         Modal End -->
+        <script src="js/knockout-3.4.0.js"></script>
+        <script src="js/min/model-min.js"></script>
+        <script src="js/min/app-min.js"></script>
+        <script src="js/oauth-signature.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0lP_moM9Kig0rSywmOTtxpy_6ze0qq20&callback=initMap" onerror="Helpers.handleError('map')" async defer></script>
+      </div>
+    </div>
+  </body>
+</html>
