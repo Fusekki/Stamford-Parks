@@ -1,9 +1,11 @@
     function handleChange(cb) {
-      if(cb.checked == true) {
-        $('.container-fluid').css('overflowY', 'hidden');
-      } else{
-        $('.container-fluid').css('overflowY', 'auto');
-      }
+        if (cb.checked == true) {
+            // Drawer Open
+            $('.container-fluid').css('overflowY', 'hidden');
+        } else {
+            // Drawer Closed
+            $('.container-fluid').css('overflowY', 'auto');
+        }
     }
 
     // Map animation function
@@ -15,6 +17,7 @@
     }
     // Google Maps object
     function initMap() {
+
         var stamford = new google.maps.LatLng(41.074448, -73.541316),
             map = new google.maps.Map(document.getElementById('map'), {
                 center: stamford,
@@ -24,11 +27,11 @@
                 zoomControl: true,
                 styles: styleArray
             });
-        infoWindow = new google.maps.InfoWindow();
+        // This ensures the map boundaries are set dynamically so that all markers appear on map despite display
         var bounds = new google.maps.LatLngBounds();
-
         var prev_marker = false;
         var prev_infowindow = false;
+        infoWindow = new google.maps.InfoWindow();
 
         for (var i = 0; i < places.length; i++) {
             var place = places[i];
@@ -40,11 +43,13 @@
                 animation: null,
                 draggable: false
             });
-
+            bounds.extend(pos);
+            // This adds the click event listener to the marker object
             google.maps.event.addListener(marker, 'click', function(markerCopy) {
 
                 return function() {
                     // Attach infoWindow
+                    infoWindow = new google.maps.InfoWindow();
                     var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + this.title + '</b> ' + '</div>';
                     infoWindow.setOptions({
                         content: contentString
@@ -100,13 +105,11 @@
                 };
 
             }(marker));
-            bounds.extend(pos);
 
             places[i].marker = marker;
 
             marker.setMap(map);
             map.fitBounds(bounds);
-
         }
     }
 
@@ -409,6 +412,7 @@
             });
 
         });
-        // End Statements
+
+       // End Statements
     };
     ko.applyBindings(new ViewModel());
