@@ -1,6 +1,6 @@
-/** {
+* {
   border: 1px solid red !important;
-}*/
+}
 /*  Main Area */
 html,body {
     margin: 0;
@@ -25,6 +25,7 @@ a {
 
 .container-fluid {
     padding: 0;
+    position: relative;
 }
 
 .ui-autocomplete {
@@ -71,9 +72,10 @@ a {
 }
 
 #openBtn {
+    padding: 1px;
     position: absolute;
-    right: 10px;
-    bottom: 10px;
+/*    right: 10px;
+    bottom: 10px;*/
     color: #000;
 }
 
@@ -109,7 +111,7 @@ a {
     bottom: 100%;
     left: 0;
     z-index: 1;
-    padding: 2em;
+/*    padding: 2em;*/
 }
 
 /* Nav Trigger */
@@ -121,9 +123,9 @@ a {
 
 label[for="nav-trigger"] {
 /* critical positioning styles */
-    position: fixed;
-    left: 15px;
-    top: 15px;
+    position: absolute;
+/*    left: 15px;
+    top: 15px;*/
     z-index: 2;
 /* non-critical apperance styles */
     height: 30px;
@@ -149,7 +151,7 @@ label[for="nav-trigger"] {
 
 /* Additional non-critical styles */
 h1,h3,p {
-    margin: 0 auto 1em;
+    margin: 0 auto;
 }
 
 code {
@@ -326,7 +328,7 @@ code {
     list-style: none;
     overflow-y: auto;
     overflow-x: hidden;
-    height: 100%;
+    height: calc(100% - 90px);
 }
 
 .result-item:hover {
@@ -363,8 +365,85 @@ code {
 }
 
 /*End Drawer CSS*/
+
+/* iPhone/Small phone screen */
+@media screen and (min-width: 320px) {
+    .page-title {
+        font-size: 25px;
+        padding: 10px 0 0 10px;
+    }
+    #openBtn {
+
+    right: 3px;
+    bottom: 3px;
+}
+
+    #firstHeading {
+        display: none;
+    }
+
+    .modal-dialog {
+        margin-top: 1px;
+        margin-bottom: 0;
+        height: 99vh;
+    }
+
+    .pill-text,.list-inner {
+        font-size: 12px;
+    }
+
+    #model-desc {
+        font-size: 1em;
+        margin: 7px;
+    }
+
+    .modal-body {
+        height: 79%;
+    }
+
+    #bodyContent {
+        overflow-y: auto;
+        height: 65%;
+    }
+
+    #yelp-img-inner {
+        height: 22%;
+    }
+
+    #fs-img-inner {
+        height: 16%;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        height: 62%;
+        margin-top: 6%;
+    }
+
+    #yelp-status,#fs-status,.fs-element-show {
+        font-size: 11px;
+    }
+
+    #yelp-header,#yelp-status,#fs-status {
+        height: 18%;
+    }
+
+    #map-canvas {
+        height: 95%;
+        padding-top: 2%;
+    }
+
+    #drawer-item {
+        font-size: 14px;
+    }
+
+    #fs-header {
+        height: 20%;
+    }
+}
 /* iPad */
-@media screen and (max-width: 768px) {
+
+
+@media screen and (min-width: 768px) {
     h1 {
         font-size: 20px;
     }
@@ -474,13 +553,31 @@ code {
 }
 
 /* iPhone/Small phone screen */
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 1024px) {
     .page-title {
         font-size: 25px;
     }
 
+   .site-wrap {
+        padding: 2em;
+    }
+
+    label[for="nav-trigger"] {
+
+        left: 15px;
+        top: 15px;
+}
+
+
     #firstHeading {
         font-size: 19px;
+    }
+
+    #openBtn {
+
+        right: 10px;
+        bottom: 10px;
+
     }
 
     .modal-dialog {

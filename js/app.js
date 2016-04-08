@@ -1,3 +1,11 @@
+    function handleChange(cb) {
+      if(cb.checked == true) {
+        $('.container-fluid').css('overflowY', 'hidden');
+      } else{
+        $('.container-fluid').css('overflowY', 'auto');
+      }
+    }
+
     // Map animation function
     function markerAnimation(marker) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -16,7 +24,8 @@
                 zoomControl: true,
                 styles: styleArray
             });
-
+        infoWindow = new google.maps.InfoWindow();
+        var bounds = new google.maps.LatLngBounds();
 
         var prev_marker = false;
         var prev_infowindow = false;
@@ -36,7 +45,6 @@
 
                 return function() {
                     // Attach infoWindow
-                    var infoWindow = new google.maps.InfoWindow();
                     var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + this.title + '</b> ' + '</div>';
                     infoWindow.setOptions({
                         content: contentString
@@ -92,10 +100,13 @@
                 };
 
             }(marker));
+            bounds.extend(pos);
 
             places[i].marker = marker;
 
             marker.setMap(map);
+            map.fitBounds(bounds);
+
         }
     }
 
