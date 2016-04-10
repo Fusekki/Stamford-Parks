@@ -651,7 +651,8 @@ code {
 
 
     #model-data {
-        width: 80%;
+        width: 90%;
+        margin: 3% auto;
     }
 
 
@@ -704,7 +705,7 @@ code {
     }
 
     #map-canvas {
-        height: 100%;
+        height: 97%;
     }
 
     #drawer-item {
