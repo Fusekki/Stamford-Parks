@@ -191,6 +191,7 @@ code {
     color: #000;
     margin: 0 auto;
     background-color: #fff;
+    text-align: center;
 }
 
 #search-input {
@@ -372,7 +373,8 @@ code {
 }
 
 #firstHeading {
-    margin: 0 0 4px;
+    margin: 2% 0 2%;
+    text-align: center;
 }
 
 #img-inner {
@@ -468,7 +470,7 @@ code {
     }
 
     #drawer-item {
-        font-size: 1.25em;
+        font-size: 3vh;
     }
 
     #fs-header {
@@ -485,15 +487,38 @@ code {
     }
 
     h1 {
-        font-size: 20px;
+        font-size: 3.5vh;
+    }
+
+    #titlediv {
+        height: 10vh;
+    }
+
+    #header-inner {
+        padding-top: 2%;
+    }
+
+    #search-input {
+        font-size: 2vh;
+        line-height: 2vh;
+    }
+
+    #drawer-header {
+        text-align: center;
+        font-size: 3vh;
+
+    }
+
+    #drawer-results, #drawer-results-text {
+        font-size: 2vh;
     }
 
     .page-title {
-        font-size: 35px;
+        font-size: 4vh;
     }
 
-    .list-inner {
-
+    #firstHeading {
+        display: block;
     }
 
     #bodyContent {
@@ -501,8 +526,22 @@ code {
         overflow-y: auto;
     }
 
+    #siteNotice ~ b {
+       font-size: 1.6vh;
+    }
+
+    #model-data {
+        display: block;
+        margin-top: 6%;
+    }
+
     .modal-dialog {
         height: 96vh;
+    }
+
+    #openBtn {
+        font-size: 1.5em;
+        padding: 1%;
     }
 
     #yelp-img-inner {
@@ -550,7 +589,7 @@ code {
     }
 
     #model-desc {
-        font-size: 17px;
+        font-size: 2vh;
         margin: 15px;
     }
 
@@ -572,7 +611,7 @@ code {
     }
 
     #drawer-item {
-        font-size: 22px;
+        font-size: 2.2vh;
     }
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
