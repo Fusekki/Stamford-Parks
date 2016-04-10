@@ -343,19 +343,19 @@
             availableTags.push(places[i].name);
         }
 
-        $("#search-input").autocomplete({
-            source: availableTags
-        });
+        // $("#search-input").autocomplete({
+        //     source: availableTags
+        // });
 
 
-        $('#search-input').on('autocompleteselect', function(e, ui) {
-            for (var i = 0; i < availableTags.length; i++) {
-                if (ui.item.value.toLowerCase() === availableTags[i].toLowerCase()) {
-                    // Pass on the entire place object so that it launches the click event.
-                    selectPlace(self.places()[i]);
-                }
-            }
-        });
+        // $('#search-input').on('autocompleteselect', function(e, ui) {
+        //     for (var i = 0; i < availableTags.length; i++) {
+        //         if (ui.item.value.toLowerCase() === availableTags[i].toLowerCase()) {
+        //             // Pass on the entire place object so that it launches the click event.
+        //             selectPlace(self.places()[i]);
+        //         }
+        //     }
+        // });
 
 
         this.currentMarker = function() {
