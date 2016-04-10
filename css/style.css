@@ -649,6 +649,14 @@ code {
         padding: 10px;
     }
 
+    #header-inner {
+        padding-top: 1%;
+    }
+
+    #drawer-header {
+        font-size: 4vh;
+    }
+
 
     #model-data {
         width: 90%;
