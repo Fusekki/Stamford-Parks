@@ -405,6 +405,7 @@
 
             var panorama = new google.maps.StreetViewPanorama(document.getElementById('street-view'), {
                 position: loc,
+                panControl: true,
                 prob: {
                     heading: 24,
                     pitch: 18

@@ -299,7 +299,7 @@ code {
 
 #street-view {
     top: 1vh;
-    height: 27vh;
+    height: 55vh;
 }
 
 .tab-content {
@@ -421,7 +421,15 @@ code {
     .modal-dialog {
         margin-top: 1px;
         margin-bottom: 0;
-        height: 99vh;
+        min-height: 99vh;
+        max-height: 125vh;
+    }
+
+    .modal-content {
+        min-height: 99vh;
+        max-height: 125vh;
+        overflow-y: auto;
+
     }
 
     .pill-text,.list-inner {
