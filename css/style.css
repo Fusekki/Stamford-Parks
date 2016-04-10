@@ -634,7 +634,7 @@ code {
     }
 
     h1 {
-        font-size: 2em;
+        font-size: 4vh;
     }
 
     h1, h3, p {
@@ -647,15 +647,32 @@ code {
 
     #firstHeading {
         padding: 10px;
+/*        font-size: 4vh;*/
     }
 
     #header-inner {
         padding-top: 1%;
+
+    }
+
+    #search-input {
+        font-size: 2.5vh;
+        line-height: 2.5vh;
+    }
+
+    #drawer-results, #drawer-results-text {
+        font-size: 2.5vh;
     }
 
     #drawer-header {
         font-size: 4vh;
     }
+
+    #drawer-item {
+        font-size: 2.9vh;
+    }
+
+
 
 
     #model-data {
@@ -716,14 +733,18 @@ code {
         height: 97%;
     }
 
-    #drawer-item {
-        font-size: 20px;
-    }
-
     #fs-header {
         height: 40%;
     }
 
 
+
+}
+
+@media screen and (min-width: 1440px) {
+
+    h1 {
+        font-size: 5vh;
+    }
 
 }
