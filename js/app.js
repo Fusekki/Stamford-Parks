@@ -1,3 +1,20 @@
+    $(document).ready(function(){
+    function hide() {
+        $('#nav-mobile').toggleClass('open');
+        // $('body').toggleClass('open');
+        $('.container-fluid').toggleClass('open');
+
+    }
+
+    $('#nav-mobile').click(function(){
+        hide();
+
+    });
+    $('.nav-item').click(function(){
+        hide();
+    })
+});
+
     function handleChange(cb) {
         if (cb.checked == true) {
             // Drawer Open

@@ -4,7 +4,7 @@
 /*  Main Area */
 html,body {
     margin: 0;
-    overflow: hidden;
+/*    overflow: hidden;*/
     height: 100%;
 }
 
@@ -26,6 +26,11 @@ a {
 .container-fluid {
     padding: 0;
     position: relative;
+/*    overflow-y: auto;*/
+}
+
+.container-fluid.open {
+    overflow: hidden;
 }
 
 #titlediv {
@@ -104,7 +109,7 @@ a {
     z-index: 1;
 }
 
-.navigation {
+/*.navigation {
     width: 100%;
     position: fixed;
     top: 0;
@@ -112,23 +117,173 @@ a {
     bottom: 0;
     left: 0;
     z-index: 0;
-}
+}*/
+
 
 /* Site Wrapper - Everything that isn't navigation */
 .site-wrap {
-/* Critical position and size styles */
-    min-height: 100%;
-    min-width: 100%;
-    background-color: #fff;
-/* Needs a background or else the nav will show through */
-    position: relative;
-    top: 0;
-    bottom: 100%;
-    left: 0;
-    z-index: 1;
-    overflow-x: hidden;
-/*    padding: 2em;*/
+  /* Critical position and size styles */
+  -webkit-transition: .15s ease-in-out; /* These handle the transitions when the .open is removed */
+  -moz-transition: .15s ease-in-out;
+  -o-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
+
+
+  min-height: 100%;
+  min-width: 100%;
+  background-color: white; /* Needs a background or else the nav will show through */
+  position: relative;
+  top: calc(-100% - 30px); /* This value is to offset the total height of the nav-mobile div
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+
+  /* non-critical apperance styles */
+/*  padding: 4em;*/
+/*  background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);
+  background-size: 200%;*/
 }
+
+.navigation {
+    background: #ee7401;
+}
+
+.navigation1 {
+  /* critical sizing and position styles */
+  width: 22%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+
+  /* non-critical appearance styles */
+  list-style: none;
+  background: #212121;
+}
+
+/* Navigation Menu - List items */
+.nav-item {
+  /* non-critical appearance styles */
+  width: 200px;
+/*  border-top: 1px solid #111;
+  border-bottom: 1px solid #000;*/
+}
+
+.nav-item a {
+  /* non-critical appearance styles */
+  display: block;
+  padding: 0.75em;
+/*  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);*/
+  color: beige;
+  font-size: 1.0em;
+  text-decoration: none;
+  transition: color 0.2s, background 0.5s;
+}
+
+.nav-item a:hover {
+  color: white;
+/*  color: #c74438;
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);*/
+}
+
+#nav-mobile {
+
+  width: 30px;
+  height: 30px;
+  position: relative;
+/*  margin: auto;*/
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .15s ease-in-out;
+  -moz-transition: .15s ease-in-out;
+  -o-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
+  cursor: pointer;
+  left: 10px;
+  top: -98%;
+
+  z-index: 2;
+}
+
+#nav-mobile span {
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: black;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .10s ease-in-out;
+  -moz-transition: .10s ease-in-out;
+  -o-transition: .10s ease-in-out;
+  transition: .10s ease-in-out;
+}
+
+#nav-mobile span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-mobile span:nth-child(2),#nav-mobile span:nth-child(3) {
+  top: 12px;
+}
+
+#nav-mobile span:nth-child(4) {
+  top: 24px;
+}
+
+#nav-mobile.open ~ .site-wrap {
+    -webkit-transition: .15s ease-in-out;
+  -moz-transition: .15s ease-in-out;
+  -o-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
+  transform: translateX(200px);
+/*  left: 200px;*/
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+#nav-mobile.open {
+  transform: translateX(210px);
+ /* left: 215px;*/
+
+}
+
+#nav-mobile.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-mobile.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav-mobile.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav-mobile.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+
 
 /* Nav Trigger */
 .nav-trigger {
@@ -149,19 +304,28 @@ label[for="nav-trigger"] {
     cursor: pointer;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
     background-size: contain;
+
+
 }
 
 /* Make the Magic Happen */
 .nav-trigger + label,.site-wrap {
-    transition: left .2s;
+    /*transition: left .2s;*/
+-webkit-transition: .15s ease-in-out;
+  -moz-transition: .15s ease-in-out;
+  -o-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
 }
 
 .nav-trigger:checked + label {
-    left: 265px;
+    /*left: 265px;*/
+    transform: translateX(265px);
+
 }
 
 .nav-trigger:checked ~ .site-wrap {
-    left: 254px;
+    transform: translateX(254px);
+/*    left: 254px;*/
     box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
 
@@ -176,7 +340,7 @@ code {
 }
 
 #search-inner,#list-inner,#drawer-list,#drawer-header,#search-input,#drawer-item,#header-inner,#search-bar {
-    width: 250px;
+    width: 200px;
 }
 
 #header-inner {
@@ -185,7 +349,7 @@ code {
 
 #drawer-header {
     margin: 0 0 0 4vw;
-    font-size: 2em;
+    font-size: 5vh;
     display: block;
     font-family: 'Gloria Hallelujah',cursive;
     color: #000;
@@ -636,6 +800,19 @@ code {
 }
 
 @media screen and (min-width: 1024px) {
+    #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar {
+    width: 250px;
+}
+
+    #nav-mobile.open ~ .site-wrap {
+      transform: translateX(250px);
+    }
+
+    #nav-mobile.open {
+      transform: translateX(260px);
+     /* left: 215px;*/
+
+    }
 
     .site-wrap {
         padding: 2em;
