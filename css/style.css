@@ -839,4 +839,12 @@ code {
     h1 {
         font-size: 5vh;
     }
+
+    #bodyContent {
+        margin-top: 20px;
+    }
+
+    #firstHeading {
+        margin-top: 5px;
+    }
 }
