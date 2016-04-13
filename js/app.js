@@ -67,7 +67,9 @@
                 return function() {
                     // Attach infoWindow
                     infoWindow = new google.maps.InfoWindow();
-                    var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + this.title + '</b> ' + '</div>';
+                    var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + this.title + '</b> ' + '</div>' +
+                                  '<button class="btn btn-warning" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button" aria-label="Left Align">'
+                                  + '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></span>';
                     infoWindow.setOptions({
                         content: contentString
                     });

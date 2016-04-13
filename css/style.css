@@ -89,15 +89,17 @@ a {
 }
 
 #openBtn {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+/*    position: absolute;*/
+/*    right: 10px;*/
+/*    bottom: 10px;*/
     color: #000;
     border: 2px solid white;
     border-radius: 50px;
     padding: 2px;
     color: white;
     font-size: 1em;
+    float: right;
+    outline: none;
 }
 
 #model-desc {
@@ -135,6 +137,7 @@ a {
   background-color: white; /* Needs a background or else the nav will show through */
   position: relative;
   top: calc(-100% - 30px); /* This value is to offset the total height of the nav-mobile div */
+  overflow-y: hidden;
 }
 
 .navigation {
@@ -334,6 +337,8 @@ code {
 
 /*  Modal Area */
 .modal-dialog {
+    margin-top: 10px
+    margin-bottom: 10px;
 
 }
 
@@ -347,12 +352,16 @@ code {
 }
 
 #model-data {
-    display: inline-flex;
+  /*  display: inline-flex;*/
+    border-radius: 15px;
     margin: auto;
     height: 41vh;
     color: #fff;
     position: relative;
-    background-color: #0096cf;
+/*    background-color: #0096cf;*/
+/*    margin: auto;*/
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .modal-footer {
@@ -362,6 +371,9 @@ code {
 
 .modal-header,#yelp,#yelp-noresult,#four-square,#fs-noresult {
     color: #fff;
+}
+#four-square, #yelp {
+/*    overflow-y: auto;*/
 }
 
 .modal-header {
@@ -381,9 +393,9 @@ code {
 }
 
 #modal-btn-close {
-    margin-top: 3%;
+    margin: 3%;
     border-radius: 50px;
-    font-size: 2vh;
+    font-size: 2.5vh;
 }
 
 #street-view {
@@ -396,7 +408,7 @@ code {
 }
 
 #yelp,#four-square,#yelp-noresult,#fs-noresult {
-    margin-top: 6%;
+    margin-top: 10px;
     height: 83%;
 }
 
@@ -410,6 +422,8 @@ code {
 
     margin: 2%;
     overflow-y: auto;
+/*    display: table-cell;
+    vertical-align: middle;*/
 }
 
 #list-inner {
@@ -417,6 +431,14 @@ code {
     overflow-y: auto;
     overflow-x: hidden;
     height: calc(100% - 90px);
+}
+
+.list-inner {
+/*    height: 50vh;*/
+/*    min-height: 30vh;
+    max-height: 50vh;*/
+/*    width: 60vw;*/
+    overflow-x: hidden;
 }
 
 .result-item:hover {
@@ -443,6 +465,7 @@ code {
 #firstHeading {
     margin: 2% 0 2%;
     text-align: center;
+    clear: right;
 }
 
 #img-inner {
@@ -476,9 +499,9 @@ code {
     }
 
     #openBtn {
-        font-size: 1em;
+        font-size: 2.5vh;
         right: 10px;
-        bottom: 10px;
+/*        bottom: 10px;*/
     }
 
     #model-data {
@@ -487,8 +510,8 @@ code {
     }
 
     .modal-dialog {
-        margin-top: 1px;
-        margin-bottom: 0;
+/*        margin-top: 1px;*/
+/*        margin-bottom: 0;*/
         min-height: 99vh;
         max-height: 125vh;
     }
@@ -506,7 +529,11 @@ code {
 
     #model-desc {
         font-size: 1em;
-        margin: 20px auto;
+/*        margin: 20px auto;*/
+        margin: auto;
+        height: 24vh;
+        padding: 15px;
+        background: #0096cf;
     }
 
     .modal-body {
@@ -515,6 +542,7 @@ code {
 
     #bodyContent {
         height: 80%;
+        margin-top: 20px;
     }
 
     #yelp-img-inner {
@@ -527,7 +555,7 @@ code {
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
         height: 62%;
-        margin-top: 6%;
+/*        margin-top: 6%;*/
     }
 
     #yelp-status,#fs-status,.fs-element-show {
@@ -557,6 +585,18 @@ code {
     #drawer-item {
         font-size: 3vh;
     }
+}
+
+/*iPhone 4 LS*/
+
+@media screen and (min-width: 480px) and (min-height: 320px) {
+    #bodyContent {
+
+        margin-top: 13px;
+    }
+
+    #drawer-item {
+    font-size: 4.5vh;
 }
 
 /* iPad */
@@ -621,6 +661,7 @@ code {
     #openBtn {
         font-size: 1.5em;
         padding: 1%;
+        bottom: 10px;
     }
 
     #yelp, #four-square {
@@ -648,7 +689,7 @@ code {
     }
 
     #pill-yelp,#pill-foursquare {
-        height: 95%;
+/*        height: 95%;*/
     }
 
     .modal-results {
@@ -717,8 +758,8 @@ code {
 
 
     #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar {
-    width: 250px;
-}
+        width: 250px;
+    }
 
     #nav-mobile.open ~ .site-wrap {
       transform: translateX(250px);
@@ -799,7 +840,7 @@ code {
     }
 
     .body-content {
-        height: 70%;
+        height: 90%;
         margin: 2%;
     }
 
