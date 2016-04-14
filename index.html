@@ -52,27 +52,40 @@
               <h1 class="page-title text-center">Stamford Parks</h1>
             </div>
           </div>
+          <div class="inner">
+            <div class="left-main">
+            <div class="park-instr" data-bind="visible: showModel() != true">
+             <h3 class="text-center">THE PARKS MAP</h3><span class="glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
+                <p class="p-desc">The park maps displays all of the parks located in the Stamford, CT area.  Click the above menu icon to bring up a list of parks in the area.  After selecting one, feel free to click the yellow icon next to it in the infowindow to bring up additional information of it, such as a streetview and potential matches from Foursquare and Yelp.</p>
+            </div>
+            <div class="park-info" data-bind="visible: showModel">
+              <h3 class="text-center" data-bind="text:currentName" id="firstHeading"></h3><span class="glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
+                <p data-bind="text: currentDesc" id="model-desc"></p>
+            </div>
+
+            </div>
+
+          </div>
         </header>
+<!--         </div> -->
         <div class="row" id="map-row">
           <div class="col-med-6" id="map-canvas">
             <div id="map">
             </div>
           </div>
         </div>
-        <div class="row" id="footer">
+<!--         <div class="row" id="footer">
           <div class="row" data-bind="visible: showModel" id="model-data">
 
           <span>
             <h1 data-bind="text: currentName" id="firstHeading"></h1>
-<!--           <button class="btn btn-warning" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button" aria-label="Left Align">
-          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></span> -->
             <div id="bodyContent">
               <p data-bind="text: currentDesc" id="model-desc"></p>
             </div>
-<!--             <button class="btn btn-primary" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button">More Info</button> -->
           </div>
         </div>
-      </div>
+      </div> -->
+
       <!-- End Site Wrap -->
       <!--         Modal Start -->
       <div aria-hidden="true" aria-labelledby="modal-label" class="modal fade" id="modal-place" role="dialog" tabindex="-1">

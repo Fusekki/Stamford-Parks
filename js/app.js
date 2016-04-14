@@ -1,9 +1,13 @@
-    $(document).ready(function(){
+$(document).ready(function(){
     function hide() {
         $('#nav-mobile').toggleClass('open');
         // $('body').toggleClass('open');
-        $('.container-fluid').toggleClass('open');
+        // $('.container-fluid').toggleClass('open');
 
+    }
+
+    function minimize() {
+        $('.left-main').toggleClass('shrink');
     }
 
     $('#nav-mobile').click(function(){
@@ -12,7 +16,11 @@
     });
     $('.nav-item').click(function(){
         hide();
-    })
+    });
+
+    $('.minimize').click(function(){
+        minimize();
+    });
 });
 
     function handleChange(cb) {
@@ -41,6 +49,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: true,
                 zoom: 12,
+                mapTypeControl: false,
                 zoomControl: true,
                 styles: styleArray
             });
@@ -68,8 +77,8 @@
                     // Attach infoWindow
                     infoWindow = new google.maps.InfoWindow();
                     var contentString = '<div id="content">' + '<div id="siteNotice">' + '</div>' + '<b>' + this.title + '</b> ' + '</div>' +
-                                  '<button class="btn btn-warning" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button" aria-label="Left Align">'
-                                  + '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></span>';
+                                  '<span id="info-label">More Info<button class="btn btn-warning" data-target="#modal-place" data-toggle="modal" id="openBtn" type="button" aria-label="Left Align">'
+                                  + '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></button></span></span>';
                     infoWindow.setOptions({
                         content: contentString
                     });
@@ -354,6 +363,13 @@
         self.placeNumber = ko.pureComputed(function() {
             return selected;
         });
+
+
+
+        console.log(self.placeNumber());
+        $('#firstHeading').text("THE PARKS MAP");
+        console.log($('#firstHeading'));
+        $('#modelDesc').text('The park maps displays all of the parks located in the Stamford, CT area.  Click the above menu icon to bring up a list of parks in the area.  After selecting one, feel free to click the yellow icon next to it in the infowindow to bring up additional information of it, such as a streetview and potential matches from Foursquare and Yelp.');
 
         self.helpers = Helpers;
 
