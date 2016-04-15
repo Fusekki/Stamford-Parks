@@ -55,11 +55,13 @@
           <div class="inner">
             <div class="left-main">
             <div class="park-instr" data-bind="visible: showModel() != true">
-             <h3 class="text-center">THE PARKS MAP</h3><span class="glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
-                <p class="p-desc">The park maps displays all of the parks located in the Stamford, CT area.  Click the above menu icon to bring up a list of parks in the area.  After selecting one, feel free to click the yellow icon next to it in the infowindow to bring up additional information of it, such as a streetview and potential matches from Foursquare and Yelp.</p>
+             <h3 class="text-center">STAMFORD PARKS</h3>
+                <span class="btn glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
+                <p>The Stamford Parks displays all of the parks located in the Stamford, CT area.  Click the above menu icon to bring up a list of parks in the area.  After selecting one, feel free to click the yellow icon next to it in the infowindow to bring up additional information of it, such as a streetview and potential matches from Foursquare and Yelp.</p>
             </div>
             <div class="park-info" data-bind="visible: showModel">
-              <h3 class="text-center" data-bind="text:currentName" id="firstHeading"></h3><span class="glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
+              <h3 class="text-center" data-bind="text:currentName" id="firstHeading"></h3>
+                <span class="btn glyphicon glyphicon-minus minimize" aria-hidden="true"></span>
                 <p data-bind="text: currentDesc" id="model-desc"></p>
             </div>
 
@@ -70,8 +72,11 @@
 <!--         </div> -->
         <div class="row" id="map-row">
           <div class="col-med-6" id="map-canvas">
+
             <div id="map">
             </div>
+<!--               <input id="lat" style="position: absolute; z-index: 23; top: 0;">
+              <input id="lng" style="position: absolute; z-index: 23; top: 24px;"> -->
           </div>
         </div>
 <!--         <div class="row" id="footer">
@@ -99,8 +104,8 @@
               <div class="modal-map">
                 <div id="street-view" style="">
                 </div>
+                <hr>
               </div>
-              <hr>
               <div class="pills modal-results">
                 <ul class="nav nav-pills">
                   <li class="active" id="yelp-pill">
@@ -108,6 +113,9 @@
                   </li>
                   <li id="fs-pill">
                     <a class="pill-text" data-toggle="pill" href="#pill-foursquare">Foursquare</a>
+                  </li>
+                  <li id="sv-pill">
+                    <a class="pill-text" data-toggle="pill" href="#pill-streetview">Streetview</a>
                   </li>
                 </ul>
                 <div class="tab-content" id="tabmaster">
@@ -148,6 +156,8 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div class="tab-pane" id="pill-streetview">
                   </div>
                 </div>
               </div>

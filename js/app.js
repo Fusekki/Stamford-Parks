@@ -1,6 +1,9 @@
-$(document).ready(function(){
+// $(document).ready(function(){
     function hide() {
         $('#nav-mobile').toggleClass('open');
+        $('#nav-mobile span').toggleClass('changecolor');
+        $('.navigation').toggleClass('fadein');
+        $('.site-wrap').toggleClass('fadeout');
         // $('body').toggleClass('open');
         // $('.container-fluid').toggleClass('open');
 
@@ -21,7 +24,7 @@ $(document).ready(function(){
     $('.minimize').click(function(){
         minimize();
     });
-});
+// });
 
     function handleChange(cb) {
         if (cb.checked == true) {
@@ -42,17 +45,23 @@ $(document).ready(function(){
     }
     // Google Maps object
     function initMap() {
-
+        // var stamford = new google.maps.LatLng(41.074448, -73.541316),
         var stamford = new google.maps.LatLng(41.074448, -73.541316),
             map = new google.maps.Map(document.getElementById('map'), {
                 center: stamford,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: true,
-                zoom: 12,
                 mapTypeControl: false,
                 zoomControl: true,
                 styles: styleArray
             });
+
+              // google.maps.event.addListener(map, "center_changed", function() {
+              //   var lat = map.getCenter().lat();
+              //   var lng = map.getCenter().lng();
+              //   $('#lat').val(lat);
+              //   $('#lng').val(lng);
+              // });
         // This ensures the map boundaries are set dynamically so that all markers appear on map despite display
         var bounds = new google.maps.LatLngBounds();
         var prev_marker = false;
@@ -71,6 +80,8 @@ $(document).ready(function(){
             });
             bounds.extend(pos);
             // This adds the click event listener to the marker object
+
+
             google.maps.event.addListener(marker, 'click', function(markerCopy) {
 
                 return function() {
@@ -150,14 +161,26 @@ $(document).ready(function(){
             if (typeof place === 'number') {
                 // This is triggered from the marker.
                 place = places[place];
+                // console.log('from marker');
 
             } else {
-
+                // console.log('from drawer');
                 // This is triggered from the drawer.
                 var num = place.marker.number;
                 // Trigger the click event for the marker
                 google.maps.event.trigger(places[num].marker, 'click');
+                            // close the drawer
+                hide();
             }
+
+            if ($('.left-main').hasClass('shrink')) {
+                minimize();
+            }
+
+
+
+
+
             // Set the current Model information
             currentName(place.name);
             currentDesc(place.description);
@@ -435,8 +458,18 @@ $(document).ready(function(){
             var lng = self.places()[selected].marker.getPosition().lng();
 
             var loc = new google.maps.LatLng(lat, lng);
+            var id = 'street-view';
+            console.log($(id));
+            console.log($('street-view'));
+            console.log($(id).is(':visible'));
 
+            if (!($(id).is(':visible'))) {
+                id = 'pill-streetview';
+                console.log('streetview hidden');
+            }
+            console.log(id);
 
+            console.log(document.getElementById('street-view'));
 
             var panorama = new google.maps.StreetViewPanorama(document.getElementById('street-view'), {
                 position: loc,

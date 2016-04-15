@@ -27,6 +27,18 @@ a {
     overflow: hidden;
 }
 
+.fade {
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+
+
+.fade.out {
+    opacity: 0;
+}
+
+
 /*.container-fluid.open {
     overflow: hidden;
 }*/
@@ -38,74 +50,72 @@ a {
 }
 
 .inner {
-    margin-left: 20px;
-    margin-top: 100px;
+/*    margin-left: 20px;
+    margin-top: 100px;*/
+    height: calc(100vh - 60px);
 }
 
 .left-main {
-    border: 10px solid #22354f;
+    margin-top: calc(100vh - 60px - 180px);
+    font-weight: 600;
+    border: 5px solid #080808;
     width: 265px;
     height: 392px;
-/*    min-height: 160px;*/
     margin-bottom: 75px;
     padding: 20px 0;
-    /* background: url(../images/left-container-bg.jpg) repeat 0 0; */
-    /* border-radius: 12px; */
     -moz-border-radius: 12px;
     -webkit-border-radius: 12px;
     position: relative;
     z-index: 2;
-    background: antiquewhite;
-    transition: height .75s;
-    -moz-transition: height .75s;
-    -webkit-transition: height .75s;
-    -o-transition: height .75s;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: height .75s, width .75s, margin-top .75s;
+    -moz-transition: height .75s, width .75s, margin-top .75;
+    -webkit-transition: height .75s, width .75s, margin-top .75;
+    -o-transition: height .75s, width .75s, margin-top .75;
 }
-
-
-
 
 .left-main h3 {
     color: #ee7401;
-    font-weight: 700;
-        margin-bottom: 10px;
 }
 
-.park-info h3 {
+
+
+.left-main h3, .park-info h3 {
     font-weight: 700;
-        margin-bottom: 10px;
+    margin-bottom: 10px;
+    opacity: 1;
+    transition: opacity .2s linear;
+    -moz-transition: opacity .2s linear;
+    -webkit-transition: opacity .2s linear;
+    -o-transition: opacity .2s linear;
 }
+
 
 .left-main p, .park-info p {
-    padding: 10px;
-    height: 100px;
+    padding: 0 5px;
+    height: 85px;
     overflow-y: auto;
-
-    transition: height .2s linear;
-    -moz-transition: height .2s linear;
-    -webkit-transition: height .2s linear;
-    -o-transition: height .2s linear;
+    color: black;
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    -moz-transition: opacity 1s ease-in;
+    -o-transition: opacity 1s ease-in;
 
 
 }
 
 .left-main.shrink {
-    height: 10px;
+    height: 42px;
+    width: 42px;
+    margin-top: calc(100vh - 60px - 47px);
 }
 
-.left-main.shrink p {
-/*    transition: height 5s ease-in;
-    -moz-transition: height 5s ease-in;
-    -webkit-transition: height 5s ease-in;
-    -o-transition: height 5s ease-in;*/
-    padding: 0;
-    height: 0;
+.left-main.shrink h3, .left-main.shrink p {
+    opacity: 0;
+}
 
-}
-.park-instr, .park-info {
-    height: 100%;
-/*    overflow-y: auto;*/
-}
+
+
 
 .ui-autocomplete {
     z-index: 2;
@@ -115,7 +125,9 @@ a {
     list-style: none;
     padding: 0;
 }
-
+#pill-streetview {
+    height: 50vh;
+}
 .container-fluid, #map,.navigation,#pill-yelp,#pill-foursquare,#yelp-pill,#fs-pill {
     height: 100%;
 }
@@ -140,7 +152,7 @@ a {
 
 #map-row {
 /*    height: 70vh;*/
-    height: 93vh;
+    height: calc(100vh - 60px);
 /*    background-color: #6a2474;*/
     margin: 0;
     position: absolute;
@@ -203,6 +215,7 @@ a {
   -moz-transition: .15s ease-in-out;
   -o-transition: .15s ease-in-out;
   transition: .15s ease-in-out;
+  opacity: 1;
 
 
   min-height: 100%;
@@ -213,8 +226,21 @@ a {
   overflow-y: hidden;
 }
 
+.site-wrap.fadeout {
+    opacity: 0.2;
+}
+
 .navigation {
     background: #ee7401;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+   -moz-transition: opacity 1s ease-in-out;
+   -webkit-transition: opacity 1s ease-in-out;
+}
+
+.navigation.fadein {
+    opacity: 1;
+    background: black;
 }
 
 /* Navigation Menu - List items */
@@ -242,10 +268,10 @@ a {
   width: 30px;
   height: 30px;
   position: relative;
-  -webkit-transform: rotate(0deg);
+/*  -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
-  transform: rotate(0deg);
+  transform: rotate(0deg);*/
   -webkit-transition: .15s ease-in-out;
   -moz-transition: .15s ease-in-out;
   -o-transition: .15s ease-in-out;
@@ -254,8 +280,9 @@ a {
   left: 10px;
   top: -98%;
   z-index: 2;
-}
 
+}
+/*Hamburger lines*/
 #nav-mobile span {
   display: block;
   position: absolute;
@@ -264,11 +291,11 @@ a {
   background: black;
   border-radius: 9px;
   opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
+/*  left: 0;*/
+/*  -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
-  transform: rotate(0deg);
+  transform: rotate(0deg);*/
   -webkit-transition: .10s ease-in-out;
   -moz-transition: .10s ease-in-out;
   -o-transition: .10s ease-in-out;
@@ -287,6 +314,10 @@ a {
   top: 24px;
 }
 
+#nav-mobile span.changecolor {
+    background: white;
+}
+
 #nav-mobile.open ~ .site-wrap {
     -webkit-transition: .15s ease-in-out;
   -moz-transition: .15s ease-in-out;
@@ -298,6 +329,7 @@ a {
 
 #nav-mobile.open {
   transform: translateX(210px);
+
 }
 
 #nav-mobile.open span:nth-child(1) {
@@ -410,7 +442,7 @@ code {
 
 /*  Modal Area */
 .modal-dialog {
-    margin-top: 10px
+    margin-top: 10px;
     margin-bottom: 10px;
 
 }
@@ -423,13 +455,19 @@ code {
     background-color: #29a293;
     height: 95%;
 }
+
 .minimize {
+    background: white;
     position: absolute;
-    right: 10px;
+    top: calc(100% - 30px);
+    left: 2px;
+    border: 1px solid black;
+    padding: 3px 6px;
 }
 
 #model-data {
   /*  display: inline-flex;*/
+
     border-radius: 15px;
     margin: auto;
     height: 41vh;
@@ -516,7 +554,8 @@ code {
     list-style: none;
     overflow-y: auto;
     overflow-x: hidden;
-    height: calc(100% - 90px);
+/*    height: calc(100% - 90px);*/
+    height: 100%;
 }
 
 .list-inner {
@@ -548,7 +587,7 @@ code {
     margin: 30px 0 10px;
 }
 
-#firstHeading {
+#firstHeading1 {
 /*    margin: 2% 0 2%;*/
     text-align: center;
 }
@@ -565,17 +604,20 @@ code {
 
 /* iPhone/Small phone screen */
 @media screen and (min-width: 320px) {
+
     .container-fluid {
         margin: auto;
     }
     .inner {
-        margin-left: 5px;
-        margin-top: 215px;
+        height: calc(100vh - 60px);
+/*        margin-left: 5px;
+        margin-top: 215px;*/
     }
 
     .left-main {
-        width: 200px;
-    height: 200px;
+
+        height: 175px;
+        padding: 7px 0;
     }
 
     .page-title {
@@ -601,6 +643,10 @@ code {
     #model-data {
         width: 98%;
         margin: 0 1% 0 1%;
+    }
+
+    .modal-map {
+        display:none;
     }
 
     .modal-dialog {
@@ -680,16 +726,34 @@ code {
     #drawer-item {
         font-size: 3vh;
     }
+
 }
 
-/*iPhone 4 LS*/
+/*iPhone 4/5 LS*/
 
 @media screen and (min-width: 480px) and (min-height: 320px) {
     .inner {
         margin-top: 55px;
     }
 
-    #firstHeading {
+    #map-row {
+/*        height: 81vh;*/
+    }
+
+    .left-main {
+        margin-top: calc(100vh - 60px - 155px);
+        height: 150px;
+    }
+
+    .left-main p, .park-info p {
+        height: 65px;
+    }
+
+    .left-main h3, .park-info h3 {
+        font-size: 5vh;
+    }
+
+    #firstHeading1 {
         font-size: 6vh;
     }
 
@@ -715,11 +779,12 @@ code {
     }
 
     .inner {
-            margin-left: 20px;
-    margin-top: 100px;
+        margin-left: 10px;
+        margin-top: 100px;
     }
 
     .left-main {
+        margin-top: calc(100vh - 60px - 397px);
         width: 265px;
         height: 392px;
     }
@@ -868,6 +933,32 @@ code {
         font-size: 2.1vh;
     }
 }
+/*ipad Portrait*/
+@media screen and (min-width: 768px) and (min-height: 1024px) {
+    /*height is 392 px or 382 without borcer, 372 px without padding and border */
+    .left-main {
+        margin-top: calc(100vh - 60px - 397px);
+    }
+
+    .left-main h3, .park-info h3 {
+        margin: 10px auto;
+        font-size: 3vh;
+    }
+
+    .left-main p, .park-info p {
+        height: 280px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (min-height: 768px) {
+    .left-main h3, .park-info h3 {
+        font-size: 3.5vh;
+    }
+
+        .left-main p, .park-info p {
+        height: 280px;
+    }
+}
 
 @media screen and (min-width: 1024px) {
 
@@ -1000,7 +1091,19 @@ code {
         margin-top: 20px;
     }
 
+    .modal-map {
+        display:block;
+    }
+
+    .modal-map {
+        display:block;
+    }
+    #sv-pill {
+        display:none;
+    }
+
     #firstHeading {
 /*        margin-top: 5px;*/
     }
+
 }
