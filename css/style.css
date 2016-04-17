@@ -243,6 +243,10 @@ a {
     background: black;
 }
 
+.nav {
+    margin-bottom: 5px;
+}
+
 /* Navigation Menu - List items */
 .nav-item {
   /* non-critical appearance styles */
@@ -442,20 +446,21 @@ code {
 
 /*  Modal Area */
 .modal-dialog {
-    margin-top: 10px;
-    margin-bottom: 10px;
+/*    margin-top: 10px;
+    margin-bottom: 10px;*/
+    height: 95vh;
 
 }
 
 .modal-body {
     padding: 0 15px;
+    height: 90%;
 }
 
 .modal-content {
     background-color: #29a293;
-    height: 95%;
+    height: inherit;
 }
-
 .minimize {
     background: white;
     position: absolute;
@@ -505,7 +510,8 @@ code {
 }
 
 .modal-results {
-    height: 58%;
+    margin-top: 5px;
+    height: 97%;
 }
 
 .modal-style {
@@ -513,7 +519,7 @@ code {
 }
 
 .modal-title {
-    font-size: 4vmin;
+    font-size: 4vh;
 }
 
 #modal-btn-close {
@@ -522,7 +528,7 @@ code {
     font-size: 2.5vh;
 }
 
-#street-view {
+#street-view, #sv-canvas {
     top: 1vh;
     height: 40vh;
 }
@@ -542,7 +548,7 @@ code {
 
 .body-content {
     min-height: 10vh;
-    max-height: 26vh;
+    max-height: 41vh;
 
     margin: 2%;
     overflow-y: auto;
@@ -652,14 +658,14 @@ code {
     .modal-dialog {
 /*        margin-top: 1px;*/
 /*        margin-bottom: 0;*/
-        min-height: 99vh;
-        max-height: 125vh;
+/*        min-height: 99vh;
+        max-height: 125vh;*/
     }
 
     .modal-content {
-        min-height: 99vh;
-        max-height: 125vh;
-        overflow-y: auto;
+/*        min-height: 99vh;
+        max-height: 125vh;*/
+/*        overflow-y: auto;*/
 
     }
 
@@ -757,13 +763,27 @@ code {
         font-size: 6vh;
     }
 
+    .body-content {
+
+        max-height: 27vh;
+    }
+
     #bodyContent {
 
         margin-top: 13px;
     }
 
+    #yelp-status, #fs-status {
+        padding-top: 20px;
+    }
+
     #drawer-item {
     font-size: 4.5vh;
+    }
+
+    .modal-body {
+    height: 63%;
+}
 }
 
 /* iPad */
@@ -831,7 +851,7 @@ code {
     }
 
     .modal-dialog {
-        height: 96vh;
+   /*     height: 96vh;*/
     }
 
     #openBtn {
@@ -870,7 +890,7 @@ code {
     }
 
     .modal-results {
-        height: 52%;
+/*        height: 52%;*/
     }
 
     #img-inner {
@@ -902,11 +922,7 @@ code {
     }
 
     .modal-content {
-        height: 98%;
-    }
-
-    .modal-results {
-        height: 52%;
+    /*    height: 98%;*/
     }
 
     #map-canvas {
@@ -948,6 +964,11 @@ code {
     .left-main p, .park-info p {
         height: 280px;
     }
+
+    .body-content {
+
+        max-height: 47vh;
+    }
 }
 
 @media screen and (min-width: 1024px) and (min-height: 768px) {
@@ -957,6 +978,11 @@ code {
 
         .left-main p, .park-info p {
         height: 280px;
+    }
+
+    .body-content {
+
+        max-height: 41vh;
     }
 }
 
@@ -1028,9 +1054,9 @@ code {
     }
 
     .modal-dialog {
-        margin-top: 20px;
-        margin-bottom: 0;
-        height: 99vh;
+/*        margin-top: 20px;
+        margin-bottom: 0;*/
+/*        height: 99vh;*/
     }
 
     .pill-text,.list-inner {
@@ -1060,7 +1086,7 @@ code {
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
         height: 62%;
-        margin-top: 6%;
+        margin-top: 10px;
     }
 
     #yelp-status,#fs-status,.fs-element-show {
@@ -1090,6 +1116,13 @@ code {
     #bodyContent {
         margin-top: 20px;
     }
+    .nav {
+         margin-bottom: 0;
+    }
+
+    .tab-content {
+        height: 65%;
+    }
 
     .modal-map {
         display:block;
@@ -1106,4 +1139,8 @@ code {
 /*        margin-top: 5px;*/
     }
 
+
+    .modal-results {
+        height: 52%;
+    }
 }

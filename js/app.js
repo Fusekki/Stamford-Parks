@@ -452,6 +452,10 @@
 
         // Statements
         this.query.subscribe(self.search);
+        console.log($('#pill-streetview'));
+
+
+
         // This event triggers the street view to display in the modal.  This code acts to refresh the streetview.  Without it, the StreetView doesn't display correctly.
         $('#modal-place').on('shown.bs.modal', function() {
             var lat = self.places()[selected].marker.getPosition().lat();
@@ -460,18 +464,23 @@
             var loc = new google.maps.LatLng(lat, lng);
             var id = 'street-view';
             console.log($(id));
-            console.log($('street-view'));
+            console.log($('modal-map'));
             console.log($(id).is(':visible'));
 
-            if (!($(id).is(':visible'))) {
-                id = 'pill-streetview';
-                console.log('streetview hidden');
+            console.log($('#modal-map').is(':visible'));
+
+            if ($('.modal-map').is(':visible')){
+
+                console.log('streetview not hidden');
+            } else {
+                                id = 'pill-streetview';
+                console.log('streetview hidden.');
             }
             console.log(id);
 
             console.log(document.getElementById('street-view'));
 
-            var panorama = new google.maps.StreetViewPanorama(document.getElementById('street-view'), {
+            var panorama = new google.maps.StreetViewPanorama(document.getElementById(id), {
                 position: loc,
                 panControl: true,
                 prob: {
@@ -480,7 +489,29 @@
                 }
             });
 
+            // Check to see if streetview is appearing in the pills
+
+            if ($('#sv-pill').is(':visible')) {
+                console.log('mobile streetview is activated');
+
+
+                // Since the tab is hidden by default, we need to trigger a resize event so it displays properly when the pill is selected
+                $('a[data-toggle="pill"]').on('shown.bs.tab', function (e) {
+                  var target = $(e.target).attr("href") // activated tab
+                  if (target === '#pill-streetview') {
+                        console.log('trigger map resize');
+                        google.maps.event.trigger(panorama, "resize");
+
+                  }
+                });
+
+            } else {
+                console.log('mobile streetview disabled.');
+            }
+
+
         });
+
 
        // End Statements
     };
