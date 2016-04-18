@@ -153,6 +153,7 @@
     }
 
     function selectPlace(place) {
+
         // The skip variable is used because every selectPlace will be called twice.  It's triggered both by the click marker event and the drawer
         // click event.  This variable limits the call to once.
         if (!skip) {
@@ -187,11 +188,20 @@
             showModel(true);
 
             // Make ajax calls
-            getYelp(place);
-            getFS(place);
+            console.log(place);
+            // getYelp(place);
+            // getFS(place);
 
             skip = false;
 
+
+            // Reset the modal display
+            showYelpLoading(true);
+            showYelp(false);
+            showYelpNoResult(false);
+            showFSLoading(true);
+            showFSnoresult(false);
+            showFS(false);
         }
     }
 
@@ -201,7 +211,10 @@
 
     function localJsonpCallback(data) {}
 
-    function callStart(apiName) {}
+    function callStart(apiName) {
+        console.log(apiName + " call started.");
+        // Perform animation here.
+    }
 
     function callComplete(apiName) {}
 
@@ -217,7 +230,7 @@
             tokenSecret = 'IKtJiQ-P4Gk_arqDvP3buDE-Wio';
 
         var parameters = {
-            term: place.name,
+            term: place,
             location: local,
             oauth_consumer_key: consumerKey,
             oauth_token: token,
@@ -244,11 +257,11 @@
         $.getJSON(settings)
             .done(function(results) {
                 if (results.businesses.length > 0) {
-
+                    showYelpLoading(false);
                     showYelp(true);
                     showYelpNoResult(false);
                 } else {
-
+                    showYelpLoading(false);
                     showYelp(false);
                     showYelpNoResult(true);
 
@@ -267,6 +280,7 @@
             })
             .fail(function(results) {
                 Helpers.handleError('Error encountered in communicating with Yelp.  Please check your internet connection and firewall settings.  If this issue persists, there may be difficulty in communicating with Yelp.');
+                showYelpLoading(false);
                 showYelp(false);
                 showYelpNoResult(true);
             });
@@ -281,7 +295,7 @@
             clientId = 'ZUPJOALYACXTHW3ZLE2I0RF2IWBOLFQPORW5LBUFHL2KEFTA',
             clientSecret = 'S4M2PBBKJVQP3HM3SCKEZIIEJARLZ5ITP1KUKN4IXT03CXTM',
             near = 'Stamford, CT';
-        var urlParams = url[0] + clientId + url[1] + clientSecret + url[2] + near + url[3] + place.name;
+        var urlParams = url[0] + clientId + url[1] + clientSecret + url[2] + near + url[3] + place;
         var settings = {
             url: urlParams,
             type: httpMethod,
@@ -297,20 +311,21 @@
                 if (results.venues.length > 0) {
                     // Clear out observable array
                     fsResults.removeAll();
-
+                    showFSLoading(false);
                     showFS(true);
                     showFSnoresult(false);
                     for (var i = 0; i < results.venues.length; i++) {
                         fsDetails(results.venues[i].id);
                     }
                 } else {
-
+                    showFSLoading(false);
                     showFS(false);
                     showFSnoresult(true);
                 }
             })
             .fail(function(results) {
                 Helpers.handleError('Error encountered in communicating with Foursqure.  Please check your internet connection and firewall settings.  If this issue persists, there may be difficulty in communicating with Foursquare.');
+                showFSLoading(false);
                 showFS(false);
                 showFSnoresult(true);
             });
@@ -458,8 +473,17 @@
 
         // This event triggers the street view to display in the modal.  This code acts to refresh the streetview.  Without it, the StreetView doesn't display correctly.
         $('#modal-place').on('shown.bs.modal', function() {
-            var lat = self.places()[selected].marker.getPosition().lat();
-            var lng = self.places()[selected].marker.getPosition().lng();
+
+            var place = self.places()[selected].marker;
+
+            // Start the ajax calls
+            getYelp(place.title);
+            getFS(place.title);
+
+
+
+            var lat = place.getPosition().lat();
+            var lng = place.getPosition().lng();
 
             var loc = new google.maps.LatLng(lat, lng);
             var id = 'street-view';
@@ -511,6 +535,10 @@
 
 
         });
+
+        $('#myModal').on('hidden.bs.modal', function () {
+            // do something…
+        })
 
 
        // End Statements

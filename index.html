@@ -126,6 +126,23 @@
                     <div data-bind="visible: showYelpNoResult" id="yelp-noresult">
                       <p id="yelp-status">No Yelp Results Found</p>
                     </div>
+                    <div data-bind="visible: showYelpLoading" id="yelp-loading">
+                    <!-- Loading animation courtesy of cssload.net -->
+
+                      <p id="yelp-loading-status">Loading....</p>
+                      <div id="fountainG">
+                        <div id="fountainG_1" class="fountainG"></div>
+                        <div id="fountainG_2" class="fountainG"></div>
+                        <div id="fountainG_3" class="fountainG"></div>
+                        <div id="fountainG_4" class="fountainG"></div>
+                        <div id="fountainG_5" class="fountainG"></div>
+                        <div id="fountainG_6" class="fountainG"></div>
+                        <div id="fountainG_7" class="fountainG"></div>
+                        <div id="fountainG_8" class="fountainG"></div>
+                      </div>
+                    </div>
+
+
                     <div data-bind="visible: showYelp" id="yelp">
                       <span>Results:</span>
                       <div class="body-content">
@@ -144,6 +161,21 @@
                     </div>
                     <div data-bind="visible: showFSnoresult" id="fs-noresult">
                       <p id="fs-status">No Foursquare Results Found</p>
+                    </div>
+                    <div data-bind="visible: showFSLoading" id="fs-loading">
+                    <!-- Loading animation courtesy of cssload.net -->
+
+                      <p id="fs-loading-status">Loading</p>
+                      <div id="fountainG">
+                        <div id="fountainG_1" class="fountainG"></div>
+                        <div id="fountainG_2" class="fountainG"></div>
+                        <div id="fountainG_3" class="fountainG"></div>
+                        <div id="fountainG_4" class="fountainG"></div>
+                        <div id="fountainG_5" class="fountainG"></div>
+                        <div id="fountainG_6" class="fountainG"></div>
+                        <div id="fountainG_7" class="fountainG"></div>
+                        <div id="fountainG_8" class="fountainG"></div>
+                      </div>
                     </div>
                     <div data-bind="visible: showFS" id="four-square">
                       <span>Results:</span>

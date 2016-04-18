@@ -10,8 +10,10 @@ var skip = false,
     yelpResults = ko.observableArray([]),
     fsResults = ko.observableArray([]),
     showYelpNoResult = ko.observable(false),
+    showYelpLoading = ko.observable(true),
     showYelp = ko.observable(false),
     showFSnoresult = ko.observable(false),
+    showFSLoading = ko.observable(true),
     showFS = ko.observable(false),
     showModel = ko.observable(false);
 
