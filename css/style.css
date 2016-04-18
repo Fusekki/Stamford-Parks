@@ -28,30 +28,21 @@ a {
 }
 
 .fade {
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
 }
-
 
 .fade.out {
     opacity: 0;
 }
 
-
-/*.container-fluid.open {
-    overflow: hidden;
-}*/
-
 #titlediv {
-/*    height: 15vh;*/
     height: 60px;
     margin: 0;
 }
 
 .inner {
-/*    margin-left: 20px;
-    margin-top: 100px;*/
     height: calc(100vh - 60px);
 }
 
@@ -67,20 +58,18 @@ a {
     -webkit-border-radius: 12px;
     position: relative;
     z-index: 2;
-    background-color: rgba(255, 255, 255, 0.8);
-    transition: height .75s, width .75s, margin-top .75s;
-    -moz-transition: height .75s, width .75s, margin-top .75;
-    -webkit-transition: height .75s, width .75s, margin-top .75;
-    -o-transition: height .75s, width .75s, margin-top .75;
+    background-color: rgba(255,255,255,0.8);
+    transition: height .75s,width .75s,margin-top .75s;
+    -moz-transition: height .75s,width .75s,margin-top .75;
+    -webkit-transition: height .75s,width .75s,margin-top .75;
+    -o-transition: height .75s,width .75s,margin-top .75;
 }
 
 .left-main h3 {
     color: #ee7401;
 }
 
-
-
-.left-main h3, .park-info h3 {
+.left-main h3,.park-info h3 {
     font-weight: 700;
     margin-bottom: 10px;
     opacity: 1;
@@ -90,18 +79,15 @@ a {
     -o-transition: opacity .2s linear;
 }
 
-
-.left-main p, .park-info p {
+.left-main p,.park-info p {
     padding: 0 5px;
     height: 85px;
     overflow-y: auto;
-    color: black;
+    color: #000;
     opacity: 1;
     transition: opacity 1s ease-in;
     -moz-transition: opacity 1s ease-in;
     -o-transition: opacity 1s ease-in;
-
-
 }
 
 .left-main.shrink {
@@ -110,12 +96,9 @@ a {
     margin-top: calc(100vh - 60px - 47px);
 }
 
-.left-main.shrink h3, .left-main.shrink p {
+.left-main.shrink h3,.left-main.shrink p {
     opacity: 0;
 }
-
-
-
 
 .ui-autocomplete {
     z-index: 2;
@@ -125,10 +108,12 @@ a {
     list-style: none;
     padding: 0;
 }
+
 #pill-streetview {
-    height: 50vh;
+    height: 60vh;
 }
-.container-fluid, #map,.navigation,#pill-yelp,#pill-foursquare,#yelp-pill,#fs-pill {
+
+.container-fluid,#map,.navigation,#pill-yelp,#pill-foursquare,#yelp-pill,#fs-pill {
     height: 100%;
 }
 
@@ -145,15 +130,12 @@ a {
     justify-content: center;
 }
 
-
 #bodyContent {
     margin-top: 30px;
 }
 
 #map-row {
-/*    height: 70vh;*/
     height: calc(100vh - 60px);
-/*    background-color: #6a2474;*/
     margin: 0;
     position: absolute;
     top: 60px;
@@ -168,7 +150,6 @@ a {
 
 #map {
     padding: 8px;
-/*    border: 8px solid #9ec551;*/
 }
 
 #footer {
@@ -178,27 +159,11 @@ a {
 }
 
 #openBtn {
-/*    position: absolute;*/
-/*    right: 10px;*/
-/*    bottom: 10px;*/
     margin-left: 10px;
     border-radius: 50px;
     padding: 2px;
-    color: white;
+    color: #fff;
     font-size: 1.25em;
-}
-
-#model-desc {
-/*    margin: auto;
-    width: 94%;
-    overflow-y: auto;
-    height: 20vh;
-    border: outset;
-    padding: 20px;
-    border-radius: 35px;
-    -webkit-box-shadow: inset 0px 0px 157px 13px rgba(0,0,0,0.41);
-    -moz-box-shadow: inset 0px 0px 157px 13px rgba(0,0,0,0.41);
-    box-shadow: inset 0px 0px 157px 13px rgba(0,0,0,0.41);*/
 }
 
 /*  Drawer Area */
@@ -206,41 +171,40 @@ a {
     z-index: 1;
 }
 
-
-
 /* Site Wrapper - Everything that isn't navigation */
 .site-wrap {
-  /* Critical position and size styles */
-  -webkit-transition: .15s ease-in-out; /* These handle the transitions when the .open is removed */
-  -moz-transition: .15s ease-in-out;
-  -o-transition: .15s ease-in-out;
-  transition: .15s ease-in-out;
-  opacity: 1;
-
-
-  min-height: 100%;
-  min-width: 100%;
-  background-color: white; /* Needs a background or else the nav will show through */
-  position: relative;
-  top: calc(-100% - 30px); /* This value is to offset the total height of the nav-mobile div */
-  overflow-y: hidden;
+/* Critical position and size styles */
+    -webkit-transition: .15s ease-in-out;
+/* These handle the transitions when the .open is removed */
+    -moz-transition: .15s ease-in-out;
+    -o-transition: .15s ease-in-out;
+    transition: .15s ease-in-out;
+    opacity: 1;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: #fff;
+/* Needs a background or else the nav will show through */
+    position: relative;
+    top: calc(-100% - 30px);
+/* This value is to offset the total height of the nav-mobile div */
+    overflow-y: hidden;
 }
 
 .site-wrap.fadeout {
-    opacity: 0.2;
+    opacity: .2;
 }
 
 .navigation {
     background: #ee7401;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-   -moz-transition: opacity 1s ease-in-out;
-   -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -webkit-transition: opacity 1s ease-in-out;
 }
 
 .navigation.fadein {
     opacity: 1;
-    background: black;
+    background: #000;
 }
 
 .nav {
@@ -249,120 +213,107 @@ a {
 
 /* Navigation Menu - List items */
 .nav-item {
-  /* non-critical appearance styles */
-  width: 200px;
+/* non-critical appearance styles */
+    width: 200px;
 }
 
 .nav-item a {
-  /* non-critical appearance styles */
-  display: block;
-  padding: 0.75em;
-  color: beige;
-  font-size: 1.0em;
-  text-decoration: none;
-  transition: color 0.2s, background 0.5s;
+/* non-critical appearance styles */
+    display: block;
+    padding: .75em;
+    color: #f5f5dc;
+    font-size: 1em;
+    text-decoration: none;
+    transition: color 0.2s,background .5s;
 }
 
 .nav-item a:hover {
-  color: white;
+    color: #fff;
 }
 
 #nav-mobile {
-
-  width: 30px;
-  height: 30px;
-  position: relative;
-/*  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);*/
-  -webkit-transition: .15s ease-in-out;
-  -moz-transition: .15s ease-in-out;
-  -o-transition: .15s ease-in-out;
-  transition: .15s ease-in-out;
-  cursor: pointer;
-  left: 10px;
-  top: -98%;
-  z-index: 2;
-
+    width: 30px;
+    height: 30px;
+    position: relative;
+    -webkit-transition: .15s ease-in-out;
+    -moz-transition: .15s ease-in-out;
+    -o-transition: .15s ease-in-out;
+    transition: .15s ease-in-out;
+    cursor: pointer;
+    left: 10px;
+    top: -98%;
+    z-index: 2;
 }
+
 /*Hamburger lines*/
 #nav-mobile span {
-  display: block;
-  position: absolute;
-  height: 6px;
-  width: 100%;
-  background: black;
-  border-radius: 9px;
-  opacity: 1;
-/*  left: 0;*/
-/*  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);*/
-  -webkit-transition: .10s ease-in-out;
-  -moz-transition: .10s ease-in-out;
-  -o-transition: .10s ease-in-out;
-  transition: .10s ease-in-out;
+    display: block;
+    position: absolute;
+    height: 6px;
+    width: 100%;
+    background: #000;
+    border-radius: 9px;
+    opacity: 1;
+    -webkit-transition: .1s ease-in-out;
+    -moz-transition: .1s ease-in-out;
+    -o-transition: .1s ease-in-out;
+    transition: .1s ease-in-out;
 }
 
 #nav-mobile span:nth-child(1) {
-  top: 0px;
+    top: 0;
 }
 
 #nav-mobile span:nth-child(2),#nav-mobile span:nth-child(3) {
-  top: 12px;
+    top: 12px;
 }
 
 #nav-mobile span:nth-child(4) {
-  top: 24px;
+    top: 24px;
 }
 
 #nav-mobile span.changecolor {
-    background: white;
+    background: #fff;
 }
 
 #nav-mobile.open ~ .site-wrap {
     -webkit-transition: .15s ease-in-out;
-  -moz-transition: .15s ease-in-out;
-  -o-transition: .15s ease-in-out;
-  transition: .15s ease-in-out;
-  transform: translateX(200px);
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+    -moz-transition: .15s ease-in-out;
+    -o-transition: .15s ease-in-out;
+    transition: .15s ease-in-out;
+    transform: translateX(200px);
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
 }
 
 #nav-mobile.open {
-  transform: translateX(210px);
-
+    transform: translateX(210px);
 }
 
 #nav-mobile.open span:nth-child(1) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
+    top: 18px;
+    width: 0;
+    left: 50%;
 }
 
 #nav-mobile.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 #nav-mobile.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 #nav-mobile.open span:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
+    top: 18px;
+    width: 0;
+    left: 50%;
 }
-
-
 
 /* Additional non-critical styles */
 h1,h3,p {
@@ -446,10 +397,7 @@ code {
 
 /*  Modal Area */
 .modal-dialog {
-/*    margin-top: 10px;
-    margin-bottom: 10px;*/
     height: 95vh;
-
 }
 
 .modal-body {
@@ -461,25 +409,22 @@ code {
     background-color: #29a293;
     height: inherit;
 }
+
 .minimize {
-    background: white;
+    background: #fff;
     position: absolute;
     top: calc(100% - 30px);
     left: 2px;
-    border: 1px solid black;
+    border: 1px solid #000;
     padding: 3px 6px;
 }
 
 #model-data {
-  /*  display: inline-flex;*/
-
     border-radius: 15px;
     margin: auto;
     height: 41vh;
     color: #fff;
     position: relative;
-/*    background-color: #0096cf;*/
-/*    margin: auto;*/
     display: table-cell;
     vertical-align: middle;
 }
@@ -492,21 +437,17 @@ code {
 .modal-header,#yelp,#yelp-noresult,#four-square,#fs-noresult {
     color: #fff;
 }
-#four-square, #yelp {
-/*    overflow-y: auto;*/
-}
 
 .modal-header {
     height: 10%;
 }
 
 #info-label {
-        clear: both;
+    clear: both;
     line-height: 30px;
     font-weight: 400;
-/*    padding-right: 7px;*/
-    clear:both;
-    display:inline-flex;
+    clear: both;
+    display: inline-flex;
 }
 
 .modal-results {
@@ -528,7 +469,7 @@ code {
     font-size: 2.5vh;
 }
 
-#street-view, #sv-canvas {
+#street-view,#sv-canvas {
     top: 1vh;
     height: 40vh;
 }
@@ -549,26 +490,18 @@ code {
 .body-content {
     min-height: 10vh;
     max-height: 41vh;
-
     margin: 2%;
     overflow-y: auto;
-/*    display: table-cell;
-    vertical-align: middle;*/
 }
 
 #list-inner {
     list-style: none;
     overflow-y: auto;
     overflow-x: hidden;
-/*    height: calc(100% - 90px);*/
     height: 100%;
 }
 
 .list-inner {
-/*    height: 50vh;*/
-/*    min-height: 30vh;
-    max-height: 50vh;*/
-/*    width: 60vw;*/
     overflow-x: hidden;
 }
 
@@ -594,7 +527,6 @@ code {
 }
 
 #firstHeading1 {
-/*    margin: 2% 0 2%;*/
     text-align: center;
 }
 
@@ -606,22 +538,17 @@ code {
 }
 
 /*End Drawer CSS*/
-
-
 /* iPhone/Small phone screen */
 @media screen and (min-width: 320px) {
-
     .container-fluid {
         margin: auto;
     }
+
     .inner {
         height: calc(100vh - 60px);
-/*        margin-left: 5px;
-        margin-top: 215px;*/
     }
 
     .left-main {
-
         height: 175px;
         padding: 7px 0;
     }
@@ -631,54 +558,21 @@ code {
         padding: .4em;
     }
 
-    .left-main h3, .park-info h3 {
+    .left-main h3,.park-info h3 {
         font-size: 4vh;
-    }
-
-    #firstHeading {
-/*        display: none;*/
-    }
-
-    #openBtn {
-/*        font-size: 2.5vh;
-        right: 10px;
-        float: right;*/
-/*        bottom: 10px;*/
     }
 
     #model-data {
         width: 98%;
-        margin: 0 1% 0 1%;
+        margin: 0 1%;
     }
 
     .modal-map {
-        display:none;
-    }
-
-    .modal-dialog {
-/*        margin-top: 1px;*/
-/*        margin-bottom: 0;*/
-/*        min-height: 99vh;
-        max-height: 125vh;*/
-    }
-
-    .modal-content {
-/*        min-height: 99vh;
-        max-height: 125vh;*/
-/*        overflow-y: auto;*/
-
+        display: none;
     }
 
     .pill-text,.list-inner {
-        font-size: 12px;
-    }
-
-    #model-desc {
-/*        font-size: 1em;
-        margin: auto;
-        height: 24vh;
-        padding: 15px;
-        background: #0096cf;*/
+        font-size: 2.2vh;
     }
 
     .modal-body {
@@ -690,21 +584,17 @@ code {
         margin-top: 20px;
     }
 
-    #yelp-img-inner {
-        height: 22%;
-    }
-
-    #fs-img-inner {
-        height: 16%;
+    #yelp-img-inner,#fs-img-inner {
+        height: 60px;
     }
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
         height: 62%;
-/*        margin-top: 6%;*/
+        font-size: 2.5vh;
     }
 
     #yelp-status,#fs-status,.fs-element-show {
-        font-size: 11px;
+        font-size: 2.5vh;
     }
 
     #yelp-header,#yelp-status,#fs-status {
@@ -712,10 +602,7 @@ code {
     }
 
     #map-canvas {
-/*        min-height: 95%;*/
-/*        padding-top: 2.5%;*/
         width: 100%;
-
     }
 
     #drawer-item {
@@ -727,23 +614,16 @@ code {
     }
 }
 
-@media screen and (min-width: 320px) and (min-height: 650px){
-
+@media screen and (min-width: 320px) and (min-height: 650px) {
     #drawer-item {
         font-size: 3vh;
     }
-
 }
 
 /*iPhone 4/5 LS*/
-
 @media screen and (min-width: 480px) and (min-height: 320px) {
     .inner {
         margin-top: 55px;
-    }
-
-    #map-row {
-/*        height: 81vh;*/
     }
 
     .left-main {
@@ -751,11 +631,11 @@ code {
         height: 150px;
     }
 
-    .left-main p, .park-info p {
+    .left-main p,.park-info p {
         height: 65px;
     }
 
-    .left-main h3, .park-info h3 {
+    .left-main h3,.park-info h3 {
         font-size: 5vh;
     }
 
@@ -764,38 +644,71 @@ code {
     }
 
     .body-content {
-
-        max-height: 27vh;
+        max-height: 25vh;
     }
 
     #bodyContent {
-
         margin-top: 13px;
     }
 
-    #yelp-status, #fs-status {
-        padding-top: 20px;
+    .modal-header {
+        padding: 10px 0 30px;
+    }
+
+    .modal-title {
+        font-size: 7vh;
+    }
+
+    #fs-logo {
+        margin-top: 10px;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        margin-top: 0;
+        font-size: 2.5vw;
+    }
+
+    #pill-streetview {
+        height: 44vh;
+    }
+
+    #modal-btn-close {
+        font-size: 3.5vh;
+    }
+
+    #yelp-status,#fs-status {
+        padding-top: 40px;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        height: 62%;
+    }
+
+    #yelp-status,#fs-status,.fs-element-show {
+        font-size: 4vh;
+    }
+
+    #yelp-img-inner,#fs-img-inner {
+        height: 35px;
+    }
+
+    .pill-text,.list-inner {
+        font-size: 4.5vh;
     }
 
     #drawer-item {
-    font-size: 4.5vh;
+        font-size: 4.5vh;
     }
 
     .modal-body {
-    height: 63%;
-}
+        height: 57%;
+    }
 }
 
 /* iPad */
 @media screen and (min-width: 768px) {
-
-
     h1 {
         font-size: 3.5vh;
-    }
-
-    #titlediv {
-/*        height: 10vh;*/
     }
 
     .inner {
@@ -823,7 +736,7 @@ code {
         font-size: 3vh;
     }
 
-    #drawer-results, #drawer-results-text {
+    #drawer-results,#drawer-results-text {
         font-size: 2vh;
     }
 
@@ -833,16 +746,12 @@ code {
         margin: 0 auto;
     }
 
-    #firstHeading {
-/*        display: block;*/
-    }
-
     #bodyContent {
         height: 52%;
     }
 
     #siteNotice ~ b {
-       font-size: 1.6vh;
+        font-size: 1.6vh;
     }
 
     #model-data {
@@ -850,23 +759,20 @@ code {
         margin-top: 6%;
     }
 
-    .modal-dialog {
-   /*     height: 96vh;*/
+    .modal-title {
+        font-size: 4vh;
     }
 
-    #openBtn {
-/*        font-size: 1.5em;
-        padding: 1%;
-        bottom: 10px;
-        margin-left: 10px;*/
-    }
-
-    #yelp, #four-square {
+    #yelp,#four-square {
         font-size: 2vh;
     }
 
-    #yelp-img-inner {
-        height: 23%;
+    #yelp-status,#fs-status {
+        padding-top: 25px;
+    }
+
+    #yelp-img-inner,#fs-img-inner {
+        height: 68px;
     }
 
     #yelp-address {
@@ -877,20 +783,16 @@ code {
         height: 84%;
     }
 
-    .pill-text, .list-inner {
+    .pill-text,.list-inner {
         font-size: 1.7vh;
     }
 
     #yelp-status,#fs-status {
-        margin: 24px;
+        margin: 0 10px;
     }
 
-    #pill-yelp,#pill-foursquare {
-/*        height: 95%;*/
-    }
-
-    .modal-results {
-/*        height: 52%;*/
+    #modal-btn-close {
+        font-size: 2vh;
     }
 
     #img-inner {
@@ -898,7 +800,7 @@ code {
     }
 
     #yelp-img-inner {
-        height: 17%;
+        height: 10%;
     }
 
     #yelp-header {
@@ -909,27 +811,18 @@ code {
         height: 80%;
     }
 
-    #model-desc {
-/*        font-size: 1.5vh;*/
-/*        margin: 15px;*/
-            max-height: 290px;
-    overflow-y: auto;
+    #pill-streetview {
+        height: 64vh;
+    }
 
+    #model-desc {
+        max-height: 290px;
+        overflow-y: auto;
     }
 
     .modal-body {
         height: 86%;
     }
-
-    .modal-content {
-    /*    height: 98%;*/
-    }
-
-    #map-canvas {
-/*        height: 95%;*/
-/*        padding-top: 2%;*/
-    }
-
 
     #yelp,#four-square,#yelp-noresult,#fs-noresult {
         height: 74%;
@@ -945,10 +838,11 @@ code {
 }
 
 @media screen and (min-width: 768px) and (max-height: 1024px) {
-        #drawer-item {
+    #drawer-item {
         font-size: 2.1vh;
     }
 }
+
 /*ipad Portrait*/
 @media screen and (min-width: 768px) and (min-height: 1024px) {
     /*height is 392 px or 382 without borcer, 372 px without padding and border */
@@ -956,70 +850,95 @@ code {
         margin-top: calc(100vh - 60px - 397px);
     }
 
-    .left-main h3, .park-info h3 {
+    .left-main h3,.park-info h3 {
         margin: 10px auto;
         font-size: 3vh;
     }
 
-    .left-main p, .park-info p {
+    .left-main p,.park-info p {
         height: 280px;
     }
 
     .body-content {
+        max-height: 53vh;
+    }
 
-        max-height: 47vh;
+    .tab-pane {
+        margin-top: 10px;
+    }
+
+    #yelp-status,#fs-status,.fs-element-show {
+        font-size: 2vw;
     }
 }
 
+/*ipad Landscape*/
 @media screen and (min-width: 1024px) and (min-height: 768px) {
-    .left-main h3, .park-info h3 {
+    .left-main h3,.park-info h3 {
         font-size: 3.5vh;
     }
 
-        .left-main p, .park-info p {
+    .left-main p,.park-info p {
         height: 280px;
     }
 
     .body-content {
-
         max-height: 41vh;
+    }
+
+    #yelp-status,#fs-status,.fs-element-show {
+        font-size: 1.6vw;
+    }
+
+    #yelp-img-inner {
+        height: 15%;
+    }
+
+    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+        height: 70%;
+        margin-top: 10px;
+    }
+
+    #yelp,#four-square {
+        font-size: 2vw;
+    }
+
+    #fs-logo {
+        margin-top: 20px;
+    }
+
+    .pill-text,.list-inner {
+        font-size: 1.7vw;
+    }
+
+    #pill-streetview {
+        height: 60vh;
     }
 }
 
 @media screen and (min-width: 1024px) {
-
-
-    #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar {
+    #search-inner,#list-inner,#drawer-list,#drawer-header,#search-input,#drawer-item,#header-inner,#search-bar {
         width: 250px;
     }
 
     #nav-mobile.open ~ .site-wrap {
-      transform: translateX(250px);
+        transform: translateX(250px);
     }
 
     #nav-mobile.open {
-      transform: translateX(260px);
-    }
-
-    .site-wrap {
-/*        padding: 2em;*/
+        transform: translateX(260px);
     }
 
     h1 {
         font-size: 4vh;
     }
 
-    h1, h3, p {
+    h1,h3,p {
         margin-bottom: 1em;
     }
 
     .page-title {
         font-size: 45px;
-    }
-
-    #firstHeading {
-/*        padding: 10px;*/
-/*        margin-top: 2%;*/
     }
 
     #bodyContent {
@@ -1028,7 +947,6 @@ code {
 
     #header-inner {
         padding-top: 1%;
-
     }
 
     #search-input {
@@ -1036,7 +954,7 @@ code {
         line-height: 2.5vh;
     }
 
-    #drawer-results, #drawer-results-text {
+    #drawer-results,#drawer-results-text {
         font-size: 2.5vh;
     }
 
@@ -1053,20 +971,6 @@ code {
         margin: 3% auto;
     }
 
-    .modal-dialog {
-/*        margin-top: 20px;
-        margin-bottom: 0;*/
-/*        height: 99vh;*/
-    }
-
-    .pill-text,.list-inner {
-        font-size: 12px;
-    }
-
-    #model-desc {
-/*        margin: 5px 20px 0;*/
-    }
-
     .modal-body {
         height: 80%;
     }
@@ -1076,30 +980,13 @@ code {
         margin: 2%;
     }
 
-    #yelp-img-inner {
-        height: 22%;
-    }
-
     #fs-img-inner {
         height: 16%;
-    }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult {
-        height: 62%;
-        margin-top: 10px;
-    }
-
-    #yelp-status,#fs-status,.fs-element-show {
-        font-size: 11px;
     }
 
     #yelp-header,#yelp-status,#fs-status {
         height: 52%;
         margin: 10px;
-    }
-
-    #map-canvas {
-/*        height: 97%;*/
     }
 
     #fs-header {
@@ -1108,37 +995,69 @@ code {
 }
 
 @media screen and (min-width: 1440px) {
-
     h1 {
         font-size: 5vh;
+    }
+
+    #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar {
+        width: 400px;
     }
 
     #bodyContent {
         margin-top: 20px;
     }
+
     .nav {
-         margin-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .left-main p,.park-info p {
+        height: 240px;
     }
 
     .tab-content {
         height: 65%;
     }
 
-    .modal-map {
-        display:block;
+    #nav-mobile.open ~ .site-wrap {
+        transform: translateX(400px);
+    }
+
+    #nav-mobile.open {
+        transform: translateX(410px);
     }
 
     .modal-map {
-        display:block;
+        display: block;
     }
+
     #sv-pill {
-        display:none;
+        display: none;
     }
 
-    #firstHeading {
-/*        margin-top: 5px;*/
+    #fs-logo {
+        height: 1.5vw;
     }
 
+    #yelp-logo {
+        height: 4vw;
+    }
+
+    #yelp-status,#fs-status {
+        padding-top: 45px;
+    }
+
+    .pill-text,.list-inner {
+        font-size: 1.75vh;
+    }
+
+    #yelp-status,#fs-status,.fs-element-show {
+        font-size: 1vw;
+    }
+
+    .body-content {
+        height: 80%;
+    }
 
     .modal-results {
         height: 52%;
