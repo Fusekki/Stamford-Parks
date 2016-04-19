@@ -2,186 +2,203 @@
   border: 1px solid red !important;
 }*/
 /*  Main Area */
-html,body {
-    margin: 0;
-    height: 100%;
+
+html,
+body {
+  margin: 0;
+  height: 100%;
 }
 
 body {
-/* Without this, the body has excess horizontal scroll when the menu is open */
-    overflow-x: hidden;
+    /* Without this, the body has excess horizontal scroll when the menu is open */
+  overflow-x: hidden;
 }
 
 header {
-    background-color: #fff;
-    border: 0;
+  background-color: #fff;
+  border: 0;
 }
 
 a {
-    color: #fff;
+  color: #fff;
 }
 
 .container-fluid {
-    padding: 0;
-    position: relative;
-    overflow: hidden;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .fade {
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
 }
 
 .fade.out {
-    opacity: 0;
+  opacity: 0;
 }
 
 #titlediv {
-    height: 60px;
-    margin: 0;
+  height: 60px;
+  margin: 0;
 }
 
 .inner {
-    height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
 }
 
 .left-main {
-    margin-top: calc(100vh - 60px - 180px);
-    font-weight: 600;
-    border: 5px solid #080808;
-    width: 265px;
-    height: 392px;
-    margin-bottom: 75px;
-    padding: 20px 0;
-    -moz-border-radius: 12px;
-    -webkit-border-radius: 12px;
-    position: relative;
-    z-index: 2;
-    background-color: rgba(255,255,255,0.8);
-    transition: height .75s,width .75s,margin-top .75s;
-    -moz-transition: height .75s,width .75s,margin-top .75;
-    -webkit-transition: height .75s,width .75s,margin-top .75;
-    -o-transition: height .75s,width .75s,margin-top .75;
+  margin-top: calc(100vh - 60px - 180px);
+  font-weight: 600;
+  border: 5px solid #080808;
+  width: 265px;
+  height: 392px;
+  margin-bottom: 75px;
+  padding: 20px 0;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: height .75s, width .75s, margin-top .75s;
+  -moz-transition: height .75s, width .75s, margin-top .75;
+  -webkit-transition: height .75s, width .75s, margin-top .75;
+  -o-transition: height .75s, width .75s, margin-top .75;
 }
 
 .left-main h3 {
-    color: #ee7401;
+  color: #ee7401;
 }
 
-.left-main h3,.park-info h3 {
-    font-weight: 700;
-    margin-bottom: 10px;
-    opacity: 1;
-    transition: opacity .2s linear;
-    -moz-transition: opacity .2s linear;
-    -webkit-transition: opacity .2s linear;
-    -o-transition: opacity .2s linear;
+.left-main h3,
+.park-info h3 {
+  font-weight: 700;
+  margin-bottom: 10px;
+  opacity: 1;
+  transition: opacity .25s ease-in;
+  -moz-transition: opacity .25s ease-in;
+  -webkit-transition: opacity .25s ease-in;
+  -o-transition: opacity .25s ease-in;
 }
 
-.left-main p,.park-info p {
-    padding: 0 5px;
-    height: 85px;
-    overflow-y: auto;
-    color: #000;
-    opacity: 1;
-    transition: opacity 1s ease-in;
-    -moz-transition: opacity 1s ease-in;
-    -o-transition: opacity 1s ease-in;
+.left-main p,
+.park-info p {
+  padding: 0 5px;
+  height: 85px;
+  overflow-y: auto;
+  color: #000;
+  opacity: 1;
+  transition: opacity .25s ease-in;
+  -moz-transition: opacity .25s ease-in;
+  -o-transition: opacity .25s ease-in;
 }
 
 .left-main.shrink {
-    height: 42px;
-    width: 42px;
-    margin-top: calc(100vh - 60px - 47px);
+  height: 42px;
+  width: 42px;
+  margin-top: calc(100vh - 60px - 47px);
 }
 
-.left-main.shrink h3,.left-main.shrink p {
-    opacity: 0;
+.left-main.shrink h3,
+.left-main.shrink p {
+  opacity: 0;
 }
 
 .ui-autocomplete {
-    z-index: 2;
-    color: #fff;
-    background-color: #5dba44;
-    width: 200px;
-    list-style: none;
-    padding: 0;
+  z-index: 2;
+  color: #fff;
+  background-color: #5dba44;
+  width: 200px;
+  list-style: none;
+  padding: 0;
 }
 
 #pill-streetview {
-    height: 60vh;
+  height: 60vh;
 }
 
-.container-fluid,#map,.navigation,#pill-yelp,#pill-foursquare,#yelp-pill,#fs-pill {
-    height: 100%;
+.container-fluid,
+#map,
+.navigation,
+#pill-yelp,
+#pill-foursquare,
+#yelp-pill,
+#fs-pill {
+  height: 100%;
 }
 
-#yelp-loading, #fs-loading {
-    margin-top: 85px;
-    font-size: 2vh;
-    text-align: center;
+#yelp-loading,
+#fs-loading {
+  margin-top: 85px;
+  font-size: 2vh;
+  text-align: center;
 }
 
 .page-title {
-    font-family: 'Candal',sans-serif;
-    color: #000;
-    background: transparent;
+  font-family: 'Candal', sans-serif;
+  color: #000;
+  background: transparent;
 }
 
 #pg-header {
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #bodyContent {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 #map-row {
-    height: calc(100vh - 60px);
-    margin: 0;
-    position: absolute;
-    top: 60px;
-    width: 100%;
+  height: calc(100vh - 60px);
+  margin: 0;
+  position: absolute;
+  top: 60px;
+  width: 100%;
 }
 
 #map-canvas {
-    width: 65%;
-    margin: auto;
-    height: 100%;
+  width: 65%;
+  margin: auto;
+  height: 100%;
 }
 
 #map {
-    padding: 8px;
+  padding: 8px;
 }
 
 #footer {
-    background-color: #d10031;
-    height: 50vh;
-    margin: 0;
+  background-color: #d10031;
+  height: 50vh;
+  margin: 0;
 }
 
 #openBtn {
-    margin-left: 10px;
-    border-radius: 50px;
-    padding: 2px;
-    color: #fff;
-    font-size: 1.25em;
+  margin-left: 10px;
+  border-radius: 50px;
+  padding: 2px;
+  color: #fff;
+  font-size: 1.25em;
 }
-
 /*  Drawer Area */
-#search-bar,#search-input,#list-inner,#drawer-list,#drawer-item {
-    z-index: 1;
-}
 
+#search-bar,
+#search-input,
+#list-inner,
+#drawer-list,
+#drawer-item {
+  z-index: 1;
+}
 /* Site Wrapper - Everything that isn't navigation */
+
 .site-wrap {
-/* Critical position and size styles */
+    /* Critical position and size styles */
+
     -webkit-transition: .15s ease-in-out;
-/* These handle the transitions when the .open is removed */
+    /* These handle the transitions when the .open is removed */
     -moz-transition: .15s ease-in-out;
     -o-transition: .15s ease-in-out;
     transition: .15s ease-in-out;
@@ -189,17 +206,15 @@ a {
     min-height: 100%;
     min-width: 100%;
     background-color: #fff;
-/* Needs a background or else the nav will show through */
+    /* Needs a background or else the nav will show through */
     position: relative;
     top: calc(-100% - 30px);
-/* This value is to offset the total height of the nav-mobile div */
+    /* This value is to offset the total height of the nav-mobile div */
     overflow-y: hidden;
 }
-
 .site-wrap.fadeout {
     opacity: .2;
 }
-
 .navigation {
     background: #ee7401;
     opacity: 0;
@@ -207,36 +222,31 @@ a {
     -moz-transition: opacity 1s ease-in-out;
     -webkit-transition: opacity 1s ease-in-out;
 }
-
 .navigation.fadein {
     opacity: 1;
     background: #000;
 }
-
 .nav {
     margin-bottom: 5px;
 }
-
 /* Navigation Menu - List items */
+
 .nav-item {
-/* non-critical appearance styles */
+    /* non-critical appearance styles */
     width: 200px;
 }
-
 .nav-item a {
-/* non-critical appearance styles */
+    /* non-critical appearance styles */
     display: block;
     padding: .75em;
     color: #f5f5dc;
     font-size: 1em;
     text-decoration: none;
-    transition: color 0.2s,background .5s;
+    transition: color 0.2s, background .5s;
 }
-
 .nav-item a:hover {
     color: #fff;
 }
-
 #nav-mobile {
     width: 30px;
     height: 30px;
@@ -250,8 +260,7 @@ a {
     top: -98%;
     z-index: 2;
 }
-
-/*Hamburger lines*/
+/*Hamburger icon */
 #nav-mobile span {
     display: block;
     position: absolute;
@@ -265,109 +274,102 @@ a {
     -o-transition: .1s ease-in-out;
     transition: .1s ease-in-out;
 }
-
 #nav-mobile span:nth-child(1) {
     top: 0;
 }
-
-#nav-mobile span:nth-child(2),#nav-mobile span:nth-child(3) {
+#nav-mobile span:nth-child(2),
+#nav-mobile span:nth-child(3) {
     top: 12px;
 }
-
 #nav-mobile span:nth-child(4) {
     top: 24px;
 }
-
 #nav-mobile span.changecolor {
     background: #fff;
 }
-
 #nav-mobile.open ~ .site-wrap {
     -webkit-transition: .15s ease-in-out;
     -moz-transition: .15s ease-in-out;
     -o-transition: .15s ease-in-out;
     transition: .15s ease-in-out;
     transform: translateX(200px);
-    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
-
 #nav-mobile.open {
     transform: translateX(210px);
 }
-
 #nav-mobile.open span:nth-child(1) {
     top: 18px;
     width: 0;
     left: 50%;
 }
-
 #nav-mobile.open span:nth-child(2) {
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
 #nav-mobile.open span:nth-child(3) {
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-
 #nav-mobile.open span:nth-child(4) {
     top: 18px;
     width: 0;
     left: 50%;
 }
-
 /* Additional non-critical styles */
-h1,h3,p {
+
+h1,
+h3,
+p {
     margin: 0 auto;
 }
-
 code {
     padding: 2px;
     background: #ddd;
 }
-
-#search-inner,#list-inner,#drawer-list,#drawer-header,#search-input,#drawer-item,#header-inner,#search-bar {
+#search-inner,
+#list-inner,
+#drawer-list,
+#drawer-header,
+#search-input,
+#drawer-item,
+#header-inner,
+#search-bar {
     width: 200px;
 }
-
 #header-inner {
     background-color: #fff;
 }
-
 #drawer-header {
     margin: 0 0 0 4vw;
     font-size: 5vh;
     display: block;
-    font-family: 'Gloria Hallelujah',cursive;
+    font-family: 'Gloria Hallelujah', cursive;
     color: #000;
     margin: 0 auto;
     background-color: #fff;
     text-align: center;
 }
-
 #search-input {
     top: 0;
     left: 0;
     line-height: 15px;
     margin: 0;
     height: 30px;
-    font-family: arial,sans-serif;
+    font-family: arial, sans-serif;
     font-size: 15px;
     background-color: #fff;
     -webkit-appearance: none;
     box-shadow: none;
     text-indent: 8px;
 }
-
 #search-inner {
     background-color: #fff;
 }
-
 #drawer-list {
     list-style: none;
     padding: 0;
@@ -377,45 +379,38 @@ code {
     -webkit-column-count: 1;
     -moz-column-count: 1;
 }
-
 #drawer-item {
-    font-family: 'Yanone Kaffeesatz',sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     color: #f2f2e7;
     display: inline-block;
     padding-left: 3px;
 }
-
 #drawer-item:hover {
     color: #fff;
     background-color: #a52a2a;
 }
-
 #drawer-results {
     display: inline-block;
     color: grey;
     background-color: #fff;
 }
-
 #drawer-results-text {
     background-color: #fff;
     display: inline-block;
 }
-
 /*  Modal Area */
+
 .modal-dialog {
     height: 95vh;
 }
-
 .modal-body {
     padding: 0 15px;
     height: 90%;
 }
-
 .modal-content {
     background-color: #29a293;
     height: inherit;
 }
-
 .minimize {
     background: #fff;
     position: absolute;
@@ -424,7 +419,6 @@ code {
     border: 1px solid #000;
     padding: 3px 6px;
 }
-
 #model-data {
     border-radius: 15px;
     margin: auto;
@@ -434,20 +428,22 @@ code {
     display: table-cell;
     vertical-align: middle;
 }
-
 .modal-footer {
     height: 10%;
     padding: 0;
 }
-
-.modal-header,#yelp,#yelp-noresult,#four-square,#fs-noresult, #fs-loading, #yelp-loading {
+.modal-header,
+#yelp,
+#yelp-noresult,
+#four-square,
+#fs-noresult,
+#fs-loading,
+#yelp-loading {
     color: #fff;
 }
-
 .modal-header {
     height: 10%;
 }
-
 #info-label {
     clear: both;
     line-height: 30px;
@@ -455,807 +451,754 @@ code {
     clear: both;
     display: inline-flex;
 }
-
 .modal-results {
     margin-top: 5px;
     height: 97%;
 }
-
 .modal-style {
     background-color: #fff;
 }
-
 .modal-title {
     font-size: 4vh;
 }
-
 #modal-btn-close {
     margin: 3%;
     border-radius: 50px;
     font-size: 2.5vh;
 }
-
-#street-view,#sv-canvas {
+#street-view,
+#sv-canvas {
     top: 1vh;
     height: 40vh;
 }
-
 .tab-content {
     height: 90%;
 }
-
-#yelp,#four-square,#yelp-noresult,#fs-noresult, #fs-loading, #yelp-loading {
+#yelp,
+#four-square,
+#yelp-noresult,
+#fs-noresult,
+#fs-loading,
+#yelp-loading {
     margin-top: 10px;
     height: 83%;
 }
-
 #yelp-body-content {
     height: 46%;
 }
-
+.loading-status {
+    font-size: 3vh;
+    margin-top: 25px;
+}
 .body-content {
     min-height: 10vh;
     max-height: 41vh;
     margin: 2%;
     overflow-y: auto;
 }
-
 #list-inner {
     list-style: none;
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
 }
-
 .list-inner {
     overflow-x: hidden;
 }
-
 .result-item:hover {
     color: #fff;
     background-color: #337ab7;
 }
-
 .fs-element-hide {
     display: none;
 }
-
 .fs-element-show {
     display: inherit;
 }
-
 #fs-logo {
     margin-top: 20px;
 }
-
 #body-paragraph {
     margin: 30px 0 10px;
 }
-
 #firstHeading1 {
     text-align: center;
 }
-
 #img-inner {
     max-height: 60px;
     max-width: 60px;
     height: 60px;
     width: 60px;
 }
+/*Loading animation courtesy of http://tobiasahlin.com/spinkit */
 
-
-/*Loading animation courtesy of cssload.net*/
-#fountainG{
-    position:relative;
-    width:234px;
-    height:28px;
-    margin:auto;
+.sk-circle {
+    margin: 50px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
 }
-
-.fountainG{
-    position:absolute;
-    top:0;
-    background-color:rgb(0,0,0);
-    width:28px;
-    height:28px;
-    animation-name:bounce_fountainG;
-        -o-animation-name:bounce_fountainG;
-        -ms-animation-name:bounce_fountainG;
-        -webkit-animation-name:bounce_fountainG;
-        -moz-animation-name:bounce_fountainG;
-    animation-duration:1.5s;
-        -o-animation-duration:1.5s;
-        -ms-animation-duration:1.5s;
-        -webkit-animation-duration:1.5s;
-        -moz-animation-duration:1.5s;
-    animation-iteration-count:infinite;
-        -o-animation-iteration-count:infinite;
-        -ms-animation-iteration-count:infinite;
-        -webkit-animation-iteration-count:infinite;
-        -moz-animation-iteration-count:infinite;
-    animation-direction:normal;
-        -o-animation-direction:normal;
-        -ms-animation-direction:normal;
-        -webkit-animation-direction:normal;
-        -moz-animation-direction:normal;
-    transform:scale(.3);
-        -o-transform:scale(.3);
-        -ms-transform:scale(.3);
-        -webkit-transform:scale(.3);
-        -moz-transform:scale(.3);
-    border-radius:19px;
-        -o-border-radius:19px;
-        -ms-border-radius:19px;
-        -webkit-border-radius:19px;
-        -moz-border-radius:19px;
+.sk-circle .sk-child {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
-
-#fountainG_1{
-    left:0;
-    animation-delay:0.6s;
-        -o-animation-delay:0.6s;
-        -ms-animation-delay:0.6s;
-        -webkit-animation-delay:0.6s;
-        -moz-animation-delay:0.6s;
+.sk-circle .sk-child:before {
+    content: '';
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    height: 15%;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
+    animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
 }
-
-#fountainG_2{
-    left:29px;
-    animation-delay:0.75s;
-        -o-animation-delay:0.75s;
-        -ms-animation-delay:0.75s;
-        -webkit-animation-delay:0.75s;
-        -moz-animation-delay:0.75s;
+.sk-circle .sk-circle2 {
+    -webkit-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    transform: rotate(30deg);
 }
-
-#fountainG_3{
-    left:58px;
-    animation-delay:0.9s;
-        -o-animation-delay:0.9s;
-        -ms-animation-delay:0.9s;
-        -webkit-animation-delay:0.9s;
-        -moz-animation-delay:0.9s;
+.sk-circle .sk-circle3 {
+    -webkit-transform: rotate(60deg);
+    -ms-transform: rotate(60deg);
+    transform: rotate(60deg);
 }
-
-#fountainG_4{
-    left:88px;
-    animation-delay:1.05s;
-        -o-animation-delay:1.05s;
-        -ms-animation-delay:1.05s;
-        -webkit-animation-delay:1.05s;
-        -moz-animation-delay:1.05s;
+.sk-circle .sk-circle4 {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
-
-#fountainG_5{
-    left:117px;
-    animation-delay:1.2s;
-        -o-animation-delay:1.2s;
-        -ms-animation-delay:1.2s;
-        -webkit-animation-delay:1.2s;
-        -moz-animation-delay:1.2s;
+.sk-circle .sk-circle5 {
+    -webkit-transform: rotate(120deg);
+    -ms-transform: rotate(120deg);
+    transform: rotate(120deg);
 }
-
-#fountainG_6{
-    left:146px;
-    animation-delay:1.35s;
-        -o-animation-delay:1.35s;
-        -ms-animation-delay:1.35s;
-        -webkit-animation-delay:1.35s;
-        -moz-animation-delay:1.35s;
+.sk-circle .sk-circle6 {
+    -webkit-transform: rotate(150deg);
+    -ms-transform: rotate(150deg);
+    transform: rotate(150deg);
 }
-
-#fountainG_7{
-    left:175px;
-    animation-delay:1.5s;
-        -o-animation-delay:1.5s;
-        -ms-animation-delay:1.5s;
-        -webkit-animation-delay:1.5s;
-        -moz-animation-delay:1.5s;
+.sk-circle .sk-circle7 {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
-
-#fountainG_8{
-    left:205px;
-    animation-delay:1.64s;
-        -o-animation-delay:1.64s;
-        -ms-animation-delay:1.64s;
-        -webkit-animation-delay:1.64s;
-        -moz-animation-delay:1.64s;
+.sk-circle .sk-circle8 {
+    -webkit-transform: rotate(210deg);
+    -ms-transform: rotate(210deg);
+    transform: rotate(210deg);
 }
-
-
-
-@keyframes bounce_fountainG{
-    0%{
-    transform:scale(1);
-        background-color:rgb(0,0,0);
+.sk-circle .sk-circle9 {
+    -webkit-transform: rotate(240deg);
+    -ms-transform: rotate(240deg);
+    transform: rotate(240deg);
+}
+.sk-circle .sk-circle10 {
+    -webkit-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.sk-circle .sk-circle11 {
+    -webkit-transform: rotate(300deg);
+    -ms-transform: rotate(300deg);
+    transform: rotate(300deg);
+}
+.sk-circle .sk-circle12 {
+    -webkit-transform: rotate(330deg);
+    -ms-transform: rotate(330deg);
+    transform: rotate(330deg);
+}
+.sk-circle .sk-circle2:before {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+.sk-circle .sk-circle3:before {
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
+}
+.sk-circle .sk-circle4:before {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+.sk-circle .sk-circle5:before {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+.sk-circle .sk-circle6:before {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+.sk-circle .sk-circle7:before {
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+.sk-circle .sk-circle8:before {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+.sk-circle .sk-circle9:before {
+    -webkit-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+.sk-circle .sk-circle10:before {
+    -webkit-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+.sk-circle .sk-circle11:before {
+    -webkit-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+.sk-circle .sk-circle12:before {
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+@-webkit-keyframes sk-circleBounceDelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
     }
-
-    100%{
-    transform:scale(.3);
-        background-color:rgb(255,255,255);
-    }
-}
-
-@-o-keyframes bounce_fountainG{
-    0%{
-    -o-transform:scale(1);
-        background-color:rgb(0,0,0);
-    }
-
-    100%{
-    -o-transform:scale(.3);
-        background-color:rgb(255,255,255);
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }
-
-@-ms-keyframes bounce_fountainG{
-    0%{
-    -ms-transform:scale(1);
-        background-color:rgb(0,0,0);
+@keyframes sk-circleBounceDelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
     }
-
-    100%{
-    -ms-transform:scale(.3);
-        background-color:rgb(255,255,255);
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
     }
 }
-
-@-webkit-keyframes bounce_fountainG{
-    0%{
-    -webkit-transform:scale(1);
-        background-color:rgb(0,0,0);
-    }
-
-    100%{
-    -webkit-transform:scale(.3);
-        background-color:rgb(255,255,255);
-    }
-}
-
-@-moz-keyframes bounce_fountainG{
-    0%{
-    -moz-transform:scale(1);
-        background-color:rgb(0,0,0);
-    }
-
-    100%{
-    -moz-transform:scale(.3);
-        background-color:rgb(255,255,255);
-    }
-}
-
 /*End loading animation*/
 
-/*End Drawer CSS*/
-/* iPhone/Small phone screen */
+/* iPhone 4/5 screen Portrait */
+
 @media screen and (min-width: 320px) {
     .container-fluid {
         margin: auto;
     }
-
     .inner {
         height: calc(100vh - 60px);
     }
-
     .left-main {
         height: 175px;
         padding: 7px 0;
     }
-
     .page-title {
         font-size: 25px;
         padding: .4em;
     }
-
-    .left-main h3,.park-info h3 {
+    .left-main h3,
+    .park-info h3 {
         font-size: 4vh;
     }
-
     #model-data {
         width: 98%;
         margin: 0 1%;
     }
-
     .modal-map {
         display: none;
     }
-
-    .pill-text,.list-inner {
+    .pill-text,
+    .list-inner {
         font-size: 2.2vh;
     }
-
     .modal-body {
         height: 79%;
     }
-
     #bodyContent {
         height: 80%;
         margin-top: 20px;
     }
-
-    #yelp-img-inner,#fs-img-inner {
+    #yelp-img-inner,
+    #fs-img-inner {
         height: 60px;
     }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult {
         height: 62%;
         font-size: 2.5vh;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 2.5vh;
     }
-
-    #yelp-header,#yelp-status,#fs-status {
+    #yelp-header,
+    #yelp-status,
+    #fs-status {
         height: 18%;
     }
-
     #map-canvas {
         width: 100%;
     }
-
     #drawer-item {
         font-size: 3.5vh;
     }
-
     #fs-header {
         height: 20%;
     }
 }
-
 @media screen and (min-width: 320px) and (min-height: 650px) {
     #drawer-item {
         font-size: 3vh;
     }
 }
-
 /*iPhone 4/5 LS*/
+
 @media screen and (min-width: 480px) and (min-height: 320px) {
     .inner {
         margin-top: 55px;
     }
-
     .left-main {
         margin-top: calc(100vh - 60px - 155px);
         height: 150px;
     }
-
-    .left-main p,.park-info p {
+    .left-main p,
+    .park-info p {
         height: 65px;
     }
-
-    .left-main h3,.park-info h3 {
+    .left-main h3,
+    .park-info h3 {
         font-size: 5vh;
     }
-
     #firstHeading1 {
         font-size: 6vh;
     }
-
     .body-content {
         max-height: 25vh;
     }
-
     #bodyContent {
         margin-top: 13px;
     }
-
     .modal-header {
         padding: 10px 0 30px;
     }
-
     .modal-title {
         font-size: 7vh;
     }
-
     #fs-logo {
         margin-top: 10px;
     }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult {
         margin-top: 0;
         font-size: 2.5vw;
     }
-
+    .loading-status {
+        font-size: 5vh;
+        margin-top: 20px;
+    }
+    .sk-circle {
+        margin: 10px auto;
+    }
     #pill-streetview {
         height: 44vh;
     }
-
     #modal-btn-close {
         font-size: 3.5vh;
     }
-
-    #yelp-status,#fs-status {
+    #yelp-status,
+    #fs-status {
         padding-top: 40px;
     }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult, #fs-loading, #yelp-loading {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult,
+    #fs-loading,
+    #yelp-loading {
         height: 62%;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 4vh;
     }
-
-    #yelp-img-inner,#fs-img-inner {
+    #yelp-img-inner,
+    #fs-img-inner {
         height: 35px;
     }
-
-    .pill-text,.list-inner {
+    .pill-text,
+    .list-inner {
         font-size: 4.5vh;
     }
-
     #drawer-item {
         font-size: 4.5vh;
     }
-
     .modal-body {
         height: 57%;
     }
 }
-
 /* iPad */
+
 @media screen and (min-width: 768px) {
     h1 {
         font-size: 3.5vh;
     }
-
     .inner {
         margin-left: 10px;
         margin-top: 100px;
     }
-
     .left-main {
         margin-top: calc(100vh - 60px - 397px);
         width: 265px;
         height: 392px;
     }
-
     #header-inner {
         padding-top: 2%;
     }
-
     #search-input {
         font-size: 2vh;
         line-height: 2vh;
     }
-
     #drawer-header {
         text-align: center;
         font-size: 3vh;
     }
-
-    #drawer-results,#drawer-results-text {
+    #drawer-results,
+    #drawer-results-text {
         font-size: 2vh;
     }
-
     .page-title {
         font-size: 4vh;
         padding: 0;
         margin: 0 auto;
     }
-
     #bodyContent {
         height: 52%;
     }
-
     #siteNotice ~ b {
         font-size: 1.6vh;
     }
-
     #model-data {
         display: block;
         margin-top: 6%;
     }
-
     .modal-title {
-        font-size: 4vh;
+        font-size: 3vh;
     }
-
-    #yelp,#four-square {
+    #yelp,
+    #four-square {
         font-size: 2vh;
     }
-
-    #yelp-status,#fs-status {
+    #yelp-status,
+    #fs-status {
         padding-top: 25px;
     }
-
-    #yelp-img-inner,#fs-img-inner {
+    #yelp-img-inner,
+    #fs-img-inner {
         height: 68px;
     }
-
     #yelp-address {
         margin-top: 17px;
     }
-
+    .loading-status {
+        font-size: 3vh;
+        margin-top: 60px;
+    }
+    .sk-circle {
+        margin: 75px auto;
+    }
     .tab-content {
         height: 84%;
     }
-
-    .pill-text,.list-inner {
+    .pill-text,
+    .list-inner {
         font-size: 1.7vh;
     }
-
-    #yelp-status,#fs-status {
+    #yelp-status,
+    #fs-status {
         margin: 0 10px;
     }
-
     #modal-btn-close {
         font-size: 2vh;
     }
-
     #img-inner {
         display: none;
     }
-
     #yelp-img-inner {
         height: 10%;
     }
-
     #yelp-header {
         height: 15%;
     }
-
-    #fs-body-content,#fs-body-container {
+    #fs-body-content,
+    #fs-body-container {
         height: 80%;
     }
-
     #pill-streetview {
         height: 64vh;
     }
-
     #model-desc {
         max-height: 290px;
         overflow-y: auto;
     }
-
     .modal-body {
         height: 86%;
     }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult, #fs-loading, #yelp-loading {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult,
+    #fs-loading,
+    #yelp-loading {
         height: 74%;
     }
-
     #fs-header {
         height: 32%;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 18px;
     }
 }
-
 @media screen and (min-width: 768px) and (max-height: 1024px) {
     #drawer-item {
         font-size: 2.1vh;
     }
 }
-
 /*ipad Portrait*/
+
 @media screen and (min-width: 768px) and (min-height: 1024px) {
     /*height is 392 px or 382 without borcer, 372 px without padding and border */
+
     .left-main {
         margin-top: calc(100vh - 60px - 397px);
     }
-
-    .left-main h3,.park-info h3 {
+    .left-main h3,
+    .park-info h3 {
         margin: 10px auto;
         font-size: 3vh;
     }
-
-    .left-main p,.park-info p {
+    .left-main p,
+    .park-info p {
         height: 280px;
     }
-
     .body-content {
         max-height: 53vh;
     }
-
     .tab-pane {
         margin-top: 10px;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 2vw;
     }
 }
-
 /*ipad Landscape*/
+
 @media screen and (min-width: 1024px) and (min-height: 768px) {
-    .left-main h3,.park-info h3 {
+    .left-main h3,
+    .park-info h3 {
         font-size: 3.5vh;
     }
-
-    .left-main p,.park-info p {
+    .left-main p,
+    .park-info p {
         height: 280px;
     }
-
     .body-content {
         max-height: 41vh;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 1.6vw;
     }
-
     #yelp-img-inner {
         height: 15%;
     }
-
-    #yelp,#four-square,#yelp-noresult,#fs-noresult, #fs-loading, #yelp-loading {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult,
+    #fs-loading,
+    #yelp-loading {
         height: 70%;
         margin-top: 10px;
     }
-
-    #yelp,#four-square {
+    #yelp,
+    #four-square {
         font-size: 2vw;
     }
-
     #fs-logo {
         margin-top: 20px;
     }
-
-    .pill-text,.list-inner {
+    .pill-text,
+    .list-inner {
         font-size: 1.7vw;
     }
-
     #pill-streetview {
         height: 60vh;
     }
 }
-
 @media screen and (min-width: 1024px) {
-    #search-inner,#list-inner,#drawer-list,#drawer-header,#search-input,#drawer-item,#header-inner,#search-bar {
+    #search-inner,
+    #list-inner,
+    #drawer-list,
+    #drawer-header,
+    #search-input,
+    #drawer-item,
+    #header-inner,
+    #search-bar {
         width: 250px;
     }
-
     #nav-mobile.open ~ .site-wrap {
         transform: translateX(250px);
     }
-
     #nav-mobile.open {
         transform: translateX(260px);
     }
-
     h1 {
         font-size: 4vh;
     }
-
-    h1,h3,p {
+    h1,
+    h3,
+    p {
         margin-bottom: 1em;
     }
-
     .page-title {
         font-size: 45px;
     }
-
     #bodyContent {
         margin-top: 0;
     }
-
     #header-inner {
         padding-top: 1%;
     }
-
     #search-input {
         font-size: 2.5vh;
         line-height: 2.5vh;
     }
-
-    #drawer-results,#drawer-results-text {
+    #drawer-results,
+    #drawer-results-text {
         font-size: 2.5vh;
     }
-
     #drawer-header {
         font-size: 4vh;
     }
-
     #drawer-item {
         font-size: 2.9vh;
     }
-
     #model-data {
         width: 90%;
         margin: 3% auto;
     }
-
     .modal-body {
         height: 80%;
     }
-
     .body-content {
         height: 90%;
         margin: 2%;
     }
-
     #fs-img-inner {
         height: 16%;
     }
-
-    #yelp-header,#yelp-status,#fs-status {
+    #yelp-header,
+    #yelp-status,
+    #fs-status {
         height: 52%;
         margin: 10px;
     }
-
     #fs-header {
         height: 40%;
     }
 }
-
 @media screen and (min-width: 1440px) {
     h1 {
         font-size: 5vh;
     }
-
-    .left-main h3, .park-info h3 {
+    .left-main h3,
+    .park-info h3 {
         font-size: 2vh;
     }
-
-    #search-inner, #list-inner, #drawer-list, #drawer-header, #search-input, #drawer-item, #header-inner, #search-bar {
+    #search-inner,
+    #list-inner,
+    #drawer-list,
+    #drawer-header,
+    #search-input,
+    #drawer-item,
+    #header-inner,
+    #search-bar {
         width: 400px;
     }
-
     #bodyContent {
         margin-top: 20px;
     }
-
     .nav {
         margin-bottom: 0;
     }
-
-    .left-main p,.park-info p {
+    .left-main p,
+    .park-info p {
         height: 240px;
     }
-
     .tab-content {
         height: 65%;
     }
-
     #nav-mobile.open ~ .site-wrap {
         transform: translateX(400px);
     }
-
     #nav-mobile.open {
         transform: translateX(410px);
     }
-
     .modal-title {
         font-size: 3.0vh;
     }
-
     .modal-map {
         display: block;
     }
-
     #sv-pill {
         display: none;
     }
-
     #fs-logo {
         height: 1.5vw;
     }
-
     #yelp-logo {
-        height: 4vw;
+        height: 3vw;
     }
-
-    #yelp-status,#fs-status {
+    #yelp,
+    #four-square {
+        font-size: 1.7vh;
+    }
+    #yelp-status,
+    #fs-status {
         padding-top: 45px;
     }
-
-    .pill-text,.list-inner {
+    #yelp,
+    #four-square,
+    #yelp-noresult,
+    #fs-noresult,
+    #fs-loading,
+    #yelp-loading {
+        margin-top: 20px;
+    }
+    .pill-text,
+    .list-inner {
         font-size: 1.75vh;
     }
-
-    #yelp-status,#fs-status,.fs-element-show {
+    #yelp-status,
+    #fs-status,
+    .fs-element-show {
         font-size: 1vw;
     }
-
+    .sk-circle {
+        margin: 15px auto;
+    }
     .body-content {
         height: 80%;
     }
-
     .modal-results {
         height: 52%;
     }
