@@ -378,9 +378,9 @@ var ViewModel = function() {
 
 
 
-    console.log(self.placeNumber());
+    // console.log(self.placeNumber());
     $('#firstHeading').text("THE PARKS MAP");
-    console.log($('#firstHeading'));
+    // console.log($('#firstHeading'));
     $('#modelDesc').text('The park maps displays all of the parks located in the Stamford, CT area.  Click the above menu icon to bring up a list of parks in the area.  After selecting one, feel free to click the yellow icon next to it in the infowindow to bring up additional information of it, such as a streetview and potential matches from Foursquare and Yelp.');
 
     self.helpers = Helpers;
@@ -441,7 +441,7 @@ var ViewModel = function() {
 
     // Statements
     this.query.subscribe(self.search);
-    console.log($('#pill-streetview'));
+    // console.log($('#pill-streetview'));
 
 
 
@@ -461,22 +461,22 @@ var ViewModel = function() {
 
         var loc = new google.maps.LatLng(lat, lng);
         var id = 'street-view';
-        console.log($(id));
-        console.log($('modal-map'));
-        console.log($(id).is(':visible'));
+        // console.log($(id));
+        // console.log($('modal-map'));
+        // console.log($(id).is(':visible'));
 
-        console.log($('#modal-map').is(':visible'));
+        // console.log($('#modal-map').is(':visible'));
 
         if ($('.modal-map').is(':visible')) {
 
-            console.log('streetview not hidden');
+            // console.log('streetview not hidden');
         } else {
             id = 'pill-streetview';
-            console.log('streetview hidden.');
+            // console.log('streetview hidden.');
         }
-        console.log(id);
+        // console.log(id);
 
-        console.log(document.getElementById('street-view'));
+        // console.log(document.getElementById('street-view'));
 
         var panorama = new google.maps.StreetViewPanorama(document.getElementById(id), {
             position: loc,
@@ -490,21 +490,21 @@ var ViewModel = function() {
         // Check to see if streetview is appearing in the pills
 
         if ($('#sv-pill').is(':visible')) {
-            console.log('mobile streetview is activated');
+            // console.log('mobile streetview is activated');
 
 
             // Since the tab is hidden by default, we need to trigger a resize event so it displays properly when the pill is selected
             $('a[data-toggle="pill"]').on('shown.bs.tab', function(e) {
                 var target = $(e.target).attr("href") // activated tab
                 if (target === '#pill-streetview') {
-                    console.log('trigger map resize');
+                    // console.log('trigger map resize');
                     google.maps.event.trigger(panorama, "resize");
 
                 }
             });
 
         } else {
-            console.log('mobile streetview disabled.');
+            // console.log('mobile streetview disabled.');
         }
 
 
